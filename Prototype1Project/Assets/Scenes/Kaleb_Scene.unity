@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 736109521}
   - component: {fileID: 736109522}
   - component: {fileID: 736109523}
+  - component: {fileID: 736109524}
   m_Layer: 6
   m_Name: _Enemy
   m_TagString: Untagged
@@ -367,12 +368,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d93c5ea889db6499fe87529d78c320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  meshRenderer: {fileID: 745186875}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 64
   enemyType: 0
   enemyRotationSpeed: 600
   attackSpeed: 2
+  maxHP: 5
   bulletSpawnPos: {fileID: 885286948}
   target: {fileID: 1550773254}
   bulletPrefab: {fileID: 1564437054866486670, guid: c0ac83f683ee0fc4cb45ba63c06a4670, type: 3}
@@ -400,6 +403,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
+--- !u!136 &736109524
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736109520}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &745186873
 GameObject:
   m_ObjectHideFlags: 0

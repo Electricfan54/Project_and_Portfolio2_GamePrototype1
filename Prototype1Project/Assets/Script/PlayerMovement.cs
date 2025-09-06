@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
             playerVel.y -= Gravity * Time.deltaTime;
 
         }
+
         playerDirection = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
 
         controller.Move(playerDirection * playerSpeed * Time.deltaTime);

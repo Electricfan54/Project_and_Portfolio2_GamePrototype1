@@ -314,7 +314,7 @@ MonoBehaviour:
   controller: {fileID: 1463291831}
   playerSpeed: 6
   SprintMod: 2
-  jumpSpeed: 3
+  jumpSpeed: 15
   jumpMax: 2
   Gravity: 35
 --- !u!136 &1463291827

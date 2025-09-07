@@ -14,24 +14,27 @@ public class EnemyAI : MonoBehaviour, IDamage
         Ranged
     }
 
+    // Serialized variables
     [SerializeField] Renderer meshRenderer;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] EnemyType enemyType;
     [SerializeField] int enemyRotationSpeed;
     [Tooltip("Measured in attacks per second. the higher the number the faster the enemy attacks.")]
-    [SerializeField] float attackSpeed;
     [SerializeField] int maxHP;
-    int HP;
+    [SerializeField] float attackSpeed;
+    [SerializeField] int damage;
 
     [Header("Ranged Variables")]
     [SerializeField] Transform bulletSpawnPos;
     [SerializeField] Transform target;
     [SerializeField] GameObject bulletPrefab;
-    [SerializeField] int damage;
 
 
     [Header("Melee Variables")]
     [SerializeField] int meleeRange;
+
+    // Non Serialized variables
+    int HP;
 
     bool isAttacking = false;
 
@@ -48,6 +51,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         agent = GetComponent<NavMeshAgent>();
 
         //If found set target to player
+        // Temp code until the game manager has a reference to the player
         Transform temp = GameObject.FindWithTag("Player").transform;
         if (temp != null)
         {
@@ -71,7 +75,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             Attack();
         }
 
-        //Temp code
+        //Temp code for testing
         if (Input.GetKeyDown(KeyCode.F))
         {
             TakeDamage(1);
@@ -96,7 +100,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         switch (enemyType)
         {
             case EnemyType.Melee:
-                // Should offset the position of the raycast
                 if (!isAttacking)
                     StartCoroutine(MeleeAttack());
                 break;
@@ -111,10 +114,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         isAttacking = true;
 
-        //Temporary test code
-        //GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPos.position, transform.rotation);
-        //bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 10.0f, ForceMode.Impulse);
-        //Destroy(bullet, 3);
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPos.position, transform.rotation);
 
         yield return new WaitForSeconds(1 / attackSpeed);
         isAttacking = false;
@@ -126,6 +126,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 
         RaycastHit hit;
+        // Should offset the position of the raycast
         // Temporary position for now
         Vector3 rayPos = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);
         
@@ -134,7 +135,8 @@ public class EnemyAI : MonoBehaviour, IDamage
             if (hit.collider.CompareTag("Player"))
             {
                 // get IDamage component and damage the player
-                Debug.Log("Melee Attack");
+                // waiting for the game manager to have a reference to the player
+                hit.collider.GetComponent<IDamage>().TakeDamage(damage);
             }
         }
 

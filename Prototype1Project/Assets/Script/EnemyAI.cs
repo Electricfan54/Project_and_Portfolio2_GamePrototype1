@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IDamage
 {
     NavMeshAgent agent;
 
@@ -14,12 +14,14 @@ public class EnemyAI : MonoBehaviour
         Ranged
     }
 
-
+    [SerializeField] Renderer meshRenderer;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] EnemyType enemyType;
     [SerializeField] int enemyRotationSpeed;
     [Tooltip("Measured in attacks per second. the higher the number the faster the enemy attacks.")]
     [SerializeField] float attackSpeed;
+    [SerializeField] int maxHP;
+    int HP;
 
     [Header("Ranged Variables")]
     [SerializeField] Transform bulletSpawnPos;
@@ -37,6 +39,7 @@ public class EnemyAI : MonoBehaviour
     Vector3 rotDir;
     Quaternion rot;
 
+    Color colorOrig;
 
 
 
@@ -54,15 +57,24 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
-        
+        colorOrig = meshRenderer.material.color;
+        HP = maxHP;
+        //Tell the game manager this enemy is alive
     }
 
     void Update()
     {
+
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             FaceTarget();
             Attack();
+        }
+
+        //Temp code
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            TakeDamage(1);
         }
     }
 
@@ -128,5 +140,23 @@ public class EnemyAI : MonoBehaviour
 
         yield return new WaitForSeconds(1 / attackSpeed);
         isAttacking = false;
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        HP -= damageAmount;
+        StartCoroutine(DamageFlash());
+        if (HP <= 0)
+        {
+            //Tell the game manager this enemy is dead
+            Destroy(gameObject);
+        }
+    }
+
+    IEnumerator DamageFlash()
+    {
+        meshRenderer.material.color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        meshRenderer.material.color = colorOrig;
     }
 }

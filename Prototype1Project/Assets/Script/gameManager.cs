@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class gameManager : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class gameManager : MonoBehaviour
 
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject menuConfirmQuit;
+
+    List<GameObject> menuHierarchy;
 
     float timeScaleOrig;
 
@@ -56,6 +60,11 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
+    }
+
+    public void BackOutScreen()
+    {
+
     }
 
 }

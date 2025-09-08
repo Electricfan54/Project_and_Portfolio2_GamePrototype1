@@ -1,7 +1,7 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyAI : MonoBehaviour, IDamage
@@ -18,11 +18,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer meshRenderer;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] EnemyType enemyType;
+    [Tooltip("Changes the navMeshAgent's stopping dist variable")]
+    [SerializeField] int enemyStoppingDist;
     [SerializeField] int enemyRotationSpeed;
     [Tooltip("Measured in attacks per second. the higher the number the faster the enemy attacks.")]
     [SerializeField] int maxHP;
     [SerializeField] float attackSpeed;
     [SerializeField] int damage;
+    [SerializeField] Image enemyHealthBar;
 
     [Header("Ranged Variables")]
     [SerializeField] Transform bulletSpawnPos;
@@ -63,36 +66,43 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         colorOrig = meshRenderer.material.color;
         HP = maxHP;
+        UpdateEnemyUI();
+        agent.stoppingDistance = enemyStoppingDist;
         //Tell the game manager this enemy is alive
     }
 
     void Update()
     {
+        //Temp code for testing
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            TakeDamage(1);
+        }
+
+        if (target == null)
+            return;
 
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             FaceTarget();
             Attack();
         }
-
-        //Temp code for testing
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            TakeDamage(1);
-        }
     }
 
     void FaceTarget()
     {
         rotDir = target.position - transform.position;
-        rot = Quaternion.LookRotation(rotDir);
+        /// if statement to prevent unity message
+        if (rotDir !=  Vector3.zero)
+            rot = Quaternion.LookRotation(rotDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, enemyRotationSpeed * Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
         // Setting destination in fixed update so the path is recalculated less than in update
-        agent.SetDestination(target.position);
+        if (target != null)
+            agent.SetDestination(target.position);
     }
 
     void Attack()
@@ -114,7 +124,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         isAttacking = true;
 
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPos.position, transform.rotation);
+        Instantiate(bulletPrefab, bulletSpawnPos.position, transform.rotation);
 
         yield return new WaitForSeconds(1 / attackSpeed);
         isAttacking = false;
@@ -136,7 +146,9 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 // get IDamage component and damage the player
                 // waiting for the game manager to have a reference to the player
-                hit.collider.GetComponent<IDamage>().TakeDamage(damage);
+                IDamage dmg = hit.collider.GetComponent<IDamage>();
+                if (dmg != null)
+                    dmg.TakeDamage(damage);
             }
         }
 
@@ -147,12 +159,20 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void TakeDamage(int damageAmount)
     {
         HP -= damageAmount;
+        UpdateEnemyUI();
         StartCoroutine(DamageFlash());
         if (HP <= 0)
         {
             //Tell the game manager this enemy is dead
             Destroy(gameObject);
         }
+    }
+
+    void UpdateEnemyUI()
+    {
+        if (enemyHealthBar == null)
+            return;
+        enemyHealthBar.fillAmount = (float)HP / maxHP;
     }
 
     IEnumerator DamageFlash()

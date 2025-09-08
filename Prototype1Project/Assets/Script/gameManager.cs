@@ -35,7 +35,6 @@ public class gameManager : MonoBehaviour
                 PauseGame();
                 menuActive = menuPause;
                 menuActive.SetActive(true);
-                menuHierarchy.Add(menuActive);
             }
             else if (menuActive == menuPause)
             {
@@ -60,7 +59,6 @@ public class gameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
-        menuHierarchy.Remove(menuActive);
         menuActive = null;
     }
 

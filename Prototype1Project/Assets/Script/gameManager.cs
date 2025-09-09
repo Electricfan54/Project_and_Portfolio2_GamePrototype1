@@ -12,6 +12,9 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuConfirmQuit;
 
+    public Image playerHPBar;
+    public GameObject playerDamageFlash;
+
     public GameObject player;
     public PlayerMovement playerScript;
 

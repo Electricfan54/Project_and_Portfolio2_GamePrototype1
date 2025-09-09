@@ -13,7 +13,7 @@ public class Damage : MonoBehaviour
     [SerializeField] int destroyTime;
     [SerializeField] float explodetime;
     [SerializeField] DamageType type;
-
+    [SerializeField] int radius;
     float explodetimer;
     bool isDamaging;
 
@@ -27,6 +27,13 @@ public class Damage : MonoBehaviour
                 rb.linearVelocity = transform.forward * speed;
             }
         }
+        if (type == DamageType.explosion)
+        {
+            gameObject.GetComponent<SphereCollider>().radius = 0;
+            IDamage dmg = GetComponent<IDamage>();
+            StartCoroutine(explode(dmg));
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,12 +52,10 @@ public class Damage : MonoBehaviour
         {
             if (dmg != null)
             {
-                isDamaging = true;
-                explodetimer += 0;
-            Destroy(gameObject,explodetime);
-                    dmg.TakeDamage(damageamount);
-                    
-                
+               dmg.TakeDamage(damageamount);
+
+
+
 
             }
         }
@@ -102,6 +107,14 @@ public class Damage : MonoBehaviour
         d.TakeDamage(damageamount);
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
+    }
+    IEnumerator explode(IDamage d)
+    {
+      
+        yield return new WaitForSeconds(explodetime);
+        gameObject.GetComponent<SphereCollider>().radius = radius;
+        isDamaging = false;
+        Destroy(gameObject,0.1f);
     }
 
 }

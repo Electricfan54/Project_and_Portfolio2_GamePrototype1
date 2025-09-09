@@ -22,7 +22,7 @@ public struct EnemyStruct
     [Tooltip("How many of this enemy to spawn.")]
     [SerializeField] public int spawnAmount;
     [Tooltip("The delay (in seconds) between spawning this enemy type.")]
-    [SerializeField] public int spawnDelay;
+    [SerializeField] public float spawnDelay;
 
 }
 
@@ -49,7 +49,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] List<WaveStruct> enemyWaves;
 
     float spawnTimer;
-    int waveSpawnDelay;
+    float waveSpawnDelay;
 
     int spawnPosIndex;
 

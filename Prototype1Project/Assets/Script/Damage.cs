@@ -14,6 +14,7 @@ public class Damage : MonoBehaviour
     [SerializeField] float explodetime;
     [SerializeField] DamageType type;
     [SerializeField] int radius;
+    [SerializeField] SphereCollider explosioncollider;
     float explodetimer;
     bool isDamaging;
 
@@ -29,7 +30,8 @@ public class Damage : MonoBehaviour
         }
         if (type == DamageType.explosion)
         {
-            gameObject.GetComponent<SphereCollider>().radius = 0;
+            rb.AddForce(transform.forward * speed,ForceMode.Impulse);
+            explosioncollider.radius = 0;
             IDamage dmg = GetComponent<IDamage>();
             StartCoroutine(explode(dmg));
         }
@@ -112,7 +114,7 @@ public class Damage : MonoBehaviour
     {
       
         yield return new WaitForSeconds(explodetime);
-        gameObject.GetComponent<SphereCollider>().radius = radius;
+        explosioncollider.radius = radius;
         isDamaging = false;
         Destroy(gameObject,0.1f);
     }

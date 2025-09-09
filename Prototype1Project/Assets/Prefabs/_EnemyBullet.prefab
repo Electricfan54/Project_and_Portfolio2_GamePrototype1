@@ -54,7 +54,7 @@ MonoBehaviour:
   speed: 20
   destroyTime: 3
   explodetime: 0
-  type: 0
+  type: 3
 --- !u!96 &3160115576276051667
 TrailRenderer:
   serializedVersion: 3

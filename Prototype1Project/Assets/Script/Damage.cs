@@ -47,12 +47,11 @@ public class Damage : MonoBehaviour
             if (dmg != null)
             {
                 isDamaging = true;
-                explodetimer += Time.deltaTime;
-                if (explodetimer >= explodetime && isDamaging)
-                {
+                explodetimer += 0;
+            Destroy(gameObject,explodetime);
                     dmg.TakeDamage(damageamount);
-                    Destroy(gameObject);
-                }
+                    
+                
 
             }
         }
@@ -77,7 +76,7 @@ public class Damage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        explodetimer += Time.deltaTime;
     }
 
     private void OnTriggerStay(Collider other)

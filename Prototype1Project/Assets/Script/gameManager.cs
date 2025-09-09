@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.Device;
+using TMPro;
 
 public class gameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuConfirmQuit;
+    [SerializeField] TMP_Text enemyCountText;
 
     public Image playerHPBar;
     public GameObject playerDamageFlash;
@@ -23,6 +25,8 @@ public class gameManager : MonoBehaviour
     float timeScaleOrig;
 
     public bool isPaused;
+
+    int enemyCount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -85,6 +89,12 @@ public class gameManager : MonoBehaviour
         menuHierarchy.Add(screen);
         menuActive = screen;
         menuActive.SetActive(true);
+    }
+
+    public void UpdateEnemyCount(int amount)
+    {
+        enemyCount += amount;
+        enemyCountText.text = enemyCount.ToString("F0");
     }
 
 }

@@ -22,7 +22,7 @@ public struct EnemyStruct
     [Tooltip("How many of this enemy to spawn.")]
     [SerializeField] public int spawnAmount;
     [Tooltip("The delay (in seconds) between spawning this enemy type.")]
-    [SerializeField] public int spawnDelay;
+    [SerializeField] public float spawnDelay;
 
 }
 
@@ -34,13 +34,13 @@ public class gameManager : MonoBehaviour
     [Header("UI Specific")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
-    [SerializeField] GameObject menuConfirmQuit;
 
     public bool isPaused;
 
     List<GameObject> menuHierarchy = new List<GameObject>();
 
     [SerializeField] TMP_Text enemyCountText;
+    [SerializeField] TMP_Text waveNumText;
 
     public Image playerHPBar;
     public GameObject playerDamageFlash;
@@ -49,13 +49,14 @@ public class gameManager : MonoBehaviour
     [SerializeField] List<WaveStruct> enemyWaves;
 
     float spawnTimer;
-    int waveSpawnDelay;
+    float waveSpawnDelay;
 
     int spawnPosIndex;
 
-    int waveSpawnedTotal;
-    int maxWaveEnemies;
+    [HideInInspector] public int waveSpawnedTotal;
+    [HideInInspector] public int maxWaveEnemies;
 
+    int waveNum;
     bool waveActive;
 
     [HideInInspector] public int enemyCount;
@@ -149,6 +150,7 @@ public class gameManager : MonoBehaviour
 
     public void StartGame()
     {
+        waveNum = 0;
         spawnTimer = 0;
         maxWaveEnemies = 0;
         StartWave();
@@ -162,7 +164,14 @@ public class gameManager : MonoBehaviour
             spawnPosIndex = 0;
             waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
             maxWaveEnemies = enemyWaves[0].enemies[0].spawnAmount;
+            waveNum++;
+            waveNumText.text = waveNum.ToString("F0");
             waveActive = true;
+        }
+        else
+        {
+            // Show win screen here!
+
         }
 
     }

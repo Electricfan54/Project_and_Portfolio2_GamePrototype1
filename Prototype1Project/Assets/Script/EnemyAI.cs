@@ -47,7 +47,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     Color colorOrig;
 
-
+    // to prevent fatal errors
+    bool isDead = false;
 
     private void Awake()
     {
@@ -69,23 +70,25 @@ public class EnemyAI : MonoBehaviour, IDamage
         UpdateEnemyUI();
         agent.stoppingDistance = enemyStoppingDist;
         //Tell the game manager this enemy is alive
+        
     }
 
     void Update()
     {
-        //Temp code for testing
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            TakeDamage(1);
-        }
 
-        if (target == null)
+        if (isDead || target == null)
             return;
 
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             FaceTarget();
             Attack();
+        }
+
+        //Temp code for testing
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            TakeDamage(1);
         }
     }
 
@@ -100,6 +103,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     private void FixedUpdate()
     {
+        if (isDead) return;
         // Setting destination in fixed update so the path is recalculated less than in update
         if (target != null)
             agent.SetDestination(target.position);
@@ -164,6 +168,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             //Tell the game manager this enemy is dead
+            isDead = true;
             Destroy(gameObject);
         }
     }

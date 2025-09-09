@@ -99,9 +99,25 @@ public class gameManager : MonoBehaviour
 
         spawnTimer += Time.deltaTime;
 
-        if (waveActive && (spawnTimer >= waveSpawnDelay) && (waveSpawnedTotal < maxWaveEnemies))
+        if (waveActive && (spawnTimer >= waveSpawnDelay))
         {
-            SpawnEnemy();
+
+            if ((waveSpawnedTotal >= maxWaveEnemies) && enemyWaves[0].enemies.Count > 1)
+            {
+                enemyWaves[0].enemies.RemoveAt(0);
+                waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
+                maxWaveEnemies += enemyWaves[0].enemies[0].spawnAmount;
+            }
+            else
+            {
+                
+            }
+
+            if (waveSpawnedTotal < maxWaveEnemies)
+            {
+                SpawnEnemy();
+            }
+
         }
 
     }
@@ -146,13 +162,19 @@ public class gameManager : MonoBehaviour
     {
         enemyCount += amount;
         enemyCountText.text = enemyCount.ToString("F0");
+
+        if ((waveSpawnedTotal == maxWaveEnemies) && enemyCount == 0)
+        {
+            enemyWaves.RemoveAt(0);
+            StartWave();
+        }
+
     }
 
     public void StartGame()
     {
         waveNum = 0;
         spawnTimer = 0;
-        maxWaveEnemies = 0;
         StartWave();
     }
 
@@ -162,8 +184,9 @@ public class gameManager : MonoBehaviour
         if (enemyWaves.Count > 0)
         {
             spawnPosIndex = 0;
+            maxWaveEnemies = 0;
             waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
-            maxWaveEnemies = enemyWaves[0].enemies[0].spawnAmount;
+            maxWaveEnemies += enemyWaves[0].enemies[0].spawnAmount;
             waveNum++;
             waveNumText.text = waveNum.ToString("F0");
             waveActive = true;

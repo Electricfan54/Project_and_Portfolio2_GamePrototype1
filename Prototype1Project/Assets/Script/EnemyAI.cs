@@ -91,7 +91,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void FaceTarget()
     {
-        rotDir = target.position - transform.position;
+        rotDir = new Vector3(target.position.x, transform.position.y, target.position.z) - transform.position;
         /// if statement to prevent unity message
         if (rotDir !=  Vector3.zero)
             rot = Quaternion.LookRotation(rotDir);

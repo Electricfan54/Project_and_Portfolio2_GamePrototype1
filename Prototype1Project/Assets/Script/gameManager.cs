@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.Device;
 
 public class gameManager : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuConfirmQuit;
 
-    List<GameObject> menuHierarchy;
+    public GameObject player;
+    public PlayerMovement playerScript;
+
+    List<GameObject> menuHierarchy = new List<GameObject>();
 
     float timeScaleOrig;
 
@@ -50,6 +54,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        menuHierarchy.Add(menuPause);
     }
 
     public void UnpauseGame()
@@ -60,11 +65,23 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
+        menuHierarchy.Clear();
     }
 
-    public void BackOutScreen()
+    public void BackOutScreen() // Backs out in the menu list hierarchy
     {
+        menuActive.SetActive(false);
+        menuHierarchy.Remove(menuHierarchy[^1]);
+        menuActive = menuHierarchy[^1];
+        menuActive.SetActive(true);
+    }
 
+    public void OpenScreen(GameObject screen) // Accesses the selected menu screen and adds it to the hierarchy
+    {
+        menuActive.SetActive(false);
+        menuHierarchy.Add(screen);
+        menuActive = screen;
+        menuActive.SetActive(true);
     }
 
 }

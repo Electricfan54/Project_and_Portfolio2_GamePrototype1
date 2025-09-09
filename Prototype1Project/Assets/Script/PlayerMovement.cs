@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour, IDamage
@@ -125,11 +126,19 @@ public class PlayerMovement : MonoBehaviour, IDamage
     {
         PlayerHP -= damageAmount;
         UpdatePlayerHPUI();
+        StartCoroutine(playerFlashDamage());
 
         if (PlayerHP <= 0)
         {
             // implement later
         }
 
+    }
+
+    IEnumerator playerFlashDamage()
+    {
+        gameManager.instance.playerDamageFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.playerDamageFlash.SetActive(false);
     }
 }

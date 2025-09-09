@@ -53,8 +53,8 @@ public class gameManager : MonoBehaviour
 
     int spawnPosIndex;
 
-    int waveSpawnedTotal;
-    int maxWaveEnemies;
+    [HideInInspector] public int waveSpawnedTotal;
+    [HideInInspector] public int maxWaveEnemies;
 
     int waveNum;
     bool waveActive;
@@ -167,6 +167,11 @@ public class gameManager : MonoBehaviour
             waveNum++;
             waveNumText.text = waveNum.ToString("F0");
             waveActive = true;
+        }
+        else
+        {
+            // Show win screen here!
+
         }
 
     }

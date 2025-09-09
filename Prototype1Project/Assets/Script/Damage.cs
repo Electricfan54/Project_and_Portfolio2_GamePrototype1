@@ -6,8 +6,7 @@ public class Damage : MonoBehaviour
 {
     enum DamageType { moving, stationary, explosion, DOT }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] DamageType damageType;
-    [SerializeField] Rigidbody rb;
+  [SerializeField] Rigidbody rb;
     [SerializeField] int damageamount;
     [SerializeField] float damageRate;
     [SerializeField] int speed;

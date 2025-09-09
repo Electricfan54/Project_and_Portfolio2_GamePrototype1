@@ -26,4 +26,14 @@ public class buttonFunctions : MonoBehaviour
 
     }
 
+    public void MenuBack()
+    {
+        gameManager.instance.BackOutScreen();
+    }
+
+    public void MenuOpen(GameObject screen)
+    {
+        gameManager.instance.OpenScreen(screen);
+    }
+
 }

@@ -41,6 +41,7 @@ public class gameManager : MonoBehaviour
     List<GameObject> menuHierarchy = new List<GameObject>();
 
     [SerializeField] TMP_Text enemyCountText;
+    [SerializeField] TMP_Text waveNumText;
 
     public Image playerHPBar;
     public GameObject playerDamageFlash;
@@ -56,6 +57,7 @@ public class gameManager : MonoBehaviour
     int waveSpawnedTotal;
     int maxWaveEnemies;
 
+    int waveNum;
     bool waveActive;
 
     [HideInInspector] public int enemyCount;
@@ -149,6 +151,7 @@ public class gameManager : MonoBehaviour
 
     public void StartGame()
     {
+        waveNum = 0;
         spawnTimer = 0;
         maxWaveEnemies = 0;
         StartWave();
@@ -162,6 +165,8 @@ public class gameManager : MonoBehaviour
             spawnPosIndex = 0;
             waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
             maxWaveEnemies = enemyWaves[0].enemies[0].spawnAmount;
+            waveNum++;
+            waveNumText.text = waveNum.ToString("F0");
             waveActive = true;
         }
 

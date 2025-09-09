@@ -6,15 +6,15 @@ public class Damage : MonoBehaviour
 {
     enum DamageType { moving, stationary, explosion, DOT }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] DamageType damageType;
-    [SerializeField] Rigidbody rb;
+  [SerializeField] Rigidbody rb;
     [SerializeField] int damageamount;
     [SerializeField] float damageRate;
     [SerializeField] int speed;
     [SerializeField] int destroyTime;
     [SerializeField] float explodetime;
     [SerializeField] DamageType type;
-
+    [SerializeField] int radius;
+    [SerializeField] SphereCollider explosioncollider;
     float explodetimer;
     bool isDamaging;
 
@@ -28,6 +28,14 @@ public class Damage : MonoBehaviour
                 rb.linearVelocity = transform.forward * speed;
             }
         }
+        if (type == DamageType.explosion)
+        {
+            rb.AddForce(transform.forward * speed,ForceMode.Impulse);
+            explosioncollider.radius = 0;
+            IDamage dmg = GetComponent<IDamage>();
+            StartCoroutine(explode(dmg));
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,13 +54,10 @@ public class Damage : MonoBehaviour
         {
             if (dmg != null)
             {
-                isDamaging = true;
-                explodetimer += Time.deltaTime;
-                if (explodetimer >= explodetime && isDamaging)
-                {
-                    dmg.TakeDamage(damageamount);
-                    Destroy(gameObject);
-                }
+               dmg.TakeDamage(damageamount);
+
+
+
 
             }
         }
@@ -77,7 +82,7 @@ public class Damage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        explodetimer += Time.deltaTime;
     }
 
     private void OnTriggerStay(Collider other)
@@ -104,6 +109,14 @@ public class Damage : MonoBehaviour
         d.TakeDamage(damageamount);
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
+    }
+    IEnumerator explode(IDamage d)
+    {
+      
+        yield return new WaitForSeconds(explodetime);
+        explosioncollider.radius = radius;
+        isDamaging = false;
+        Destroy(gameObject,0.1f);
     }
 
 }

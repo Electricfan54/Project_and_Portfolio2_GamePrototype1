@@ -34,7 +34,6 @@ public class gameManager : MonoBehaviour
     [Header("UI Specific")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
-    [SerializeField] GameObject menuConfirmQuit;
 
     public bool isPaused;
 

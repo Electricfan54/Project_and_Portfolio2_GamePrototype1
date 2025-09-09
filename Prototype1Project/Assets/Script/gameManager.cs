@@ -1,41 +1,84 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using UnityEngine.Device;
 using TMPro;
+
+// Wave Structs
+[System.Serializable]
+public struct WaveStruct
+{
+
+    [SerializeField] public List<EnemyStruct> enemies;
+    [Tooltip("The spawn points for all enemies.")]
+    [SerializeField] public List<Transform> spawnPoints;
+
+}
+
+[System.Serializable]
+public struct EnemyStruct
+{
+    [Tooltip("The type of enemy to spawn.")]
+    [SerializeField] public GameObject enemyType;
+    [Tooltip("How many of this enemy to spawn.")]
+    [SerializeField] public int spawnAmount;
+    [Tooltip("The delay (in seconds) between spawning this enemy type.")]
+    [SerializeField] public int spawnDelay;
+
+}
 
 public class gameManager : MonoBehaviour
 {
 
     public static gameManager instance;
 
+    [Header("UI Specific")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuConfirmQuit;
+
+    public bool isPaused;
+
+    List<GameObject> menuHierarchy = new List<GameObject>();
+
     [SerializeField] TMP_Text enemyCountText;
 
     public Image playerHPBar;
     public GameObject playerDamageFlash;
 
+    [Header("Wave Customization")] // Wave specific variables here
+    [SerializeField] List<WaveStruct> enemyWaves;
+
+    float spawnTimer;
+    int waveSpawnDelay;
+
+    int spawnPosIndex;
+
+    int waveSpawnedTotal;
+    int maxWaveEnemies;
+
+    bool waveActive;
+
+    [HideInInspector] public int enemyCount;
+
+    [Header("Player Specific")]
     public GameObject player;
     public PlayerMovement playerScript;
 
-    List<GameObject> menuHierarchy = new List<GameObject>();
-
+    [Header("Unorganized")]
     float timeScaleOrig;
 
-    public bool isPaused;
-
-    int enemyCount;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         instance = this;
         timeScaleOrig = Time.timeScale;
+        waveActive = false;
     }
 
-    // Update is called once per frame
+    private void Start()
+    {
+        StartGame();
+    }
+
     void Update()
     {
 
@@ -51,6 +94,13 @@ public class gameManager : MonoBehaviour
             {
                 UnpauseGame();
             }
+        }
+
+        spawnTimer += Time.deltaTime;
+
+        if (waveActive && (spawnTimer >= waveSpawnDelay) && (waveSpawnedTotal < maxWaveEnemies))
+        {
+            SpawnEnemy();
         }
 
     }
@@ -95,6 +145,44 @@ public class gameManager : MonoBehaviour
     {
         enemyCount += amount;
         enemyCountText.text = enemyCount.ToString("F0");
+    }
+
+    public void StartGame()
+    {
+        spawnTimer = 0;
+        maxWaveEnemies = 0;
+        StartWave();
+    }
+
+    public void StartWave()
+    {
+
+        if (enemyWaves.Count > 0)
+        {
+            spawnPosIndex = 0;
+            waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
+            maxWaveEnemies = enemyWaves[0].enemies[0].spawnAmount;
+            waveActive = true;
+        }
+
+    }
+
+    public void SpawnEnemy()
+    {
+        spawnTimer = 0;
+
+        GameObject enemyType = enemyWaves[0].enemies[0].enemyType;
+        Transform spawnPos = enemyWaves[0].spawnPoints[spawnPosIndex];
+        spawnPosIndex++;
+
+        if (spawnPosIndex >= enemyWaves[0].spawnPoints.Count)
+        {
+            spawnPosIndex = 0;
+        }
+
+        Instantiate<GameObject>(enemyType, spawnPos);
+        waveSpawnedTotal++;
+
     }
 
 }

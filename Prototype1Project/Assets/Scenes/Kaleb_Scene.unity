@@ -909,6 +909,14 @@ PrefabInstance:
       propertyPath: playerScript
       value: 
       objectReference: {fileID: 2094623696}
+    - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
+      propertyPath: disableWaveGame
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
+      propertyPath: disableWinCondition
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2925565101339228475, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: m_Name
       value: UI
@@ -1144,7 +1152,7 @@ MonoBehaviour:
   cameraPos: {fileID: 579011476}
   ignorelayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   meleeDamage: 1
   meleeDist: 10
   meleeRate: 0.5

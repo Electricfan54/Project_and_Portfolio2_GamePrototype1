@@ -156,7 +156,7 @@ MonoBehaviour:
   animator: {fileID: 8976987102690685383}
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   enemyType: 1
   enemyHeadPos: {fileID: 3443735285559351183}
   enemyStoppingDist: 8

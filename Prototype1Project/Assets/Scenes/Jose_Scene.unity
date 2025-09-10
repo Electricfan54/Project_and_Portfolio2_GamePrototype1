@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &11582400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4067034859055426379, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
+  m_PrefabInstance: {fileID: 1376753445951434637}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &11835521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 748053049673776440, guid: 2509eed45c9e7c94ca3d2353c35f3f0d, type: 3}
@@ -181,6 +186,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2509eed45c9e7c94ca3d2353c35f3f0d, type: 3}
+--- !u!1 &60718436 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2433024520371888108, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
+  m_PrefabInstance: {fileID: 1376753445951434637}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &216550011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1800,6 +1810,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
+      propertyPath: menuWin
+      value: 
+      objectReference: {fileID: 11582400}
+    - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
+      propertyPath: menuLose
+      value: 
+      objectReference: {fileID: 60718436}
+    - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: enemyWaves.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1809,7 +1827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: enemyWaves.Array.data[1].enemies.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: enemyWaves.Array.data[0].spawnPoints.Array.size
@@ -1861,7 +1879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: enemyWaves.Array.data[1].enemies.Array.data[0].spawnDelay
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: enemyWaves.Array.data[1].enemies.Array.data[1].spawnDelay
@@ -1877,7 +1895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: enemyWaves.Array.data[1].enemies.Array.data[0].spawnAmount
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: enemyWaves.Array.data[1].enemies.Array.data[1].spawnAmount

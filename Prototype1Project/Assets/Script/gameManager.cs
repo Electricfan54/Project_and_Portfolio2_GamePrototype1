@@ -34,6 +34,8 @@ public class gameManager : MonoBehaviour
     [Header("UI Specific")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject menuWin;
+    [SerializeField] GameObject menuLose;
 
     public bool isPaused;
 
@@ -53,8 +55,8 @@ public class gameManager : MonoBehaviour
 
     int spawnPosIndex;
 
-    [HideInInspector] public int waveSpawnedTotal;
-    [HideInInspector] public int maxWaveEnemies;
+    public int waveSpawnedTotal;
+    public int maxWaveEnemies;
 
     int waveNum;
     bool waveActive;
@@ -88,6 +90,7 @@ public class gameManager : MonoBehaviour
             if (menuActive == null)
             {
                 PauseGame();
+                menuHierarchy.Add(menuPause);
                 menuActive = menuPause;
                 menuActive.SetActive(true);
             }
@@ -128,7 +131,6 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        menuHierarchy.Add(menuPause);
     }
 
     public void UnpauseGame()
@@ -174,7 +176,10 @@ public class gameManager : MonoBehaviour
 
     public void GameOver()
     {
-
+        PauseGame();
+        menuHierarchy.Add(menuLose);
+        menuActive = menuLose;
+        menuActive.SetActive(true);
     }
 
     public void StartGame()
@@ -190,6 +195,7 @@ public class gameManager : MonoBehaviour
         if (enemyWaves.Count > 0)
         {
             spawnPosIndex = 0;
+            waveSpawnedTotal = 0;
             maxWaveEnemies = 0;
             waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
             maxWaveEnemies += enemyWaves[0].enemies[0].spawnAmount;
@@ -200,6 +206,10 @@ public class gameManager : MonoBehaviour
         else
         {
             // Show win screen here!
+            PauseGame();
+            menuHierarchy.Add(menuWin);
+            menuActive = menuWin;
+            menuActive.SetActive(true);
 
         }
 

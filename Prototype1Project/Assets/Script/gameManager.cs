@@ -50,6 +50,11 @@ public class gameManager : MonoBehaviour
     [Header("Wave Customization")] // Wave specific variables here
     [SerializeField] List<WaveStruct> enemyWaves;
 
+    [Tooltip("Debugging option to disable the wave system.")]
+    [SerializeField] bool disableWaveGame;
+    [Tooltip("Debugging option to disable the win condition after beating all waves.")]
+    [SerializeField] bool disableWinCondition;
+
     float spawnTimer;
     float waveSpawnDelay;
 
@@ -184,9 +189,12 @@ public class gameManager : MonoBehaviour
 
     public void StartGame()
     {
-        waveNum = 0;
-        spawnTimer = 0;
-        StartWave();
+        if (!disableWaveGame)
+        {
+            waveNum = 0;
+            spawnTimer = 0;
+            StartWave();
+        }
     }
 
     public void StartWave()
@@ -206,11 +214,13 @@ public class gameManager : MonoBehaviour
         else
         {
             // Show win screen here!
-            PauseGame();
-            menuHierarchy.Add(menuWin);
-            menuActive = menuWin;
-            menuActive.SetActive(true);
-
+            if (!disableWinCondition)
+            {
+                PauseGame();
+                menuHierarchy.Add(menuWin);
+                menuActive = menuWin;
+                menuActive.SetActive(true);
+            }
         }
 
     }

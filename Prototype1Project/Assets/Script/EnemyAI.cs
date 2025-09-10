@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.U2D;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -16,11 +17,15 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     // Serialized variables
     [SerializeField] Renderer meshRenderer;
+    [SerializeField] Animator animator;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] EnemyType enemyType;
+    [SerializeField] Transform enemyHeadPos;
 
     [Tooltip("Changes the navMeshAgent's stopping dist variable")]
     [SerializeField] int enemyStoppingDist;
+    [Tooltip("Changes the navMeshAgent's speed variable")]
+    [SerializeField] int speed;
     [SerializeField] int enemyRotationSpeed;
     [SerializeField] int maxHP;
 
@@ -42,6 +47,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     int HP;
 
     bool isAttacking = false;
+    bool isWalking = false;
+
+    bool canSeePlayer;
 
     // for rotating the enemy towards the target
     Vector3 rotDir;
@@ -65,8 +73,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         HP = maxHP;
         UpdateEnemyUI();
         agent.stoppingDistance = enemyStoppingDist;
+        agent.speed = speed;
         //Tell the game manager this enemy is alive
         gameManager.instance.UpdateEnemyCount(1);
+        UpdateAnimations();
     }
 
     void Update()
@@ -75,11 +85,46 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (isDead || target == null)
             return;
 
+        // since the game is wave based the enemy will always know where the player is
+        // this raycast is to prevent the enemy from trying to shoot through a wall
+        RaycastHit hit;
+        Vector3 playerDir = target.transform.position - enemyHeadPos.position;
+        bool ray = Physics.Raycast(enemyHeadPos.position, playerDir, out hit, 50.0f, ~ignoreLayer);
+        if (ray && hit.collider.CompareTag("Player"))
+        {
+            canSeePlayer = true;
+            // reset the stopping distance after the enemy is done inching towards the player
+            if (agent.stoppingDistance != enemyStoppingDist)
+                agent.stoppingDistance = enemyStoppingDist;
+        }
+        else
+            canSeePlayer = false;
+
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            FaceTarget();
-            Attack();
+            isWalking = false;
+
+            if (canSeePlayer)
+            {
+                FaceTarget();
+                Attack();
+            }
+            else if (ray)
+            {
+                // if the enemy cant see the player through a wall inch the agent closer to try and get it to the player
+                agent.stoppingDistance -= 1;
+                // keep the stopping distance from getting too low
+                if (agent.stoppingDistance < 3)
+                    agent.stoppingDistance = 3;
+            }
         }
+        else
+        {
+            isWalking = true;
+            canSeePlayer = false;
+        }
+
+        UpdateAnimations();
 
 #if UNITY_EDITOR
         //Temp code for testing
@@ -184,5 +229,23 @@ public class EnemyAI : MonoBehaviour, IDamage
         meshRenderer.material.color = Color.red;
         yield return new WaitForSeconds(.1f);
         meshRenderer.material.color = colorOrig;
+    }
+
+    void UpdateAnimations()
+    {
+        animator.SetBool("isMoving", isWalking);
+        animator.SetFloat("moveBlend", agent.velocity.magnitude / speed);
+        switch (enemyType)
+        {
+            case EnemyType.Melee:
+                animator.SetBool("isSwinging", isAttacking);
+                animator.SetBool("isMelee", true);
+                break;
+            case EnemyType.Ranged:
+                animator.SetBool("isShooting", !isWalking);
+                animator.SetBool("isMelee", false);
+                break;
+        }
+
     }
 }

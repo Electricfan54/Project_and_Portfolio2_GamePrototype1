@@ -165,9 +165,15 @@ public class gameManager : MonoBehaviour
 
         if ((waveSpawnedTotal == maxWaveEnemies) && enemyCount == 0)
         {
+            waveActive = false;
             enemyWaves.RemoveAt(0);
             StartWave();
         }
+
+    }
+
+    public void GameOver()
+    {
 
     }
 

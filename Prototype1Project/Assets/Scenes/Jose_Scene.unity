@@ -1869,11 +1869,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: enemyWaves.Array.data[0].enemies.Array.data[0].spawnAmount
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: enemyWaves.Array.data[0].enemies.Array.data[1].spawnAmount
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: enemyWaves.Array.data[1].enemies.Array.data[0].spawnAmount
@@ -1882,6 +1882,10 @@ PrefabInstance:
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: enemyWaves.Array.data[1].enemies.Array.data[1].spawnAmount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497552281398617841, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
+      propertyPath: m_ScaleFactor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2925565101339228475, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: m_Name

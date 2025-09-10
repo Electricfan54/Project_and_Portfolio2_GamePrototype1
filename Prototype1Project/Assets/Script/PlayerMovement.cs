@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
         if (PlayerHP <= 0)
         {
-            // implement later
+            gameManager.instance.GameOver();
         }
 
     }

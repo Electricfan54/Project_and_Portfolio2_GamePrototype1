@@ -54,9 +54,9 @@ MonoBehaviour:
   destroyTime: 8
   explodetime: 0
   type: 4
-  radius: 3
+  radius: 5
   explosioncollider: {fileID: 0}
-  homingPauseTime: 5
+  homingPauseTime: 2
 --- !u!96 &3160115576276051667
 TrailRenderer:
   serializedVersion: 3

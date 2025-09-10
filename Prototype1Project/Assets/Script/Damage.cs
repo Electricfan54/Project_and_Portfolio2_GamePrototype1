@@ -96,6 +96,7 @@ public class Damage : MonoBehaviour
                 }
                 else
                 {
+                    homingTarget= other.transform.position;
                     StartCoroutine(HomingDelay());
                     Destroy(gameObject, destroyTime);
                     canDamage = true;
@@ -172,11 +173,12 @@ public class Damage : MonoBehaviour
     IEnumerator HomingDelay()
     {
         rb.linearVelocity = Vector3.zero;
+        gameObject.GetComponent<SphereCollider>().radius = 0.1f;
         yield return new WaitForSeconds(homingPauseTime);
         Quaternion rot = Quaternion.LookRotation(new Vector3(homingTarget.x, transform.position.y, homingTarget.z));
         rb.rotation = Quaternion.Lerp(transform.rotation, rot, 5 * Time.deltaTime);
         rb.linearVelocity = transform.forward * speed;
-        gameObject.GetComponent<SphereCollider>().radius = 0.1f;
+        
         canDamage = true;
         homingTimer = 0;
 

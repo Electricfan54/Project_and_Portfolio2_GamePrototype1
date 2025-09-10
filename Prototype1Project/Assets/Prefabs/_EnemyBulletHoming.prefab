@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3160115576276051667}
   - component: {fileID: 3668409596855548537}
   - component: {fileID: 7165602785127898375}
-  - component: {fileID: -5563044683803639207}
   m_Layer: 7
   m_Name: _EnemyBulletHoming
   m_TagString: Untagged
@@ -52,14 +51,12 @@ MonoBehaviour:
   damageamount: 1
   damageRate: 0.5
   speed: 20
-  destroyTime: 3
+  destroyTime: 8
   explodetime: 0
   type: 4
   radius: 0
   explosioncollider: {fileID: 0}
-  Homingcollider: {fileID: -5563044683803639207}
-  Homingdamagecollider: {fileID: 0}
-  homingPauseTime: 5
+  homingPauseTime: 2
 --- !u!96 &3160115576276051667
 TrailRenderer:
   serializedVersion: 3
@@ -216,26 +213,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.1
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &-5563044683803639207
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6344434922400891919}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 5
-  m_Center: {x: 0, y: -0.895, z: -4.195}

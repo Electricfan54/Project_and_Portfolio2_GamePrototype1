@@ -15,16 +15,15 @@ public class Damage : MonoBehaviour
     [SerializeField] DamageType type;
     [SerializeField] int radius;
     [SerializeField] SphereCollider explosioncollider;
-    [SerializeField] SphereCollider Homingcollider;
-    [SerializeField] SphereCollider Homingdamagecollider;
     [SerializeField] float homingPauseTime;
     float explodetimer;
     bool isDamaging;
     Vector3 homingTarget;
     float homingTimer;
+    bool canDamage;
     void Start()
     {
-        if (type == DamageType.moving||type==DamageType.Homing)
+        if (type == DamageType.moving)
         {
             Destroy(gameObject, destroyTime);
             if (type == DamageType.moving)
@@ -33,7 +32,12 @@ public class Damage : MonoBehaviour
             }
             
         }
-      
+        if(type==DamageType.Homing)
+        {
+          
+            rb.linearVelocity = transform.forward * speed;
+            Destroy(gameObject, destroyTime);
+        }
         if (type == DamageType.explosion)
         {
             
@@ -64,7 +68,7 @@ public class Damage : MonoBehaviour
                 if(other.CompareTag("Player"))
                 {
                     //need player movement script to access  movement
-                   // gameManager.instance.player.GetComponent<PlayerMovement>().LauchPlayer((other.transform.position - transform.position));
+                    gameManager.instance.player.GetComponent<PlayerMovement>().LauchPlayer((other.transform.position - transform.position));
 
                 }
                 dmg.TakeDamage(damageamount);
@@ -74,30 +78,32 @@ public class Damage : MonoBehaviour
 
             }
         }
-        //if (type == DamageType.Homing)
-        //{
-        //    if(Homingcollider.enabled==true)
-        //    {
-        //        if(other.CompareTag("Player"))
-        //        {
-        //            homingTarget = other.transform.position;
-        //            Homingcollider.enabled = false;
-        //            Homingdamagecollider.enabled = true;
-        //        }
-        //    }
-        //    Homingcollider.enabled = true;
 
-
-        //}
-            if (type == DamageType.moving)
+        if (type == DamageType.moving)
         {
             Destroy(gameObject);
         }
 
-        
+        if (type == DamageType.Homing)
+        {
+            
+               if(dmg != null)
+                if(canDamage)
+                                    {
+                    dmg.TakeDamage(damageamount);
+                    canDamage = false;
+                }
+                else
+                {
+StartCoroutine(HomingDelay());
+                    Destroy(gameObject, destroyTime);
+                    canDamage = true;
+                }
+            
+                
 
             
-        
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -114,12 +120,15 @@ public class Damage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if (type == DamageType.Homing )
+        {homingTimer += Time.deltaTime;
+            
+           
 
-        if (type == DamageType.Homing)
-        {
-            rb.linearVelocity = (gameManager.instance.player.transform.position - transform.position).normalized * speed * Time.deltaTime;
         }
-
+       
+        
     }
 
     private void OnTriggerStay(Collider other)
@@ -156,6 +165,17 @@ public class Damage : MonoBehaviour
         Destroy(gameObject,0.1f);
        
     }
+    IEnumerator HomingDelay()
+    {
+        rb.linearVelocity = Vector3.zero;
+        yield return new WaitForSeconds(homingPauseTime);
+ Quaternion rot = Quaternion.LookRotation(new Vector3(homingTarget.x, transform.position.y, homingTarget.z));
+        rb.rotation = Quaternion.Lerp(transform.rotation, rot, 5 * Time.deltaTime);
+        rb.linearVelocity = transform.forward * speed;
+        gameObject.GetComponent<SphereCollider>().radius = 0.1f;
+        canDamage = true;
+        homingTimer = 0;
 
+    }
 
 }

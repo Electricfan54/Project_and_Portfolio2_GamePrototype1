@@ -154,7 +154,7 @@ PrefabInstance:
     - target: {fileID: 4398225796138565112, guid: 1e7b254cfa61ce54c9b6f83de08f38d3, type: 3}
       propertyPath: bulletPrefab
       value: 
-      objectReference: {fileID: 6344434922400891919, guid: 42cec67cc61d7fd4e83ab53a996d3f7c, type: 3}
+      objectReference: {fileID: 6344434922400891919, guid: 5e8f73a5b84c5e74e821d64e6583e9c9, type: 3}
     - target: {fileID: 4398225796138565112, guid: 1e7b254cfa61ce54c9b6f83de08f38d3, type: 3}
       propertyPath: enemyRotationSpeed
       value: 500

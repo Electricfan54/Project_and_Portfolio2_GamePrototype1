@@ -493,7 +493,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2571,6 +2571,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1372818407}
     m_Modifications:
+    - target: {fileID: 1265043557062220090, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1703563444526993545, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1826092623988016604, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
     - target: {fileID: 4160216177635472001, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
       propertyPath: m_Name
       value: WallWithWindow (4)
@@ -3582,7 +3594,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4414,6 +4426,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1372818407}
     m_Modifications:
+    - target: {fileID: 1265043557062220090, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1703563444526993545, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1826092623988016604, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
     - target: {fileID: 4160216177635472001, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
       propertyPath: m_Name
       value: WallWithWindow (7)
@@ -4661,7 +4685,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a6d73f9e47bd28d438e0eaa89328614f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5109,6 +5133,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1372818407}
     m_Modifications:
+    - target: {fileID: 1265043557062220090, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1703563444526993545, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1826092623988016604, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
     - target: {fileID: 4160216177635472001, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
       propertyPath: m_Name
       value: WallWithWindow (3)
@@ -5803,6 +5839,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1372818407}
     m_Modifications:
+    - target: {fileID: 1265043557062220090, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1703563444526993545, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1826092623988016604, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
     - target: {fileID: 4160216177635472001, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
       propertyPath: m_Name
       value: WallWithWindow (2)
@@ -6180,6 +6228,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1372818407}
     m_Modifications:
+    - target: {fileID: 1265043557062220090, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1703563444526993545, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1826092623988016604, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
     - target: {fileID: 4160216177635472001, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
       propertyPath: m_Name
       value: WallWithWindow (6)
@@ -6242,6 +6302,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1372818407}
     m_Modifications:
+    - target: {fileID: 1265043557062220090, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1703563444526993545, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1826092623988016604, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
     - target: {fileID: 4160216177635472001, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
       propertyPath: m_Name
       value: WallWithWindow
@@ -8174,6 +8246,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1372818407}
     m_Modifications:
+    - target: {fileID: 1265043557062220090, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1703563444526993545, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1826092623988016604, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
     - target: {fileID: 4160216177635472001, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
       propertyPath: m_Name
       value: WallWithWindow (1)
@@ -8553,6 +8637,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1372818407}
     m_Modifications:
+    - target: {fileID: 1265043557062220090, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1703563444526993545, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1826092623988016604, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
     - target: {fileID: 4160216177635472001, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
       propertyPath: m_Name
       value: WallWithWindow
@@ -8837,6 +8933,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1372818407}
     m_Modifications:
+    - target: {fileID: 1265043557062220090, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1703563444526993545, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1826092623988016604, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
     - target: {fileID: 4160216177635472001, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
       propertyPath: m_Name
       value: WallWithWindow (5)
@@ -9552,6 +9660,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1372818407}
     m_Modifications:
+    - target: {fileID: 1265043557062220090, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1703563444526993545, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1826092623988016604, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
     - target: {fileID: 4160216177635472001, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
       propertyPath: m_Name
       value: WallWithWindow (1)
@@ -10593,6 +10713,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1372818407}
     m_Modifications:
+    - target: {fileID: 1265043557062220090, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1703563444526993545, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+    - target: {fileID: 1826092623988016604, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
     - target: {fileID: 4160216177635472001, guid: f60e7bc87c9bc304bbee08e5c33f8555, type: 3}
       propertyPath: m_Name
       value: Cube (35)

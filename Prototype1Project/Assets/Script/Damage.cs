@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 
 public class Damage : MonoBehaviour
 {
-    enum DamageType { moving, stationary, explosion, DOT }
+    enum DamageType { moving, stationary, explosion, DOT ,Homing}
     // Start is called once before the first execution of Update after the MonoBehaviour is created
   [SerializeField] Rigidbody rb;
     [SerializeField] int damageamount;
@@ -15,9 +15,11 @@ public class Damage : MonoBehaviour
     [SerializeField] DamageType type;
     [SerializeField] int radius;
     [SerializeField] SphereCollider explosioncollider;
+    [SerializeField] float homingPauseTime;
     float explodetimer;
     bool isDamaging;
-
+    Vector3 homingTarget;
+    float homingTimer;
     void Start()
     {
         if (type == DamageType.moving)
@@ -27,9 +29,16 @@ public class Damage : MonoBehaviour
             {
                 rb.linearVelocity = transform.forward * speed;
             }
+            
+        }
+        if(type==DamageType.Homing)
+        {
+          
+            rb.linearVelocity = transform.forward * speed;
         }
         if (type == DamageType.explosion)
         {
+            
             rb.AddForce(transform.forward * speed,ForceMode.Impulse);
             explosioncollider.radius = 0;
             IDamage dmg = GetComponent<IDamage>();
@@ -46,7 +55,7 @@ public class Damage : MonoBehaviour
         }
 
         IDamage dmg = other.GetComponent<IDamage>();
-        if (dmg != null && type == DamageType.moving || type == DamageType.stationary)
+        if (dmg != null && type == DamageType.moving || type == DamageType.stationary||type==DamageType.Homing)
         {
             dmg.TakeDamage(damageamount);
         }
@@ -54,8 +63,14 @@ public class Damage : MonoBehaviour
         {
             if (dmg != null)
             {
-               dmg.TakeDamage(damageamount);
+                if(other.CompareTag("Player"))
+                {
+                    //need player movement script to access  movement
+                    gameManager.instance.player.GetComponent<PlayerMovement>().LauchPlayer((other.transform.position - transform.position));
 
+                }
+                dmg.TakeDamage(damageamount);
+                
 
 
 
@@ -65,6 +80,20 @@ public class Damage : MonoBehaviour
         if (type == DamageType.moving)
         {
             Destroy(gameObject);
+        }
+
+        if (type == DamageType.Homing)
+        {
+            if (other.CompareTag("Player"))
+            {
+                homingTarget = other.transform.position;
+                if(homingTimer >= 1f)
+            {
+                    StartCoroutine(HomingDelay());
+                    Destroy(gameObject, destroyTime);
+                }
+
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -82,7 +111,15 @@ public class Damage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        explodetimer += Time.deltaTime;
+        
+        if (type == DamageType.Homing )
+        {homingTimer += Time.deltaTime;
+            
+           
+
+        }
+       
+        
     }
 
     private void OnTriggerStay(Collider other)
@@ -117,6 +154,17 @@ public class Damage : MonoBehaviour
         explosioncollider.radius = radius;
         isDamaging = false;
         Destroy(gameObject,0.1f);
+       
+    }
+    IEnumerator HomingDelay()
+    {
+        rb.linearVelocity = Vector3.zero;
+        gameObject.transform.forward = homingTarget - transform.position;
+        yield return new WaitForSeconds(homingPauseTime);
+ Quaternion rot = Quaternion.LookRotation(new Vector3(homingTarget.x, transform.position.y, homingTarget.z));
+        rb.rotation = Quaternion.Lerp(transform.rotation, rot, 5 * Time.deltaTime);
+        homingTimer = 0;
+
     }
 
 }

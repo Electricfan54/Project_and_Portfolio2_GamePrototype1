@@ -70,7 +70,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         UpdateEnemyUI();
         agent.stoppingDistance = enemyStoppingDist;
         //Tell the game manager this enemy is alive
-        
+        gameManager.instance.UpdateEnemyCount(1);
     }
 
     void Update()
@@ -85,11 +85,13 @@ public class EnemyAI : MonoBehaviour, IDamage
             Attack();
         }
 
+#if UNITY_EDITOR
         //Temp code for testing
         if (Input.GetKeyDown(KeyCode.F))
         {
             TakeDamage(1);
         }
+#endif
     }
 
     void FaceTarget()
@@ -168,6 +170,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             //Tell the game manager this enemy is dead
+            gameManager.instance.UpdateEnemyCount(-1);
             isDead = true;
             Destroy(gameObject);
         }

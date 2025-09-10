@@ -132,9 +132,10 @@ MonoBehaviour:
   speed: 1
   destroyTime: 0
   explodetime: 2
-  type: 2
+  type: 4
   radius: 5
   explosioncollider: {fileID: 5260036954508560211}
+  homingPauseTime: 5
 --- !u!54 &2666658243267823591
 Rigidbody:
   m_ObjectHideFlags: 0

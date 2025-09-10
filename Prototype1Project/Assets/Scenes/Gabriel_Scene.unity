@@ -689,22 +689,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5870295157936723517, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
-      propertyPath: PlayerHP
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5870295157936723517, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
-      propertyPath: LauchForceMult
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5870295157936723517, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
-      propertyPath: SidewaysDownTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8355001261286143171, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
-      propertyPath: Sens
-      value: 500
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

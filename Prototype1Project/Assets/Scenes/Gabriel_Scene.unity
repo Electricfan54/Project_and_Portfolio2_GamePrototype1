@@ -301,7 +301,7 @@ PrefabInstance:
       objectReference: {fileID: 1658027910}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: maxWaveEnemies
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: waveSpawnedTotal

@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd71a1bb098a60c4f957336d36785796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScript
-  Bullet: {fileID: 6344434922400891919, guid: 42cec67cc61d7fd4e83ab53a996d3f7c, type: 3}
+  Bullet: {fileID: 6344434922400891919, guid: 4e3159d4bd501e34983067f41c371de8, type: 3}
   WeaponModel: {fileID: 713265554828274241}
   BulletSpawnPos: {fileID: 7814387018812454465}
   fireRate: 0.2

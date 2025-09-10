@@ -60,15 +60,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     // To help prevent fatal errors
     bool isDead = false;
 
-    private void Awake()
-    {
-        agent = GetComponent<NavMeshAgent>();
-
-        target = gameManager.instance.player.transform;
-    }
-
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+        target = gameManager.instance.player.transform;
+
         colorOrig = meshRenderer.material.color;
         HP = maxHP;
         UpdateEnemyUI();

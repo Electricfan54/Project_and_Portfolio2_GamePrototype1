@@ -54,7 +54,7 @@ MonoBehaviour:
   destroyTime: 8
   explodetime: 0
   type: 4
-  radius: 0
+  radius: 3
   explosioncollider: {fileID: 0}
   homingPauseTime: 5
 --- !u!96 &3160115576276051667
@@ -213,5 +213,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 3
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}

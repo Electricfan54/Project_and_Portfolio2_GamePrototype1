@@ -20,7 +20,7 @@ public class Damage : MonoBehaviour
     bool isDamaging;
     Vector3 homingTarget;
     float homingTimer;
-    bool canDamage;
+    bool canDamage=false;
     void Start()
     {
         if (type == DamageType.moving)

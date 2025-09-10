@@ -56,7 +56,7 @@ MonoBehaviour:
   type: 4
   radius: 0
   explosioncollider: {fileID: 0}
-  homingPauseTime: 2
+  homingPauseTime: 5
 --- !u!96 &3160115576276051667
 TrailRenderer:
   serializedVersion: 3

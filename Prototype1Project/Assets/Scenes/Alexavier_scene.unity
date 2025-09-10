@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1948628821731177851, guid: 1e7b254cfa61ce54c9b6f83de08f38d3, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1948628821731177851, guid: 1e7b254cfa61ce54c9b6f83de08f38d3, type: 3}
       propertyPath: m_IsActive
@@ -144,9 +144,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4398225796138565112, guid: 1e7b254cfa61ce54c9b6f83de08f38d3, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398225796138565112, guid: 1e7b254cfa61ce54c9b6f83de08f38d3, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1680584032}
     - target: {fileID: 4398225796138565112, guid: 1e7b254cfa61ce54c9b6f83de08f38d3, type: 3}
       propertyPath: attackSpeed
       value: 1
@@ -155,6 +159,14 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 6344434922400891919, guid: 5e8f73a5b84c5e74e821d64e6583e9c9, type: 3}
+    - target: {fileID: 4398225796138565112, guid: 1e7b254cfa61ce54c9b6f83de08f38d3, type: 3}
+      propertyPath: enemyHeadPos
+      value: 
+      objectReference: {fileID: 100987585}
+    - target: {fileID: 4398225796138565112, guid: 1e7b254cfa61ce54c9b6f83de08f38d3, type: 3}
+      propertyPath: bulletSpawnPos
+      value: 
+      objectReference: {fileID: 4334745627468580656, guid: 42cec67cc61d7fd4e83ab53a996d3f7c, type: 3}
     - target: {fileID: 4398225796138565112, guid: 1e7b254cfa61ce54c9b6f83de08f38d3, type: 3}
       propertyPath: enemyRotationSpeed
       value: 500
@@ -202,12 +214,17 @@ PrefabInstance:
     - target: {fileID: 6471747900373756823, guid: 1e7b254cfa61ce54c9b6f83de08f38d3, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1680584032}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e7b254cfa61ce54c9b6f83de08f38d3, type: 3}
+--- !u!4 &100987585 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1347853151959627250, guid: 1e7b254cfa61ce54c9b6f83de08f38d3, type: 3}
+  m_PrefabInstance: {fileID: 72089131}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &116846096
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,11 +434,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   meshRenderer: {fileID: 1221277313}
+  animator: {fileID: 0}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 4294967295
   enemyType: 0
+  enemyHeadPos: {fileID: 0}
   enemyStoppingDist: 0
+  speed: 0
   enemyRotationSpeed: 0
   maxHP: 5
   attackSpeed: 0
@@ -524,11 +544,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   meshRenderer: {fileID: 1192822543}
+  animator: {fileID: 0}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 4294967295
   enemyType: 0
+  enemyHeadPos: {fileID: 0}
   enemyStoppingDist: 0
+  speed: 0
   enemyRotationSpeed: 0
   maxHP: 5
   attackSpeed: 0
@@ -1030,6 +1053,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1021166594
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.053833
+      objectReference: {fileID: 0}
+    - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.198228
+      objectReference: {fileID: 0}
+    - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5305607466204783013, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: m_Name
+      value: _RangedEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1680584032}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 6344434922400891919, guid: 5e8f73a5b84c5e74e821d64e6583e9c9, type: 3}
+    - target: {fileID: 6009908731788035031, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
 --- !u!1 &1142044729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,11 +1705,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   meshRenderer: {fileID: 231848920}
+  animator: {fileID: 0}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 4294967295
   enemyType: 0
+  enemyHeadPos: {fileID: 0}
   enemyStoppingDist: 0
+  speed: 0
   enemyRotationSpeed: 0
   maxHP: 5
   attackSpeed: 0
@@ -1688,6 +1783,11 @@ Transform:
   - {fileID: 231848923}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1680584032 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2747668588684538887, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+  m_PrefabInstance: {fileID: 1513629412}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1690298549
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,11 +1820,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   meshRenderer: {fileID: 569370960}
+  animator: {fileID: 0}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 4294967295
   enemyType: 0
+  enemyHeadPos: {fileID: 0}
   enemyStoppingDist: 0
+  speed: 0
   enemyRotationSpeed: 0
   maxHP: 5
   attackSpeed: 0
@@ -2133,3 +2236,4 @@ SceneRoots:
   - {fileID: 1189486112760753584}
   - {fileID: 2534635652745004349}
   - {fileID: 1513629412}
+  - {fileID: 1021166594}

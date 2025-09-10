@@ -98,9 +98,10 @@ public class PlayerWeapons : MonoBehaviour
         //curWeapon.Shoot();
         //yield return new WaitForSeconds(curWeapon.fireRate);
 
+        curWeapon.GetComponent<WeaponScript>().Shoot();
+        yield return new WaitForSeconds(curWeapon.GetComponent<WeaponScript>().fireRate);
+
         //temp code
-        Debug.Log("Shooting");
-        yield return new WaitForSeconds(.5f);
 
         isAttacking = false;
     }

@@ -4,9 +4,9 @@ using Unity.VisualScripting;
 
 public class Damage : MonoBehaviour
 {
-    enum DamageType { moving, stationary, explosion, DOT ,Homing}
+    enum DamageType { moving, stationary, explosion, DOT, Homing }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-  [SerializeField] Rigidbody rb;
+    [SerializeField] Rigidbody rb;
     [SerializeField] int damageamount;
     [SerializeField] float damageRate;
     [SerializeField] int speed;
@@ -20,7 +20,7 @@ public class Damage : MonoBehaviour
     bool isDamaging;
     Vector3 homingTarget;
     float homingTimer;
-    bool canDamage=false;
+    bool canDamage = false;
     void Start()
     {
         if (type == DamageType.moving)
@@ -30,23 +30,23 @@ public class Damage : MonoBehaviour
             {
                 rb.linearVelocity = transform.forward * speed;
             }
-            
+
         }
-        if(type==DamageType.Homing)
+        if (type == DamageType.Homing)
         {
-          
+           gameObject.GetComponent<SphereCollider>().radius = radius;
             rb.linearVelocity = transform.forward * speed;
             Destroy(gameObject, destroyTime);
         }
         if (type == DamageType.explosion)
         {
-            
-            rb.AddForce(transform.forward * speed,ForceMode.Impulse);
+
+            rb.AddForce(transform.forward * speed, ForceMode.Impulse);
             explosioncollider.radius = 0;
             IDamage dmg = GetComponent<IDamage>();
             StartCoroutine(explode(dmg));
         }
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,14 +65,14 @@ public class Damage : MonoBehaviour
         {
             if (dmg != null)
             {
-                if(other.CompareTag("Player"))
+                if (other.CompareTag("Player"))
                 {
                     //need player movement script to access  movement
                     gameManager.instance.player.GetComponent<PlayerMovement>().LauchPlayer((other.transform.position - transform.position));
 
                 }
                 dmg.TakeDamage(damageamount);
-                
+
 
 
 
@@ -86,23 +86,26 @@ public class Damage : MonoBehaviour
 
         if (type == DamageType.Homing)
         {
-            
-               if(dmg != null)
-                if(canDamage)
-                                    {
+
+            if (dmg != null)
+            {
+                if (canDamage)
+                {
                     dmg.TakeDamage(damageamount);
                     canDamage = false;
                 }
                 else
                 {
-StartCoroutine(HomingDelay());
+                    StartCoroutine(HomingDelay());
                     Destroy(gameObject, destroyTime);
                     canDamage = true;
                 }
-            
-                
+            }
 
-            
+
+
+
+
         }
     }
     private void OnTriggerExit(Collider other)
@@ -120,15 +123,16 @@ StartCoroutine(HomingDelay());
     // Update is called once per frame
     void Update()
     {
-        
-        if (type == DamageType.Homing )
-        {homingTimer += Time.deltaTime;
-            
-           
+
+        if (type == DamageType.Homing)
+        {
+            homingTimer += Time.deltaTime;
+
+
 
         }
-       
-        
+
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -158,18 +162,18 @@ StartCoroutine(HomingDelay());
     }
     IEnumerator explode(IDamage d)
     {
-      
+
         yield return new WaitForSeconds(explodetime);
         explosioncollider.radius = radius;
         isDamaging = false;
-        Destroy(gameObject,0.1f);
-       
+        Destroy(gameObject, 0.1f);
+
     }
     IEnumerator HomingDelay()
     {
         rb.linearVelocity = Vector3.zero;
         yield return new WaitForSeconds(homingPauseTime);
- Quaternion rot = Quaternion.LookRotation(new Vector3(homingTarget.x, transform.position.y, homingTarget.z));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(homingTarget.x, transform.position.y, homingTarget.z));
         rb.rotation = Quaternion.Lerp(transform.rotation, rot, 5 * Time.deltaTime);
         rb.linearVelocity = transform.forward * speed;
         gameObject.GetComponent<SphereCollider>().radius = 0.1f;

@@ -18,11 +18,13 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer meshRenderer;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] EnemyType enemyType;
+
     [Tooltip("Changes the navMeshAgent's stopping dist variable")]
     [SerializeField] int enemyStoppingDist;
     [SerializeField] int enemyRotationSpeed;
-    [Tooltip("Measured in attacks per second. the higher the number the faster the enemy attacks.")]
     [SerializeField] int maxHP;
+
+    [Tooltip("Measured in attacks per second. the higher the number the faster the enemy attacks.")]
     [SerializeField] float attackSpeed;
     [SerializeField] int damage;
     [SerializeField] Image enemyHealthBar;
@@ -47,20 +49,14 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     Color colorOrig;
 
-    // to prevent fatal errors
+    // To help prevent fatal errors
     bool isDead = false;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
 
-        //If found set target to player
-        // Temp code until the game manager has a reference to the player
-        Transform temp = GameObject.FindWithTag("Player").transform;
-        if (temp != null)
-        {
-            target = temp;
-        }
+        target = gameManager.instance.player.transform;
     }
 
     void Start()
@@ -129,8 +125,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator Shoot()
     {
         isAttacking = true;
-
-        Instantiate(bulletPrefab, bulletSpawnPos.position, transform.rotation);
+        Vector3 playerDir = target.transform.position - bulletSpawnPos.position;
+        Quaternion dir = Quaternion.LookRotation(playerDir);
+        Instantiate(bulletPrefab, bulletSpawnPos.position, dir);
 
         yield return new WaitForSeconds(1 / attackSpeed);
         isAttacking = false;
@@ -151,7 +148,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             if (hit.collider.CompareTag("Player"))
             {
                 // get IDamage component and damage the player
-                // waiting for the game manager to have a reference to the player
                 IDamage dmg = hit.collider.GetComponent<IDamage>();
                 if (dmg != null)
                     dmg.TakeDamage(damage);

@@ -18,25 +18,22 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] float meleeDist;
     [SerializeField] float meleeRate;
 
-    ParticleSystem effect;
-
     GameObject curWeapon;
     WeaponScript curWeaponScript;
 
     int curWeaponIndex;
-    int maxIndex = 2;
+    int maxIndex = 3;
 
     bool isAttacking;
 
     void Start()
     {
-        maxIndex = weapons.Count;
+        maxIndex = weapons.Count - 1;
         if (weapons.Count > 0)
         {
             curWeapon = weapons[0];
             SetActiveWeapon(0);
         }
-        effect.Play();
     }
 
     void Update()

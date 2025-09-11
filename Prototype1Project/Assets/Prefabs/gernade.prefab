@@ -50,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5032,7 +5032,7 @@ MonoBehaviour:
   explosioncollider: {fileID: 5260036954508560211}
   homingPauseTime: 5
   hominggotime: 0
-  explosionEffect: {fileID: 5934454128291514222}
+  explosionEffect: {fileID: 305945614823264233, guid: db044c088799a104cb7784a087a19657, type: 3}
 --- !u!54 &2666658243267823591
 Rigidbody:
   m_ObjectHideFlags: 0

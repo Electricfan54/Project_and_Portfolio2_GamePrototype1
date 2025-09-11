@@ -71,7 +71,11 @@ public class Damage : MonoBehaviour
                     gameManager.instance.player.GetComponent<PlayerMovement>().LauchPlayer((other.transform.position - transform.position));
 
                 }
-                dmg.TakeDamage(damageamount);
+                else
+                {
+dmg.TakeDamage(damageamount);
+                }
+                    
 
 
 

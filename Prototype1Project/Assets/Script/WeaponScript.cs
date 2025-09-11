@@ -5,7 +5,7 @@ public class WeaponScript : MonoBehaviour
 {
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject WeaponModel;
-    [SerializeField] Transform BulletSpawnPos;
+    [SerializeField] public Transform BulletSpawnPos;
 
     public float fireRate;
 

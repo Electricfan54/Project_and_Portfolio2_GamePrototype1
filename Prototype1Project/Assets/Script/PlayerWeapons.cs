@@ -8,6 +8,8 @@ public class PlayerWeapons : MonoBehaviour
     [Header("Required Variables")]
     [Tooltip("List of weapons the player can use. The weapons need to be in the scene and inactive")]
     [SerializeField] List<GameObject> weapons;
+    [SerializeField] GameObject grenadePrefab;
+    [SerializeField] float grenadeThrowRate;
     [SerializeField] Transform cameraPos;
     [SerializeField] LayerMask ignorelayer;
 
@@ -15,6 +17,8 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] int meleeDamage;
     [SerializeField] float meleeDist;
     [SerializeField] float meleeRate;
+
+    ParticleSystem effect;
 
     GameObject curWeapon;
     WeaponScript curWeaponScript;
@@ -32,6 +36,7 @@ public class PlayerWeapons : MonoBehaviour
             curWeapon = weapons[0];
             SetActiveWeapon(0);
         }
+        effect.Play();
     }
 
     void Update()
@@ -45,6 +50,11 @@ public class PlayerWeapons : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.V) || Input.GetKey(KeyCode.V)) && !isAttacking)
         {
             StartCoroutine(Melee());
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && !isAttacking)
+        {
+            StartCoroutine(ShootGrenade());
         }
     }
 
@@ -97,22 +107,22 @@ public class PlayerWeapons : MonoBehaviour
     {
         isAttacking = true;
 
-        //RaycastHit reticleHit;
-        //if (Physics.Raycast(cameraPos.position, cameraPos.forward, out reticleHit, 100.0f))
-        //{
-        //    // gets the point the raycasts hits
-        //    curWeaponScript.Shoot(reticleHit.point);
-        //}
-        //else
-        //{
-        //    // if raycast misses get a point far away form player
-
-        //}
-
         Vector3 pos = cameraPos.position + cameraPos.forward * 30.0f;
         curWeaponScript.Shoot(pos);
 
-        yield return new WaitForSeconds(curWeapon.GetComponent<WeaponScript>().fireRate);
+        yield return new WaitForSeconds(curWeaponScript.fireRate);
+
+
+        isAttacking = false;
+    }
+
+    IEnumerator ShootGrenade()
+    {
+        isAttacking = true;
+
+        Instantiate(grenadePrefab, curWeaponScript.BulletSpawnPos.position, cameraPos.rotation);
+
+        yield return new WaitForSeconds(grenadeThrowRate);
 
 
         isAttacking = false;

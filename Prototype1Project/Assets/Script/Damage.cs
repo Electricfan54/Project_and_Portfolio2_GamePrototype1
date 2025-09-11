@@ -16,6 +16,7 @@ public class Damage : MonoBehaviour
     [SerializeField] int radius;
     [SerializeField] SphereCollider explosioncollider;
     [SerializeField] float homingPauseTime;
+    [SerializeField] ParticleSystem explosionEffect;
     float explodetimer;
     bool isDamaging;
     Vector3 homingTarget;
@@ -171,6 +172,7 @@ dmg.TakeDamage(damageamount);
         explosioncollider.radius = radius;
         isDamaging = false;
         Destroy(gameObject, 0.1f);
+        explosionEffect.Play();
 
     }
     IEnumerator HomingDelay()

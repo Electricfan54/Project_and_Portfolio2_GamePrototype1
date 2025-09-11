@@ -16,13 +16,13 @@ public class Damage : MonoBehaviour
     [SerializeField] int radius;
     [SerializeField] SphereCollider explosioncollider;
     [SerializeField] float homingPauseTime;
+    [SerializeField] float hominggotime;
     [SerializeField] ParticleSystem explosionEffect;
     float explodetimer;
     bool isDamaging;
     Vector3 homingTarget;
     float homingTimer;
     bool canDamage = false;
-    bool canplayaffect = false;
     void Start()
     {
         if (type == DamageType.moving)
@@ -42,11 +42,12 @@ public class Damage : MonoBehaviour
         }
         if (type == DamageType.explosion)
         {
-
+explosionEffect.playOnAwake = false;
             rb.AddForce(transform.forward * speed, ForceMode.Impulse);
             explosioncollider.radius = 0;
             IDamage dmg = GetComponent<IDamage>();
             StartCoroutine(explode(dmg));
+            
 
 
 
@@ -176,6 +177,7 @@ public class Damage : MonoBehaviour
     }
     IEnumerator HomingDelay()
     {
+        yield return new WaitForSeconds(hominggotime);
         rb.linearVelocity = Vector3.zero;
         gameObject.GetComponent<SphereCollider>().radius = 0.1f;
         yield return new WaitForSeconds(homingPauseTime);

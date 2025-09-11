@@ -20,9 +20,9 @@ public class WeaponScript : MonoBehaviour
         
     }
 
-    public void Shoot(Vector3 CameraPos)
+    public void Shoot(Vector3 GivenPos)
     {
-        
-        //Instantiate(Bullet, BulletSpawnPos.position, CameraPos);
+        Vector3 pos = GivenPos - BulletSpawnPos.position;
+        Instantiate(Bullet, BulletSpawnPos.position, Quaternion.LookRotation(pos));
     }
 }

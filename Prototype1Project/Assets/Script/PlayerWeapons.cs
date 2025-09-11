@@ -17,6 +17,8 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] float meleeRate;
 
     GameObject curWeapon;
+    WeaponScript curWeaponScript;
+
     int curWeaponIndex;
     int maxIndex = 2;
 
@@ -94,14 +96,24 @@ public class PlayerWeapons : MonoBehaviour
     {
         isAttacking = true;
 
-        // waiting for weapon script
-        //curWeapon.Shoot();
-        //yield return new WaitForSeconds(curWeapon.fireRate);
+        RaycastHit reticleHit;
+        if (Physics.Raycast(cameraPos.position, cameraPos.forward, out reticleHit, 100.0f))
+        {
+            // gets the point the raycasts hits
+            //Quaternion dir = Quaternion.LookRotation(cameraPos.forward * 50.0f);
+            //curWeapon.GetComponent<WeaponScript>().Shoot(Quaternion.LookRotation(reticleHit.point));
+        }
+        else
+        {
+            // if ray hits nothing get a point far away
+            //Quaternion dir = Quaternion.LookRotation(cameraPos.forward * 50.0f);
 
-        curWeapon.GetComponent<WeaponScript>().Shoot(Quaternion.LookRotation(cameraPos.forward));
+            //curWeapon.GetComponent<WeaponScript>().Shoot(dir);
+        }
+
+        //curWeapon.GetComponent<WeaponScript>().Shoot();
         yield return new WaitForSeconds(curWeapon.GetComponent<WeaponScript>().fireRate);
 
-        //temp code
 
         isAttacking = false;
     }
@@ -120,12 +132,6 @@ public class PlayerWeapons : MonoBehaviour
             }
         }
 
-        // waiting for weapon script
-        //curWeapon.Shoot();
-        //yield return new WaitForSeconds(curWeapon.fireRate);
-
-        //temp code
-        Debug.Log("Melee");
         yield return new WaitForSeconds(meleeRate);
 
         isAttacking = false;

@@ -18,8 +18,6 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] float meleeDist;
     [SerializeField] float meleeRate;
 
-    ParticleSystem effect;
-
     GameObject curWeapon;
     WeaponScript curWeaponScript;
 
@@ -36,7 +34,6 @@ public class PlayerWeapons : MonoBehaviour
             curWeapon = weapons[0];
             SetActiveWeapon(0);
         }
-        effect.Play();
     }
 
     void Update()

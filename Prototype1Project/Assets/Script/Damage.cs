@@ -16,11 +16,13 @@ public class Damage : MonoBehaviour
     [SerializeField] int radius;
     [SerializeField] SphereCollider explosioncollider;
     [SerializeField] float homingPauseTime;
+    [SerializeField] ParticleSystem explosionEffect;
     float explodetimer;
     bool isDamaging;
     Vector3 homingTarget;
     float homingTimer;
     bool canDamage = false;
+    bool canplayaffect = false;
     void Start()
     {
         if (type == DamageType.moving)
@@ -34,7 +36,7 @@ public class Damage : MonoBehaviour
         }
         if (type == DamageType.Homing)
         {
-           gameObject.GetComponent<SphereCollider>().radius = radius;
+            gameObject.GetComponent<SphereCollider>().radius = radius;
             rb.linearVelocity = transform.forward * speed;
             Destroy(gameObject, destroyTime);
         }
@@ -45,6 +47,9 @@ public class Damage : MonoBehaviour
             explosioncollider.radius = 0;
             IDamage dmg = GetComponent<IDamage>();
             StartCoroutine(explode(dmg));
+
+
+
         }
 
     }
@@ -71,7 +76,11 @@ public class Damage : MonoBehaviour
                     gameManager.instance.player.GetComponent<PlayerMovement>().LauchPlayer((other.transform.position - transform.position));
 
                 }
-                dmg.TakeDamage(damageamount);
+                else
+                {
+                    dmg.TakeDamage(damageamount);
+                }
+
 
 
 
@@ -96,9 +105,9 @@ public class Damage : MonoBehaviour
                 }
                 else
                 {
-                    homingTarget= other.transform.position;
+                    homingTarget = other.transform.position;
                     StartCoroutine(HomingDelay());
-                
+
                 }
             }
 
@@ -124,13 +133,7 @@ public class Damage : MonoBehaviour
     void Update()
     {
 
-        if (type == DamageType.Homing)
-        {
-            homingTimer += Time.deltaTime;
 
-
-
-        }
 
 
     }
@@ -167,6 +170,8 @@ public class Damage : MonoBehaviour
         explosioncollider.radius = radius;
         isDamaging = false;
         Destroy(gameObject, 0.1f);
+        explosionEffect.Play();
+
 
     }
     IEnumerator HomingDelay()
@@ -174,10 +179,10 @@ public class Damage : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         gameObject.GetComponent<SphereCollider>().radius = 0.1f;
         yield return new WaitForSeconds(homingPauseTime);
-        Quaternion rot = Quaternion.LookRotation(new Vector3(homingTarget.x, transform.position.y, homingTarget.z));
-        rb.rotation = Quaternion.Lerp(transform.rotation, rot, 5 * Time.deltaTime);
+        Quaternion rot = Quaternion.LookRotation(homingTarget - transform.position);
+        transform.rotation = rot;
         rb.linearVelocity = transform.forward * speed;
-        
+
         canDamage = true;
         homingTimer = 0;
 

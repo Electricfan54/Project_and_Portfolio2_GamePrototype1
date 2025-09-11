@@ -4931,14 +4931,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::gameManager
   menuActive: {fileID: 0}
   menuPause: {fileID: 8147722399360847023}
-  menuWin: {fileID: 0}
-  menuLose: {fileID: 0}
+  menuWin: {fileID: 4067034859055426379}
+  menuLose: {fileID: 2433024520371888108}
   isPaused: 0
   enemyCountText: {fileID: 1491901905738217666}
   waveNumText: {fileID: 5238457461955640030}
   playerHPBar: {fileID: 3592004741197178178}
   playerDamageFlash: {fileID: 4448476912832582105}
   enemyWaves: []
+  disableWaveGame: 0
+  disableWinCondition: 0
   waveSpawnedTotal: 0
   maxWaveEnemies: 0
   enemyCount: 0

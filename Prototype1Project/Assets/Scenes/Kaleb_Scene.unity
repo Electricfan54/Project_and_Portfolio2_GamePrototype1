@@ -313,6 +313,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+      propertyPath: ignorelayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2747668588684538887, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.13888
@@ -516,7 +520,7 @@ PrefabInstance:
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 2094623692}
+      objectReference: {fileID: 2129413071}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: menuWin
       value: 
@@ -532,7 +536,7 @@ PrefabInstance:
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: playerScript
       value: 
-      objectReference: {fileID: 2094623696}
+      objectReference: {fileID: 2129413076}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: disableWaveGame
       value: 1
@@ -741,17 +745,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2094623692 stripped
+--- !u!1 &2129413071 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 4400855445875020246, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8042068865377142580, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
   m_PrefabInstance: {fileID: 1653438825}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2094623696 stripped
+--- !u!114 &2129413076 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5870295157936723517, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1226224987195595673, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
   m_PrefabInstance: {fileID: 1653438825}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094623692}
+  m_GameObject: {fileID: 2129413071}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 681d939304643d34e8e33391b4780d5b, type: 3}

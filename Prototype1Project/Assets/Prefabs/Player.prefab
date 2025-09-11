@@ -629,7 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   controller: {fileID: 5526867041763226884}
-  PlayerHP: 100
+  PlayerHP: 30
   playerSpeed: 6
   SprintMod: 2
   jumpSpeed: 15

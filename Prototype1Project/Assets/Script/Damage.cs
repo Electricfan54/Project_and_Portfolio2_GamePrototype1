@@ -170,11 +170,11 @@ public class Damage : MonoBehaviour
         yield return new WaitForSeconds(explodetime);
         explosioncollider.radius = radius;
         isDamaging = false;
-        Destroy(gameObject, 0.1f);
+       
         GameObject temp;
         temp = Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(temp, 2f);
-        Destroy(gameObject);
+      Destroy(gameObject, 0.1f);
 
 
     }

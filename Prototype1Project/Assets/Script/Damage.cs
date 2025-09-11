@@ -98,8 +98,7 @@ public class Damage : MonoBehaviour
                 {
                     homingTarget= other.transform.position;
                     StartCoroutine(HomingDelay());
-                    Destroy(gameObject, destroyTime);
-                    canDamage = true;
+                
                 }
             }
 

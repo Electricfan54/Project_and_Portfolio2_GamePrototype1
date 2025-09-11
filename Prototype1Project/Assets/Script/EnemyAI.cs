@@ -207,7 +207,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             //Tell the game manager this enemy is dead
-            gameManager.instance.UpdateEnemyCount(-1);
+            gameManager.instance.UpdateEnemyCount(-1); 
             isDead = true;
             Destroy(gameObject);
         }

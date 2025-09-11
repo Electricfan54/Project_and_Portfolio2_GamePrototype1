@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class WeaponScript : MonoBehaviour
 {
@@ -19,9 +20,9 @@ public class WeaponScript : MonoBehaviour
         
     }
 
-    public void Shoot(Transform CameraPos)
+    public void Shoot(Vector3 CameraPos)
     {
         
-        Instantiate(Bullet, BulletSpawnPos.position, Quaternion.LookRotation(CameraPos.forward));
+        //Instantiate(Bullet, BulletSpawnPos.position, CameraPos);
     }
 }

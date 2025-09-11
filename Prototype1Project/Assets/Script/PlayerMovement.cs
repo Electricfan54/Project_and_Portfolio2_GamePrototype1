@@ -150,6 +150,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
         { 
             PlayerHP = origHP;
         }
+        UpdatePlayerHPUI();
 
     }
 }

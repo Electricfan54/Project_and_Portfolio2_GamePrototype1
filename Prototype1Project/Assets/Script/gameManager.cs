@@ -174,7 +174,7 @@ public class gameManager : MonoBehaviour
         enemyCount += amount;
         enemyCountText.text = enemyCount.ToString("F0");
 
-        if ((waveSpawnedTotal == maxWaveEnemies) && enemyCount == 0)
+        if ((waveSpawnedTotal == maxWaveEnemies) && enemyCount == 0 && (enemyWaves.Count > 0))
         {
             waveActive = false;
             enemyWaves.RemoveAt(0);

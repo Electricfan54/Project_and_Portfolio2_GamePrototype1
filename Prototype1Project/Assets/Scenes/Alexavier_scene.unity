@@ -1477,7 +1477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1301562851
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1546,7 +1546,7 @@ Transform:
   m_GameObject: {fileID: 1301562850}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.5, y: 3, z: -12.25}
+  m_LocalPosition: {x: 4.75, y: 3, z: -12.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1868,6 +1868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8042068865377142580, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2171,6 +2175,10 @@ PrefabInstance:
       propertyPath: damageamount
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4207922594347782263, guid: 79733ca17ef36834fa72bbbb870d0fcc, type: 3}
+      propertyPath: explosionEffect
+      value: 
+      objectReference: {fileID: 5964450398029737983, guid: db044c088799a104cb7784a087a19657, type: 3}
     - target: {fileID: 4207922594347782263, guid: 79733ca17ef36834fa72bbbb870d0fcc, type: 3}
       propertyPath: homingPauseTime
       value: 4

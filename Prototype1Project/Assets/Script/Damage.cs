@@ -22,6 +22,7 @@ public class Damage : MonoBehaviour
     Vector3 homingTarget;
     float homingTimer;
     bool canDamage = false;
+    bool canplayaffect = false;
     void Start()
     {
         if (type == DamageType.moving)
@@ -35,7 +36,7 @@ public class Damage : MonoBehaviour
         }
         if (type == DamageType.Homing)
         {
-           gameObject.GetComponent<SphereCollider>().radius = radius;
+            gameObject.GetComponent<SphereCollider>().radius = radius;
             rb.linearVelocity = transform.forward * speed;
             Destroy(gameObject, destroyTime);
         }
@@ -46,6 +47,9 @@ public class Damage : MonoBehaviour
             explosioncollider.radius = 0;
             IDamage dmg = GetComponent<IDamage>();
             StartCoroutine(explode(dmg));
+
+
+
         }
 
     }
@@ -74,9 +78,9 @@ public class Damage : MonoBehaviour
                 }
                 else
                 {
-dmg.TakeDamage(damageamount);
+                    dmg.TakeDamage(damageamount);
                 }
-                    
+
 
 
 
@@ -101,9 +105,9 @@ dmg.TakeDamage(damageamount);
                 }
                 else
                 {
-                    homingTarget= other.transform.position;
+                    homingTarget = other.transform.position;
                     StartCoroutine(HomingDelay());
-                
+
                 }
             }
 
@@ -129,13 +133,7 @@ dmg.TakeDamage(damageamount);
     void Update()
     {
 
-        if (type == DamageType.Homing)
-        {
-            homingTimer += Time.deltaTime;
 
-
-
-        }
 
 
     }
@@ -174,16 +172,17 @@ dmg.TakeDamage(damageamount);
         Destroy(gameObject, 0.1f);
         explosionEffect.Play();
 
+
     }
     IEnumerator HomingDelay()
     {
         rb.linearVelocity = Vector3.zero;
         gameObject.GetComponent<SphereCollider>().radius = 0.1f;
         yield return new WaitForSeconds(homingPauseTime);
-        Quaternion rot = Quaternion.LookRotation(new Vector3(homingTarget.x, transform.position.y, homingTarget.z));
-        rb.rotation = Quaternion.Lerp(transform.rotation, rot, 5 * Time.deltaTime);
+        Quaternion rot = Quaternion.LookRotation(homingTarget - transform.position);
+        transform.rotation = rot;
         rb.linearVelocity = transform.forward * speed;
-        
+
         canDamage = true;
         homingTimer = 0;
 

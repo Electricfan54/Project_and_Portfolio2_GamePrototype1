@@ -141,4 +141,15 @@ public class PlayerMovement : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.playerDamageFlash.SetActive(false);
     }
+
+
+    public void HealPlayerOnKill()
+    {
+        PlayerHP += 2;
+        if (PlayerHP >= origHP)
+        { 
+            PlayerHP = origHP;
+        }
+
+    }
 }

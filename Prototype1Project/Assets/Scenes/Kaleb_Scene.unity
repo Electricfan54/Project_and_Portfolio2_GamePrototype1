@@ -478,6 +478,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5934454128291514222, guid: 79733ca17ef36834fa72bbbb870d0fcc, type: 3}
     - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+      propertyPath: grenadeThrowRate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
       propertyPath: ignorelayer.m_Bits
       value: 447
       objectReference: {fileID: 0}

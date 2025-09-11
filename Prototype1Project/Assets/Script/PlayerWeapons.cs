@@ -9,6 +9,7 @@ public class PlayerWeapons : MonoBehaviour
     [Tooltip("List of weapons the player can use. The weapons need to be in the scene and inactive")]
     [SerializeField] List<GameObject> weapons;
     [SerializeField] GameObject grenadePrefab;
+    [SerializeField] float grenadeThrowRate;
     [SerializeField] Transform cameraPos;
     [SerializeField] LayerMask ignorelayer;
 
@@ -106,7 +107,7 @@ public class PlayerWeapons : MonoBehaviour
         Vector3 pos = cameraPos.position + cameraPos.forward * 30.0f;
         curWeaponScript.Shoot(pos);
 
-        yield return new WaitForSeconds(curWeapon.GetComponent<WeaponScript>().fireRate);
+        yield return new WaitForSeconds(curWeaponScript.fireRate);
 
 
         isAttacking = false;
@@ -116,9 +117,9 @@ public class PlayerWeapons : MonoBehaviour
     {
         isAttacking = true;
 
-        Instantiate(grenadePrefab, cameraPos.position, cameraPos.rotation);
+        Instantiate(grenadePrefab, curWeaponScript.BulletSpawnPos.position, cameraPos.rotation);
 
-        yield return new WaitForSeconds(curWeapon.GetComponent<WeaponScript>().fireRate);
+        yield return new WaitForSeconds(grenadeThrowRate);
 
 
         isAttacking = false;

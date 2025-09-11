@@ -25,6 +25,7 @@ public class PlayerWeapons : MonoBehaviour
     int maxIndex = 3;
 
     bool isAttacking;
+    bool canUseGrenade = true;
 
     void Start()
     {
@@ -49,7 +50,7 @@ public class PlayerWeapons : MonoBehaviour
             StartCoroutine(Melee());
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.F) && canUseGrenade)
         {
             StartCoroutine(ShootGrenade());
         }
@@ -115,14 +116,14 @@ public class PlayerWeapons : MonoBehaviour
 
     IEnumerator ShootGrenade()
     {
-        isAttacking = true;
+        canUseGrenade = false;
 
         Instantiate(grenadePrefab, curWeaponScript.BulletSpawnPos.position, cameraPos.rotation);
 
         yield return new WaitForSeconds(grenadeThrowRate);
 
 
-        isAttacking = false;
+        canUseGrenade = true;
     }
 
     IEnumerator Melee()

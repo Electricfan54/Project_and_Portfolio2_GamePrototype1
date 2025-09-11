@@ -5031,6 +5031,8 @@ MonoBehaviour:
   radius: 5
   explosioncollider: {fileID: 5260036954508560211}
   homingPauseTime: 5
+  hominggotime: 0
+  explosionEffect: {fileID: 5934454128291514222}
 --- !u!54 &2666658243267823591
 Rigidbody:
   m_ObjectHideFlags: 0

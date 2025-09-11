@@ -545,6 +545,10 @@ PrefabInstance:
       propertyPath: ignorelayer.m_Bits
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8954539814520186322, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+      propertyPath: Bullet
+      value: 
+      objectReference: {fileID: 7828848772284936290, guid: 55602f6203292a946bd3f09cfb72b6d6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -846,7 +850,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5305607466204783013, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: maxHP

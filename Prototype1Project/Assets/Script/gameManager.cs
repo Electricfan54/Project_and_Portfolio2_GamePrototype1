@@ -80,6 +80,10 @@ public class gameManager : MonoBehaviour
         instance = this;
         timeScaleOrig = Time.timeScale;
         waveActive = false;
+
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<PlayerMovement>();
+
     }
 
     private void Start()

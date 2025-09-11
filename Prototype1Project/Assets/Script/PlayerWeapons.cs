@@ -89,6 +89,7 @@ public class PlayerWeapons : MonoBehaviour
         curWeapon.SetActive(false);
         curWeapon = weapons[index];
         curWeaponIndex = index;
+        curWeaponScript = curWeapon.GetComponent<WeaponScript>();
         curWeapon.SetActive(true);
     }
 

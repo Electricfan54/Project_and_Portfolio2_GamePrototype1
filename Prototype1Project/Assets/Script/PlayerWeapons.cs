@@ -100,18 +100,15 @@ public class PlayerWeapons : MonoBehaviour
         if (Physics.Raycast(cameraPos.position, cameraPos.forward, out reticleHit, 100.0f))
         {
             // gets the point the raycasts hits
-            //Quaternion dir = Quaternion.LookRotation(cameraPos.forward * 50.0f);
-            //curWeapon.GetComponent<WeaponScript>().Shoot(Quaternion.LookRotation(reticleHit.point));
+            curWeaponScript.Shoot(reticleHit.point);
         }
         else
         {
-            // if ray hits nothing get a point far away
-            //Quaternion dir = Quaternion.LookRotation(cameraPos.forward * 50.0f);
-
-            //curWeapon.GetComponent<WeaponScript>().Shoot(dir);
+            // if raycast misses get a point far away form player
+            Vector3 pos = cameraPos.position + cameraPos.forward * 50.0f;
+            curWeaponScript.Shoot(pos);
         }
 
-        //curWeapon.GetComponent<WeaponScript>().Shoot();
         yield return new WaitForSeconds(curWeapon.GetComponent<WeaponScript>().fireRate);
 
 

@@ -42,7 +42,7 @@ public class Damage : MonoBehaviour
         }
         if (type == DamageType.explosion)
         {
-explosionEffect.playOnAwake = false;
+
             rb.AddForce(transform.forward * speed, ForceMode.Impulse);
             explosioncollider.radius = 0;
             IDamage dmg = GetComponent<IDamage>();

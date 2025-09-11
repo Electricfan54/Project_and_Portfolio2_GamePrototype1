@@ -98,7 +98,7 @@ public class PlayerWeapons : MonoBehaviour
         //curWeapon.Shoot();
         //yield return new WaitForSeconds(curWeapon.fireRate);
 
-        curWeapon.GetComponent<WeaponScript>().Shoot(Quaternion.LookRotation(cameraPos.forward));
+        curWeapon.GetComponent<WeaponScript>().Shoot(cameraPos);
         yield return new WaitForSeconds(curWeapon.GetComponent<WeaponScript>().fireRate);
 
         //temp code

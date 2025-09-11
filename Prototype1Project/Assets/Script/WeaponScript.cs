@@ -19,8 +19,9 @@ public class WeaponScript : MonoBehaviour
         
     }
 
-    public void Shoot(Quaternion ReticalDir)
+    public void Shoot(Transform CameraPos)
     {
-        Instantiate(Bullet, BulletSpawnPos.position, ReticalDir);
+        
+        Instantiate(Bullet, BulletSpawnPos.position, Quaternion.LookRotation(CameraPos.forward));
     }
 }

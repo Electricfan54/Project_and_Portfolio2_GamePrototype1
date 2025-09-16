@@ -6,16 +6,16 @@ public class Damage : MonoBehaviour
     enum DamageType { moving, stationary, explosion, DOT, Homing }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] Rigidbody rb;
-    [SerializeField] int damageamount;
-    [SerializeField] float damageRate;
-    [SerializeField] int speed;
-    [SerializeField] int destroyTime;
-    [SerializeField] float explodetime;
+    [SerializeField] public int damageamount;
+    [SerializeField] public float damageRate;
+    [SerializeField] public int speed;
+    [SerializeField] public int destroyTime;
+    [SerializeField] public float explodetime;
     [SerializeField] DamageType type;
-    [SerializeField] int radius;
+    [SerializeField] public int radius;
     [SerializeField] SphereCollider explosioncollider;
-    [SerializeField] float homingPauseTime;
-    [SerializeField] float hominggotime;
+    [SerializeField] public float homingPauseTime;
+    [SerializeField] public float hominggotime;
     [SerializeField] GameObject explosionEffect;
     float explodetimer;
     bool isDamaging;

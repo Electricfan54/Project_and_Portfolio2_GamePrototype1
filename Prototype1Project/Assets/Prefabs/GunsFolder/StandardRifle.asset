@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd71a1bb098a60c4f957336d36785796, type: 3}
+  m_Name: StandardRifle
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponScript
+  Bullet: {fileID: 0}
+  WeaponModel: {fileID: 0}
+  BulletSpawnPos: {fileID: 0}
+  gunDamage: 1
+  fireRate: 0.1
+  DestroyTime: 1
+  currAmmo: 1
+  clipSize: 1
+  maxAmmo: 1
+  ReloadTimer: 0.1
+  explodeTime: 0.1
+  CheckRadius: 1
+  HomingStartTime: 0.1
+  HomingStopTime: 0.1

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2427075147529269175}
   - component: {fileID: 1585663346368454674}
   - component: {fileID: 3595454839053014232}
-  - component: {fileID: 5937207973857931018}
   m_Layer: 0
   m_Name: HomingRifle
   m_TagString: Untagged
@@ -91,22 +90,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5937207973857931018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3090985915868869901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd71a1bb098a60c4f957336d36785796, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponScript
-  Bullet: {fileID: 7828848772284936290, guid: 55602f6203292a946bd3f09cfb72b6d6, type: 3}
-  WeaponModel: {fileID: 3090985915868869901}
-  BulletSpawnPos: {fileID: 615660662706547064}
-  fireRate: 0.5
 --- !u!1 &5460168811976852988
 GameObject:
   m_ObjectHideFlags: 0

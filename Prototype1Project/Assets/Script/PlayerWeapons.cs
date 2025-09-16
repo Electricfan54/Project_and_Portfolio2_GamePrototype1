@@ -6,7 +6,7 @@ public class PlayerWeapons : MonoBehaviour
 {
     [Header("Required Variables")]
     [Tooltip("List of weapons the player can use. The weapons need to be in the scene and inactive")]
-    [SerializeField] List<GameObject> weapons;
+    [SerializeField] List<WeaponScript> weapons;
     [SerializeField] GameObject grenadePrefab;
     [SerializeField] float grenadeThrowRate;
     [SerializeField] Transform cameraPos;
@@ -17,8 +17,7 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] float meleeDist;
     [SerializeField] float meleeRate;
 
-    GameObject curWeapon;
-    WeaponScript curWeaponScript;
+    WeaponScript curWeapon;
 
     int curWeaponIndex;
     int maxIndex = 3;
@@ -93,30 +92,35 @@ public class PlayerWeapons : MonoBehaviour
         if (index < 0 || index >= weapons.Count)
             return;
 
-        curWeapon.SetActive(false);
+        //curWeapon.SetActive(false);
         curWeapon = weapons[index];
         curWeaponIndex = index;
-        curWeaponScript = curWeapon.GetComponent<WeaponScript>();
-        curWeapon.SetActive(true);
+        //curWeapon.SetActive(true);
     }
 
     IEnumerator Shoot()
     {
         isAttacking = true;
 
-        Vector3 pos = cameraPos.position + cameraPos.forward * 30.0f;
+        Vector3 shootTarget = cameraPos.position + cameraPos.forward * 30.0f;
 
-        yield return new WaitForSeconds(curWeaponScript.fireRate);
+        //shoot
+        //Instantiate
+        //Set values
+
+        yield return new WaitForSeconds(curWeapon.fireRate);
 
 
         isAttacking = false;
     }
 
+
+
     IEnumerator ShootGrenade()
     {
         canUseGrenade = false;
 
-        Instantiate(grenadePrefab, curWeaponScript.BulletSpawnPos.position, cameraPos.rotation);
+        Instantiate(grenadePrefab, curWeapon.BulletSpawnPos.position, cameraPos.rotation);
 
         yield return new WaitForSeconds(grenadeThrowRate);
 
@@ -133,8 +137,7 @@ public class PlayerWeapons : MonoBehaviour
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                hit.collider.GetComponent<IDamage>().TakeDamage(meleeDamage);
-                Debug.Log("Melee Hit");
+                 hit.collider.GetComponent<IDamage>().TakeDamage(meleeDamage);
             }
         }
 

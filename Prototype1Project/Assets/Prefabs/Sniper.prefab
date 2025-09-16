@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 6180218758006788249}
   - component: {fileID: 7091858392045346620}
   - component: {fileID: 5012401845577755638}
-  - component: {fileID: 8535600248519432285}
   m_Layer: 0
   m_Name: Sniper
   m_TagString: Untagged
@@ -122,19 +121,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8535600248519432285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6813766585304680995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd71a1bb098a60c4f957336d36785796, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponScript
-  Bullet: {fileID: 6344434922400891919, guid: aeaea4362255fd24aa3dcadd30cfbc22, type: 3}
-  WeaponModel: {fileID: 6813766585304680995}
-  BulletSpawnPos: {fileID: 73746352257588179}
-  fireRate: 1

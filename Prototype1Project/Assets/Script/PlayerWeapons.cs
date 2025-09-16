@@ -2,6 +2,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
+public enum ammoType
+{
+    rifle,
+    sniper,
+    homing,
+}
+
 public class PlayerWeapons : MonoBehaviour
 {
     [Header("Required Variables")]
@@ -16,6 +23,11 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] int meleeDamage;
     [SerializeField] float meleeDist;
     [SerializeField] float meleeRate;
+
+    [Header("Ammo Variables")]
+    [SerializeField] int ammoAmountRifle;
+    [SerializeField] int ammoAmountSniper;
+    [SerializeField] int ammoAmountHoming;
 
     WeaponScript curWeapon;
 
@@ -143,6 +155,15 @@ public class PlayerWeapons : MonoBehaviour
 
         yield return new WaitForSeconds(meleeRate);
 
+        isAttacking = false;
+    }
+
+    IEnumerator Reload()
+    {
+        isAttacking = true;
+        yield return new WaitForSeconds(curWeapon.ReloadTimer);
+        //curWeapon.ammoType
+        curWeapon.currAmmo = curWeapon.clipSize;
         isAttacking = false;
     }
 }

@@ -105,7 +105,6 @@ public class PlayerWeapons : MonoBehaviour
         isAttacking = true;
 
         Vector3 pos = cameraPos.position + cameraPos.forward * 30.0f;
-        curWeaponScript.Shoot(pos);
 
         yield return new WaitForSeconds(curWeaponScript.fireRate);
 

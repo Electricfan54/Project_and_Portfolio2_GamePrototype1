@@ -1,27 +1,26 @@
 using UnityEngine;
 
-public class WeaponScript : MonoBehaviour
+[CreateAssetMenu]
+
+public class WeaponScript : ScriptableObject
 {
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject WeaponModel;
     [SerializeField] public Transform BulletSpawnPos;
 
-    public float fireRate;
+    // Gun stuff
+    [Tooltip("6p for the win")] [Range(1, 50)] int gunDamage;
+    [Range(0.1f, 2)] public float fireRate;
+    [Range(1, 10)] public int DestroyTime;
 
-    void Start()
-    {
-        
-    }
+    // Gernade stuff
+    [Range(0.1f, 5)] public float explodeTime;
+    [Range(1, 5)] public int CheckRadius;
 
+    // homing stuff
+    [Range(0.1f, 5)] public float HomingStartTime;
+    [Range(0.1f, 5)] public float HomingStopTime;
 
-    void Update()
-    {
-        
-    }
-
-    public void Shoot(Vector3 GivenPos)
-    {
-        Vector3 pos = GivenPos - BulletSpawnPos.position;
-        Instantiate(Bullet, BulletSpawnPos.position, Quaternion.LookRotation(pos));
-    }
+   
+    
 }

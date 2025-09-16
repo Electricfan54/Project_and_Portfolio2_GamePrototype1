@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4435194411916956827
+--- !u!1 &5897638755241432848
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3980994769699769884}
-  - component: {fileID: 5061111568934589752}
-  - component: {fileID: 9198783268684824866}
-  - component: {fileID: 7217768391878933812}
-  - component: {fileID: -829757247411923875}
-  - component: {fileID: 8017463552994394672}
+  - component: {fileID: 5384257924203215760}
+  - component: {fileID: 180952410030562965}
+  - component: {fileID: 1655353729067678790}
+  - component: {fileID: 2476642370634302517}
+  - component: {fileID: 1154223338016587272}
   m_Layer: 0
-  m_Name: lava
+  m_Name: Poison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3980994769699769884
+--- !u!4 &5384257924203215760
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4435194411916956827}
+  m_GameObject: {fileID: 5897638755241432848}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.92663, y: 0, z: -2.58936}
-  m_LocalScale: {x: 4, y: 1, z: 4}
+  m_LocalPosition: {x: -0.62848, y: 0.84379005, z: 4.40488}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5061111568934589752
+--- !u!33 &180952410030562965
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4435194411916956827}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &9198783268684824866
+  m_GameObject: {fileID: 5897638755241432848}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1655353729067678790
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4435194411916956827}
+  m_GameObject: {fileID: 5897638755241432848}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -92,13 +91,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7217768391878933812
-BoxCollider:
+--- !u!135 &2476642370634302517
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4435194411916956827}
+  m_GameObject: {fileID: 5897638755241432848}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -111,42 +110,15 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &-829757247411923875
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4435194411916956827}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &8017463552994394672
+--- !u!114 &1154223338016587272
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4435194411916956827}
+  m_GameObject: {fileID: 5897638755241432848}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b836a0eadd143a54087a624bc098c4bf, type: 3}
@@ -154,10 +126,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Damage
   rb: {fileID: 0}
   damageamount: 1
-  damageRate: 3
+  damageRate: 1
   speed: 0
   destroyTime: 0
-  type: 3
+  type: 5
   explodetime: 0
   radius: 0
   explosioncollider: {fileID: 0}
@@ -165,5 +137,5 @@ MonoBehaviour:
   homingPauseTime: 0
   hominggotime: 0
   speedAfterStop: 0
-  posionwaitbeforhit: 0
-  PoisonTimesHit: 0
+  posionwaitbeforhit: 5
+  PoisonTimesHit: 3

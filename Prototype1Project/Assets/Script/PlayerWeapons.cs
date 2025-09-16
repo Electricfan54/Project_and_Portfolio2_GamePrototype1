@@ -51,7 +51,7 @@ public class PlayerWeapons : MonoBehaviour
     {
         SwapWeapons();
 
-        if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && !isAttacking)
+        if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && curWeapon.currAmmo > 0 && !isAttacking)
         {
             StartCoroutine(Shoot());
         }
@@ -113,13 +113,11 @@ public class PlayerWeapons : MonoBehaviour
     IEnumerator Shoot()
     {
         isAttacking = true;
-
         Vector3 shootTarget = cameraPos.position + cameraPos.forward * 30.0f;
 
+        Instantiate(curWeapon.Bullet, curWeapon.BulletSpawnPos.position, Quaternion.LookRotation(shootTarget));
         //shoot
-        //Instantiate
-        //Set values
-
+        curWeapon.currAmmo--;
         yield return new WaitForSeconds(curWeapon.fireRate);
 
 

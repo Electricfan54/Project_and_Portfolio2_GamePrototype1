@@ -26,6 +26,16 @@ public struct EnemyStruct
 
 }
 
+[System.Serializable]
+public struct EndlessWeights
+{
+    [Tooltip("The type of enemy to spawn.")]
+    [SerializeField] public GameObject enemyType;
+    [Tooltip("Higher values mean they spawn more frequently in LATER waves.")]
+    [SerializeField] [Range(1, 100)] public int enemyWeight;
+
+}
+
 public class gameManager : MonoBehaviour
 {
 
@@ -67,6 +77,19 @@ public class gameManager : MonoBehaviour
     bool waveActive;
 
     [HideInInspector] public int enemyCount;
+
+    [Header("Endless Mode Customization")]
+    [Tooltip("Enables the endless mode that is usually accessible after reaching the last preset wave.")]
+    [SerializeField] bool endlessActive;
+    [Tooltip("By how much to modify the endless difficulty based on this value and the wave number.")]
+    [SerializeField] float diffMod;
+    float diffMult;
+
+    [Tooltip("The spawn locations for the enemies during endless mode.")]
+    [SerializeField] List<Transform> endlessSpawns = new List<Transform>();
+
+    [Tooltip("The enemy weights for endless mode. Higher weights mean they are more likely to appear in later waves, and vice-versa.")]
+    [SerializeField] List<EndlessWeights> enemyWeights = new List<EndlessWeights>();
 
     [Header("Player Specific")]
     public GameObject player;
@@ -197,7 +220,15 @@ public class gameManager : MonoBehaviour
         {
             waveNum = 0;
             spawnTimer = 0;
-            StartWave();
+
+            if (!endlessActive)
+                StartWave();
+            else
+            {
+                waveNum = 1;
+                GenerateWave();
+            }
+
         }
     }
 
@@ -217,13 +248,22 @@ public class gameManager : MonoBehaviour
         }
         else
         {
-            // Show win screen here!
-            if (!disableWinCondition)
+            if (!endlessActive)
             {
-                PauseGame();
-                menuHierarchy.Add(menuWin);
-                menuActive = menuWin;
-                menuActive.SetActive(true);
+                // Show win screen here!
+                if (!disableWinCondition)
+                {
+                    PauseGame();
+                    menuHierarchy.Add(menuWin);
+                    menuActive = menuWin;
+                    menuActive.SetActive(true);
+                    endlessActive = true;
+                    GenerateWave();
+                }
+            }
+            else
+            {
+                GenerateWave();
             }
         }
 
@@ -244,6 +284,60 @@ public class gameManager : MonoBehaviour
 
         Instantiate<GameObject>(enemyType, spawnPos);
         waveSpawnedTotal++;
+
+    }
+
+    void GenerateWave()
+    {
+
+        // Apply the difficulty multiplier
+        diffMult = waveNum * diffMod;
+
+        // Create a wave variable
+        WaveStruct genWave = new();
+        genWave.enemies = new();
+
+        // Attach the selected spawnpoints for the endless mode (not random)
+        genWave.spawnPoints = endlessSpawns;
+
+        // Generate enemy clusters
+        int clusterCount = Random.Range(Mathf.RoundToInt(diffMult / 2), (int)diffMult + 1);
+
+        for (int i = 0; i < clusterCount; i++)
+        {
+
+            EnemyStruct genEnemy = new();
+
+            GameObject genType = null;
+            int genAmount;
+            float genDelay;
+
+            // Select enemy class
+            int poolSelect = (int)Mathf.Clamp(Random.Range(1, 101) * diffMult, 1, 100);
+
+            for (int j = 0; j < enemyWeights.Count; j++)
+            {
+                if (!(poolSelect >= enemyWeights[j].enemyWeight))
+                {
+                    break;
+                }
+
+                genType = enemyWeights[j].enemyType;
+            }
+
+            genAmount = (int)(Random.Range(1, diffMult + 1) * diffMult);
+            genDelay = (Random.Range(1, diffMult + 1) / diffMult);
+
+            genEnemy.enemyType = genType;
+            genEnemy.spawnAmount = genAmount;
+            genEnemy.spawnDelay = genDelay;
+
+            genWave.enemies.Add(genEnemy);
+
+        }
+
+        enemyWaves.Add(genWave);
+        StartWave();
 
     }
 

@@ -7,6 +7,7 @@ public class WeaponScript : ScriptableObject
     public GameObject Bullet;
     public GameObject WeaponModel;
     public Transform BulletSpawnPos;
+    public ammoType WeaponAmmoType;
 
     // Gun stuff
     [Range(1, 50)] public int gunDamage;

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class WeaponScript : ScriptableObject
 {
-    [SerializeField] GameObject Bullet;
-    [SerializeField] GameObject WeaponModel;
-    [SerializeField] public Transform BulletSpawnPos;
+    public GameObject Bullet;
+    public GameObject WeaponModel;
+    public Transform BulletSpawnPos;
 
     // Gun stuff
-    [Range(1, 50)] int gunDamage;
+    [Range(1, 50)] public int gunDamage;
     [Range(0.1f, 2)] public float fireRate;
     [Range(1, 10)] public int DestroyTime;
 

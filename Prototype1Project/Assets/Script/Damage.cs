@@ -6,16 +6,16 @@ public class Damage : MonoBehaviour
     enum DamageType { moving, stationary, explosion, DOT, Homing }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] Rigidbody rb;
-    [SerializeField] public int damageamount;
-    [SerializeField] public float damageRate;
-    [SerializeField] public int speed;
-    [SerializeField] public int destroyTime;
-    [SerializeField] public float explodetime;
+    public int damageamount;
+    public float damageRate;
+    public int speed;
+    public int destroyTime;
+    public float explodetime;
     [SerializeField] DamageType type;
-    [SerializeField] public int radius;
+    public int radius;
     [SerializeField] SphereCollider explosioncollider;
-    [SerializeField] public float homingPauseTime;
-    [SerializeField] public float hominggotime;
+    public float homingPauseTime;
+    public float hominggotime;
     [SerializeField] GameObject explosionEffect;
     float explodetimer;
     bool isDamaging;
@@ -46,7 +46,7 @@ public class Damage : MonoBehaviour
             explosioncollider.radius = 0;
             IDamage dmg = GetComponent<IDamage>();
             StartCoroutine(explode(dmg));
-            
+
 
 
 
@@ -169,11 +169,11 @@ public class Damage : MonoBehaviour
         yield return new WaitForSeconds(explodetime);
         explosioncollider.radius = radius;
         isDamaging = false;
-       
+
         GameObject temp;
         temp = Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(temp, 2f);
-      Destroy(gameObject, 0.1f);
+        Destroy(gameObject, 0.1f);
 
 
     }

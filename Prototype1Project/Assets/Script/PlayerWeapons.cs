@@ -102,13 +102,19 @@ public class PlayerWeapons : MonoBehaviour
     {
         isAttacking = true;
 
-        Vector3 pos = cameraPos.position + cameraPos.forward * 30.0f;
+        Vector3 shootTarget = cameraPos.position + cameraPos.forward * 30.0f;
+
+        //shoot
+        //Instantiate
+        //Set values
 
         yield return new WaitForSeconds(curWeapon.fireRate);
 
 
         isAttacking = false;
     }
+
+
 
     IEnumerator ShootGrenade()
     {

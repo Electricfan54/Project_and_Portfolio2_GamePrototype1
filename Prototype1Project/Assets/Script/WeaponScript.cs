@@ -9,7 +9,7 @@ public class WeaponScript : ScriptableObject
     [SerializeField] public Transform BulletSpawnPos;
 
     // Gun stuff
-    [Tooltip("6p for the win")] [Range(1, 50)] int gunDamage;
+    [Range(1, 50)] int gunDamage;
     [Range(0.1f, 2)] public float fireRate;
     [Range(1, 10)] public int DestroyTime;
 

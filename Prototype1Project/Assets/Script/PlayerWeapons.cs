@@ -18,6 +18,7 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] float grenadeThrowRate;
     [SerializeField] Transform cameraPos;
     [SerializeField] LayerMask ignorelayer;
+    [SerializeField] GameObject GunModel;
 
     [Header("Player Variables")]
     [SerializeField] int meleeDamage;
@@ -107,6 +108,8 @@ public class PlayerWeapons : MonoBehaviour
         //curWeapon.SetActive(false);
         curWeapon = weapons[index];
         curWeaponIndex = index;
+        GunModel.GetComponent<MeshFilter>().sharedMesh = curWeapon.WeaponModel.GetComponent<MeshFilter>().sharedMesh;
+        GunModel.GetComponent<MeshRenderer>().sharedMaterial = curWeapon.WeaponModel.GetComponent<MeshRenderer>().sharedMaterial;
         //curWeapon.SetActive(true);
     }
 

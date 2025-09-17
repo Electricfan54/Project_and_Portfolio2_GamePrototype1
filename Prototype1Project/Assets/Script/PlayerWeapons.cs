@@ -55,6 +55,12 @@ public class PlayerWeapons : MonoBehaviour
         {
             StartCoroutine(Shoot());
         }
+
+        if (Input.GetKeyDown(KeyCode.R) && curWeapon != null)
+        {
+            StartCoroutine(Reload());
+        }
+
         if ((Input.GetKeyDown(KeyCode.V) || Input.GetKey(KeyCode.V)) && !isAttacking)
         {
             StartCoroutine(Melee());
@@ -112,11 +118,12 @@ public class PlayerWeapons : MonoBehaviour
 
     IEnumerator Shoot()
     {
+        /*
         isAttacking = true;
         Vector3 shootTarget = cameraPos.position + cameraPos.forward * 30.0f;
 
         Instantiate(curWeapon.Bullet, curWeapon.BulletSpawnPos.position, Quaternion.LookRotation(shootTarget));
-        //shoot
+        //shoot*/
         curWeapon.currAmmo--;
         yield return new WaitForSeconds(curWeapon.fireRate);
 
@@ -160,8 +167,54 @@ public class PlayerWeapons : MonoBehaviour
     {
         isAttacking = true;
         yield return new WaitForSeconds(curWeapon.ReloadTimer);
-        //curWeapon.ammoType
-        curWeapon.currAmmo = curWeapon.clipSize;
+
+        int amountToReload = CalcAmmo();
+         
+        curWeapon.currAmmo = amountToReload;
         isAttacking = false;
+    }
+
+    int CalcAmmo()
+    {
+        int amountToReload = curWeapon.clipSize - curWeapon.currAmmo;
+
+        switch (curWeapon.WeaponAmmoType)
+        {
+            case ammoType.rifle:
+                if (ammoAmountRifle >= amountToReload)
+                {
+                    ammoAmountRifle -= amountToReload;
+                }
+                else
+                {
+                    amountToReload = ammoAmountRifle;
+                    ammoAmountRifle = 0;
+                }
+                    break;
+            case ammoType.sniper:
+                if (ammoAmountSniper >= amountToReload)
+                {
+                    ammoAmountSniper -= amountToReload;
+                }
+                else
+                {
+                    amountToReload = ammoAmountSniper;
+                    ammoAmountSniper = 0;
+                }
+                break;
+            case ammoType.homing:
+                if (ammoAmountHoming >= amountToReload)
+                {
+                    ammoAmountHoming -= amountToReload;
+                }
+                else
+                {
+                    amountToReload = ammoAmountHoming;
+                    ammoAmountHoming = 0;
+                }
+                break;
+        }
+
+        return amountToReload;
     }
 }

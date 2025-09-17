@@ -2,23 +2,35 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
+public enum ammoType
+{
+    rifle,
+    sniper,
+    homing,
+}
+
 public class PlayerWeapons : MonoBehaviour
 {
     [Header("Required Variables")]
     [Tooltip("List of weapons the player can use. The weapons need to be in the scene and inactive")]
-    [SerializeField] List<GameObject> weapons;
+    [SerializeField] List<WeaponScript> weapons;
     [SerializeField] GameObject grenadePrefab;
     [SerializeField] float grenadeThrowRate;
     [SerializeField] Transform cameraPos;
     [SerializeField] LayerMask ignorelayer;
+    [SerializeField] GameObject GunModel;
 
     [Header("Player Variables")]
     [SerializeField] int meleeDamage;
     [SerializeField] float meleeDist;
     [SerializeField] float meleeRate;
 
-    GameObject curWeapon;
-    WeaponScript curWeaponScript;
+    [Header("Ammo Variables")]
+    [SerializeField] int ammoAmountRifle;
+    [SerializeField] int ammoAmountSniper;
+    [SerializeField] int ammoAmountHoming;
+
+    WeaponScript curWeapon;
 
     int curWeaponIndex;
     int maxIndex = 3;
@@ -40,7 +52,7 @@ public class PlayerWeapons : MonoBehaviour
     {
         SwapWeapons();
 
-        if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && !isAttacking)
+        if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && curWeapon.currAmmo > 0 && !isAttacking)
         {
             StartCoroutine(Shoot());
         }
@@ -93,31 +105,35 @@ public class PlayerWeapons : MonoBehaviour
         if (index < 0 || index >= weapons.Count)
             return;
 
-        curWeapon.SetActive(false);
+        //curWeapon.SetActive(false);
         curWeapon = weapons[index];
         curWeaponIndex = index;
-        curWeaponScript = curWeapon.GetComponent<WeaponScript>();
-        curWeapon.SetActive(true);
+        GunModel.GetComponent<MeshFilter>().sharedMesh = curWeapon.WeaponModel.GetComponent<MeshFilter>().sharedMesh;
+        GunModel.GetComponent<MeshRenderer>().sharedMaterial = curWeapon.WeaponModel.GetComponent<MeshRenderer>().sharedMaterial;
+        //curWeapon.SetActive(true);
     }
 
     IEnumerator Shoot()
     {
         isAttacking = true;
+        Vector3 shootTarget = cameraPos.position + cameraPos.forward * 30.0f;
 
-        Vector3 pos = cameraPos.position + cameraPos.forward * 30.0f;
-        curWeaponScript.Shoot(pos);
-
-        yield return new WaitForSeconds(curWeaponScript.fireRate);
+        Instantiate(curWeapon.Bullet, curWeapon.BulletSpawnPos.position, Quaternion.LookRotation(shootTarget));
+        //shoot
+        curWeapon.currAmmo--;
+        yield return new WaitForSeconds(curWeapon.fireRate);
 
 
         isAttacking = false;
     }
 
+
+
     IEnumerator ShootGrenade()
     {
         canUseGrenade = false;
 
-        Instantiate(grenadePrefab, curWeaponScript.BulletSpawnPos.position, cameraPos.rotation);
+        Instantiate(grenadePrefab, curWeapon.BulletSpawnPos.position, cameraPos.rotation);
 
         yield return new WaitForSeconds(grenadeThrowRate);
 
@@ -134,13 +150,21 @@ public class PlayerWeapons : MonoBehaviour
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                hit.collider.GetComponent<IDamage>().TakeDamage(meleeDamage);
-                Debug.Log("Melee Hit");
+                 hit.collider.GetComponent<IDamage>().TakeDamage(meleeDamage);
             }
         }
 
         yield return new WaitForSeconds(meleeRate);
 
+        isAttacking = false;
+    }
+
+    IEnumerator Reload()
+    {
+        isAttacking = true;
+        yield return new WaitForSeconds(curWeapon.ReloadTimer);
+        //curWeapon.ammoType
+        curWeapon.currAmmo = curWeapon.clipSize;
         isAttacking = false;
     }
 }

@@ -118,12 +118,12 @@ public class PlayerWeapons : MonoBehaviour
 
     IEnumerator Shoot()
     {
-        /*
+        
         isAttacking = true;
         Vector3 shootTarget = cameraPos.position + cameraPos.forward * 30.0f;
 
         Instantiate(curWeapon.Bullet, curWeapon.BulletSpawnPos.position, Quaternion.LookRotation(shootTarget));
-        //shoot*/
+        //shoot
         curWeapon.currAmmo--;
         yield return new WaitForSeconds(curWeapon.fireRate);
 

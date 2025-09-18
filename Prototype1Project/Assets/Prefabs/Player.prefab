@@ -30,7 +30,8 @@ Transform:
   m_LocalPosition: {x: 0.33813, y: -0.21899998, z: 0.49976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3571679127414246299}
   m_Father: {fileID: 3368975048318645373}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2252714357876039816
@@ -338,7 +339,8 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras: []
+  m_Cameras:
+  - {fileID: 2449202770725217285}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -381,6 +383,37 @@ MonoBehaviour:
   Sens: 500
   lockVertMin: -90
   lockVertMax: 90
+--- !u!1 &6654817741801785040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3571679127414246299}
+  m_Layer: 0
+  m_Name: BulletSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3571679127414246299
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6654817741801785040}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.003000021, y: 0.059000015, z: 0.553}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6421630988321088147}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8042068865377142580
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeapons
   weapons:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: ca060275c814bc342aa9072aa8a2b6d9, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   grenadePrefab: {fileID: 5934454128291514222, guid: 79733ca17ef36834fa72bbbb870d0fcc, type: 3}
@@ -470,9 +503,14 @@ MonoBehaviour:
   ignorelayer:
     serializedVersion: 2
     m_Bits: 447
+  GunModel: {fileID: 3385614797769686659}
+  bulletSpawnPos: {fileID: 3571679127414246299}
   meleeDamage: 0
   meleeDist: 0
   meleeRate: 0
+  ammoAmountRifle: 0
+  ammoAmountSniper: 0
+  ammoAmountHoming: 0
 --- !u!23 &772482524985079454
 MeshRenderer:
   m_ObjectHideFlags: 0

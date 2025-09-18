@@ -46,6 +46,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject isPoisionIcon;
 
     public bool isPaused;
 
@@ -123,6 +124,7 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
+        poisonIcon();
 
         if (Input.GetButtonDown("Cancel"))
         {
@@ -351,6 +353,18 @@ public class gameManager : MonoBehaviour
         enemyWaves.Add(genWave);
         StartWave();
 
+    }
+
+    void poisonIcon()
+    {
+        if (playerScript.isPoisend)
+        {
+            isPoisionIcon.SetActive(true);
+        }
+        else
+        {
+            isPoisionIcon.SetActive(false);
+        }
     }
 
 }

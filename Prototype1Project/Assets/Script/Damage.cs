@@ -228,6 +228,7 @@ public class Damage : MonoBehaviour
     IEnumerator PoisonLeave(IDamage d)
     {
         isDamaging = true;
+        gameManager.instance.player.GetComponent<PlayerMovement>().isPoisend= true;
         for (int i = 0; i < PoisonTimesHit; i++)
         { 
             yield return new WaitForSeconds(posionwaitbeforhit);
@@ -235,6 +236,7 @@ public class Damage : MonoBehaviour
            
         }
         isDamaging = false;
+        gameManager.instance.player.GetComponent<PlayerMovement>().isPoisend = false;
     }
 
     }

@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScript
   Bullet: {fileID: 6344434922400891919, guid: 4e3159d4bd501e34983067f41c371de8, type: 3}
   WeaponModel: {fileID: 65746755228665499, guid: dddfd404f4838544eaf86f17d42b1e51, type: 3}
-  BulletSpawnPos: {fileID: 0}
   WeaponAmmoType: 0
   gunDamage: 1
   fireRate: 0.1

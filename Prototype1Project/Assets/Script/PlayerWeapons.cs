@@ -19,6 +19,7 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] Transform cameraPos;
     [SerializeField] LayerMask ignorelayer;
     [SerializeField] GameObject GunModel;
+    [SerializeField] Transform bulletSpawnPos;
 
     [Header("Player Variables")]
     [SerializeField] int meleeDamage;
@@ -118,7 +119,7 @@ public class PlayerWeapons : MonoBehaviour
         isAttacking = true;
         Vector3 shootTarget = cameraPos.position + cameraPos.forward * 30.0f;
 
-        Instantiate(curWeapon.Bullet, curWeapon.BulletSpawnPos.position, Quaternion.LookRotation(shootTarget));
+        Instantiate(curWeapon.Bullet, bulletSpawnPos.position, Quaternion.LookRotation(shootTarget));
         //shoot
         curWeapon.currAmmo--;
         yield return new WaitForSeconds(curWeapon.fireRate);
@@ -133,7 +134,7 @@ public class PlayerWeapons : MonoBehaviour
     {
         canUseGrenade = false;
 
-        Instantiate(grenadePrefab, curWeapon.BulletSpawnPos.position, cameraPos.rotation);
+        Instantiate(grenadePrefab, bulletSpawnPos.position, cameraPos.rotation);
 
         yield return new WaitForSeconds(grenadeThrowRate);
 

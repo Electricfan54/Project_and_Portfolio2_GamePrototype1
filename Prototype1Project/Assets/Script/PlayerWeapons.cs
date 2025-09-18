@@ -9,7 +9,7 @@ public enum ammoType
     homing,
 }
 
-public class PlayerWeapons : MonoBehaviour
+public class PlayerWeapons : MonoBehaviour, IPickup
 {
     [Header("Required Variables")]
     [Tooltip("List of weapons the player can use. The weapons need to be in the scene and inactive")]
@@ -261,4 +261,22 @@ public class PlayerWeapons : MonoBehaviour
 
         return amountToReload;
     }
+
+    public void PickupAmmo(ammoType type, int amount)
+    {
+        switch (type)
+        {
+            case ammoType.rifle:
+                ammoAmountRifle += amount;
+                break;
+            case ammoType.sniper:
+                ammoAmountSniper += amount;
+                break;
+            case ammoType.homing:
+                ammoAmountHoming += amount;
+                break;
+        }
+        UpdateUI();
+    }
+
 }

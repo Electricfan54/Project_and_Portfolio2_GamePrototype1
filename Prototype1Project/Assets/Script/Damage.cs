@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class Damage : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class Damage : MonoBehaviour
     [Tooltip("how long the pullet goes for after detecting a target")]
     public float hominggotime;
 
-    Vector3 homingTarget;
+    GameObject homingTarget;
     [Tooltip("the speed the projectile will move after finding an enemy")]
     public float speedAfterStop;
     float homingTimer;
@@ -121,7 +122,7 @@ public class Damage : MonoBehaviour
                 }
                 else
                 {
-                    homingTarget = other.transform.position;
+                    homingTarget = other.gameObject;
                     StartCoroutine(HomingDelay());
 
                 }
@@ -216,7 +217,7 @@ public class Damage : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         gameObject.GetComponent<SphereCollider>().radius = 0.1f;
         yield return new WaitForSeconds(homingPauseTime);// Time it stops for
-        Quaternion rot = Quaternion.LookRotation(homingTarget - transform.position);
+        Quaternion rot = Quaternion.LookRotation(homingTarget.transform.position - transform.position);
         transform.rotation = rot;
         rb.linearVelocity = transform.forward * speedAfterStop; //speed after stoping
 

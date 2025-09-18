@@ -6302,6 +6302,18 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
+      propertyPath: endlessSpawns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
+      propertyPath: 'endlessSpawns.Array.data[0]'
+      value: 
+      objectReference: {fileID: 467026017}
+    - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
+      propertyPath: 'endlessSpawns.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1123002631}
+    - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: enemyWaves.Array.data[0].enemies.Array.size
       value: 2
       objectReference: {fileID: 0}

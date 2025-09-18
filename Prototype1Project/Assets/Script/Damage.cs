@@ -146,9 +146,9 @@ public class Damage : MonoBehaviour
             }
         }
         IDamage dmg = other.GetComponent<IDamage>();
-        if (type==DamageType.poision)
+        if (type == DamageType.poision)
         {
-            if(dmg!=null)
+            if (dmg != null)
             {
                 StartCoroutine(PoisonLeave(dmg));
             }
@@ -217,7 +217,17 @@ public class Damage : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         gameObject.GetComponent<SphereCollider>().radius = 0.1f;
         yield return new WaitForSeconds(homingPauseTime);// Time it stops for
-        Quaternion rot = Quaternion.LookRotation(homingTarget.transform.position - transform.position);
+        Quaternion rot;
+        if (homingTarget == null)
+        {
+            rot = Quaternion.identity;
+
+        }
+        else
+        {
+            rot = Quaternion.LookRotation(homingTarget.transform.position - transform.position);
+        }
+
         transform.rotation = rot;
         rb.linearVelocity = transform.forward * speedAfterStop; //speed after stoping
 
@@ -225,19 +235,19 @@ public class Damage : MonoBehaviour
         homingTimer = 0;
 
     }
- 
+
     IEnumerator PoisonLeave(IDamage d)
     {
         isDamaging = true;
-        gameManager.instance.player.GetComponent<PlayerMovement>().isPoisend= true;
+        gameManager.instance.player.GetComponent<PlayerMovement>().isPoisend = true;
         for (int i = 0; i < PoisonTimesHit; i++)
-        { 
+        {
             yield return new WaitForSeconds(posionwaitbeforhit);
             d.TakeDamage(damageamount);
-           
+
         }
         isDamaging = false;
         gameManager.instance.player.GetComponent<PlayerMovement>().isPoisend = false;
     }
 
-    }
+}

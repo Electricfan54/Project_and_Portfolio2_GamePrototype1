@@ -235,9 +235,10 @@ public class Damage : MonoBehaviour
     {
         isDamaging = true;
         for (int i = 0; i < PoisonTimesHit; i++)
-        {
-            d.TakeDamage(damageamount);
+        { 
             yield return new WaitForSeconds(posionwaitbeforhit);
+            d.TakeDamage(damageamount);
+           
         }
         isDamaging = false;
     }

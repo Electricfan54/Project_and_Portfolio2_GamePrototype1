@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
     [Tooltip("SidewaysDownTime is how much you want to subtract from the sideways vector (x,z) until it reaches 0")]
     [SerializeField] int SidewaysDownTime;
     [SerializeField] float LauchForceMult;
+    [SerializeField] float InvincTimer;
     
     Vector3 playerDirection;
     Vector3 playerVel;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
     int jumpCount;
     bool isLauched = false;
     public bool isPoisend;
+    bool isInvis = false;
 
     int origHP;
     void Start()
@@ -125,15 +127,18 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
     void IDamage.TakeDamage(int damageAmount)
     {
-        PlayerHP -= damageAmount;
-        UpdatePlayerHPUI();
-        StartCoroutine(playerFlashDamage());
-
-        if (PlayerHP <= 0)
+        if (isInvis == false)
         {
-            gameManager.instance.GameOver();
-        }
+            PlayerHP -= damageAmount;
+            UpdatePlayerHPUI();
+            StartCoroutine(playerFlashDamage());
+            StartCoroutine(IFrames());
 
+            if (PlayerHP <= 0)
+            {
+                gameManager.instance.GameOver();
+            }
+        }
     }
 
     IEnumerator playerFlashDamage()
@@ -143,6 +148,12 @@ public class PlayerMovement : MonoBehaviour, IDamage
         gameManager.instance.playerDamageFlash.SetActive(false);
     }
 
+    IEnumerator IFrames()
+    {
+        isInvis = true;
+        yield return new WaitForSeconds(InvincTimer);
+        isInvis = false;
+    }
 
     public void HealPlayerOnKill()
     {

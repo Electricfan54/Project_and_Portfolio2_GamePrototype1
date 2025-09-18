@@ -496,8 +496,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeapons
   weapons:
   - {fileID: 11400000, guid: ca060275c814bc342aa9072aa8a2b6d9, type: 2}
+  - {fileID: 11400000, guid: a6eed1f962b3ebd48995802265f2b5cf, type: 2}
   - {fileID: 11400000, guid: 6161c0119fdf0e14bb9f7666e141a51e, type: 2}
-  - {fileID: 0}
   grenadePrefab: {fileID: 5934454128291514222, guid: 79733ca17ef36834fa72bbbb870d0fcc, type: 3}
   grenadeThrowRate: 5
   cameraPos: {fileID: 3368975048318645373}
@@ -509,7 +509,7 @@ MonoBehaviour:
   meleeDamage: 0
   meleeDist: 0
   meleeRate: 0
-  ammoAmountRifle: 0
+  ammoAmountRifle: 999999
   ammoAmountSniper: 0
   ammoAmountHoming: 0
 --- !u!23 &772482524985079454

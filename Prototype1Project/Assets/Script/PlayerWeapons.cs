@@ -126,7 +126,8 @@ public class PlayerWeapons : MonoBehaviour
         isAttacking = true;
         Vector3 shootTarget = cameraPos.position + cameraPos.forward * 30.0f;
 
-        Instantiate(curWeapon.Bullet, bulletSpawnPos.position, Quaternion.LookRotation(shootTarget));
+
+        Instantiate(curWeapon.Bullet, bulletSpawnPos.position, Quaternion.LookRotation(shootTarget - bulletSpawnPos.position));
         //shoot
         curWeapon.currAmmo--;
         yield return new WaitForSeconds(curWeapon.fireRate);

@@ -56,12 +56,14 @@ MonoBehaviour:
   destroyTime: 8
   type: 4
   explodetime: 0
-  radius: 4
+  radius: 40
   explosioncollider: {fileID: 0}
   explosionEffect: {fileID: 0}
   homingPauseTime: 2
-  hominggotime: 0
+  hominggotime: 0.2
   speedAfterStop: 50
+  posionwaitbeforhit: 0
+  PoisonTimesHit: 0
 --- !u!96 &3160115576276051667
 TrailRenderer:
   serializedVersion: 3

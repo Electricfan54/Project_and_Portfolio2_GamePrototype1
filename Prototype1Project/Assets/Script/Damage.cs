@@ -224,13 +224,7 @@ public class Damage : MonoBehaviour
         homingTimer = 0;
 
     }
-    IEnumerator Poisonenter(IDamage d)
-    {
-        isDamaging = true;
-        d.TakeDamage(damageamount);
-        yield return new WaitForSeconds(damageRate);
-        isDamaging = false;
-    }
+ 
     IEnumerator PoisonLeave(IDamage d)
     {
         isDamaging = true;

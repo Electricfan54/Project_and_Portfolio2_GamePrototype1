@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Barrel : MonoBehaviour,IDamage
+public class Barrel : MonoBehaviour, IDamage
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] int Health;
@@ -11,11 +11,11 @@ public class Barrel : MonoBehaviour,IDamage
     [SerializeField] Renderer model;
 
     Color colororiginal;
-   
+
 
     public void TakeDamage(int damageAmount)
     {
-   
+        Health -= damageAmount;
         if (Health <= 0)
         {
             gameObject.SetActive(false);
@@ -24,21 +24,21 @@ public class Barrel : MonoBehaviour,IDamage
         }
         else
         {
-            Health -= damageAmount;
+
             StartCoroutine(flashred());
         }
     }
 
     void Start()
     {
-         colororiginal = model.material.color;
+        colororiginal = model.material.color;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     IEnumerator barrelrespwan()
     {

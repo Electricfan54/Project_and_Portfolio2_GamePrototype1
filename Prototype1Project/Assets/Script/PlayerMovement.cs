@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
     int jumpCount;
     bool isLauched = false;
+    public bool isPoisend;
 
     int origHP;
     void Start()

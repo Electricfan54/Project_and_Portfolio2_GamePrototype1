@@ -91,20 +91,26 @@ public class PlayerWeapons : MonoBehaviour
             SetActiveWeapon(2);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             if (--curWeaponIndex >= 0)
                 SetActiveWeapon(curWeaponIndex);
             else
-                SetActiveWeapon(maxIndex);
+            {
+                curWeaponIndex = maxIndex;
+                SetActiveWeapon(curWeaponIndex);
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             if (++curWeaponIndex < weapons.Count)
                 SetActiveWeapon(curWeaponIndex);
             else
-                SetActiveWeapon(0);
+            {
+                curWeaponIndex = 0;
+                SetActiveWeapon(curWeaponIndex);
+            }
         }
     }
     void SetActiveWeapon(int index)

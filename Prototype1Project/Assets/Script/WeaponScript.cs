@@ -6,7 +6,6 @@ public class WeaponScript : ScriptableObject
 {
     public GameObject Bullet;
     public GameObject WeaponModel;
-    public Transform BulletSpawnPos;
     public ammoType WeaponAmmoType;
 
     // Gun stuff

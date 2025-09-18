@@ -529,6 +529,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+      propertyPath: GunModel
+      value: 
+      objectReference: {fileID: 1879287592}
+    - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+      propertyPath: bulletSpawnPos
+      value: 
+      objectReference: {fileID: 3493767679663184335}
+    - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
       propertyPath: 'weapons.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: ca060275c814bc342aa9072aa8a2b6d9, type: 2}
@@ -578,7 +586,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6421630988321088147, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3493767679663184335}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
 --- !u!1 &1629288078 stripped
@@ -648,6 +659,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+--- !u!1 &1879287592 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3385614797769686659, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+  m_PrefabInstance: {fileID: 1537918351}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1879287593 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6421630988321088147, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+  m_PrefabInstance: {fileID: 1537918351}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1951291851
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +780,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951291851}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2689677965756995259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3493767679663184335}
+  m_Layer: 0
+  m_Name: BulletSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3493767679663184335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2689677965756995259}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.003000021, y: 0.059000015, z: 0.553}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1879287593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

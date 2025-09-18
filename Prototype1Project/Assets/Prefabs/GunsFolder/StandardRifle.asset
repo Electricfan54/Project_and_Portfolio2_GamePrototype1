@@ -18,8 +18,8 @@ MonoBehaviour:
   gunDamage: 1
   fireRate: 0.1
   DestroyTime: 2
-  currAmmo: 50
-  clipSize: 50
+  currAmmo: 20
+  clipSize: 20
   maxAmmo: 250
   ReloadTimer: 0.1
   explodeTime: 0.1

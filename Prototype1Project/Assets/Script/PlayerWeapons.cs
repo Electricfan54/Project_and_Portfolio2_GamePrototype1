@@ -130,6 +130,8 @@ public class PlayerWeapons : MonoBehaviour
         Instantiate(curWeapon.Bullet, bulletSpawnPos.position, Quaternion.LookRotation(shootTarget - bulletSpawnPos.position));
         //shoot
         curWeapon.currAmmo--;
+        UpdateUI();
+
         yield return new WaitForSeconds(curWeapon.fireRate);
 
 
@@ -175,8 +177,28 @@ public class PlayerWeapons : MonoBehaviour
 
         int amountToReload = CalcAmmo();
          
-        curWeapon.currAmmo = amountToReload;
+        curWeapon.currAmmo += amountToReload;
+        UpdateUI();
         isAttacking = false;
+    }
+
+    void UpdateUI()
+    {
+        gameManager.instance.ammoCurrent.text = curWeapon.currAmmo.ToString("F0");
+
+        switch (curWeapon.WeaponAmmoType)
+        {
+            case ammoType.rifle:
+                gameManager.instance.ammoMax.text = ammoAmountRifle.ToString("F0");
+                break;
+            case ammoType.sniper:
+                gameManager.instance.ammoMax.text = ammoAmountSniper.ToString("F0");
+                break;
+            case ammoType.homing:
+                gameManager.instance.ammoMax.text = ammoAmountHoming.ToString("F0");
+                break;
+        }
+
     }
 
     int CalcAmmo()

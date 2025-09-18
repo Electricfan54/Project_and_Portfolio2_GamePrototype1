@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd71a1bb098a60c4f957336d36785796, type: 3}
   m_Name: HomingRifle
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScript
-  Bullet: {fileID: 0}
-  WeaponModel: {fileID: 0}
-  WeaponAmmoType: 0
+  Bullet: {fileID: 7828848772284936290, guid: 55602f6203292a946bd3f09cfb72b6d6, type: 3}
+  WeaponModel: {fileID: 3090985915868869901, guid: 3d7856ef7279f8641a2b088d57a8b2d9, type: 3}
+  WeaponAmmoType: 2
   gunDamage: 1
   fireRate: 0.1
-  DestroyTime: 1
-  currAmmo: 1
-  clipSize: 1
-  maxAmmo: 1
+  DestroyTime: 6
+  currAmmo: 50
+  clipSize: 50
+  maxAmmo: 250
   ReloadTimer: 0.1
   explodeTime: 0.1
   CheckRadius: 1
-  HomingStartTime: 0.1
-  HomingStopTime: 0.1
+  HomingStartTime: 1.07
+  HomingStopTime: 1.31

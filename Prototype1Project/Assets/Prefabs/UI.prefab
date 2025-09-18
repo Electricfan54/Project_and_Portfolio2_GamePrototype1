@@ -5566,6 +5566,8 @@ MonoBehaviour:
   waveNumText: {fileID: 5238457461955640030}
   playerHPBar: {fileID: 3592004741197178178}
   playerDamageFlash: {fileID: 4448476912832582105}
+  ammoCurrent: {fileID: 6737861710975499470}
+  ammoMax: {fileID: 3742042885972776951}
   enemyWaves: []
   disableWaveGame: 0
   disableWinCondition: 0

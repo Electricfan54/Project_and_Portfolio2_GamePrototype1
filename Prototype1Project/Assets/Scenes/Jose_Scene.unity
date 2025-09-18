@@ -1800,6 +1800,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
+      propertyPath: diffMod
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
+      propertyPath: startCredits
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: endlessActive
       value: 1
       objectReference: {fileID: 0}

@@ -41,11 +41,21 @@ public class PlayerWeapons : MonoBehaviour
 
     void Start()
     {
+      
+
         maxIndex = weapons.Count - 1;
         if (weapons.Count > 0)
         {
             curWeapon = weapons[0];
             SetActiveWeapon(0);
+        }
+
+        for (int weaponIndex = 0; weaponIndex < weapons.Count; weaponIndex++)
+        {
+            if(weapons[weaponIndex] == null) 
+                break;
+                
+            weapons[weaponIndex].currAmmo = weapons[weaponIndex].clipSize;
         }
     }
 
@@ -58,7 +68,7 @@ public class PlayerWeapons : MonoBehaviour
             StartCoroutine(Shoot());
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && curWeapon != null)
+        if (Input.GetKeyDown(KeyCode.R) && curWeapon != null && !isAttacking)
         {
             StartCoroutine(Reload());
         }
@@ -123,6 +133,7 @@ public class PlayerWeapons : MonoBehaviour
         curWeaponIndex = index;
         GunModel.GetComponent<MeshFilter>().sharedMesh = curWeapon.WeaponModel.GetComponent<MeshFilter>().sharedMesh;
         GunModel.GetComponent<MeshRenderer>().sharedMaterial = curWeapon.WeaponModel.GetComponent<MeshRenderer>().sharedMaterial;
+        UpdateUI();
         //curWeapon.SetActive(true);
     }
 

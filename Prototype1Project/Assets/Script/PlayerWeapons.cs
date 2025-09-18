@@ -2,6 +2,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
+public enum ammoType
+{
+    rifle,
+    sniper,
+    homing,
+}
+
 public class PlayerWeapons : MonoBehaviour
 {
     [Header("Required Variables")]
@@ -11,11 +18,17 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] float grenadeThrowRate;
     [SerializeField] Transform cameraPos;
     [SerializeField] LayerMask ignorelayer;
+    [SerializeField] GameObject GunModel;
 
     [Header("Player Variables")]
     [SerializeField] int meleeDamage;
     [SerializeField] float meleeDist;
     [SerializeField] float meleeRate;
+
+    [Header("Ammo Variables")]
+    [SerializeField] int ammoAmountRifle;
+    [SerializeField] int ammoAmountSniper;
+    [SerializeField] int ammoAmountHoming;
 
     WeaponScript curWeapon;
 
@@ -39,10 +52,16 @@ public class PlayerWeapons : MonoBehaviour
     {
         SwapWeapons();
 
-        if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && !isAttacking)
+        if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && curWeapon.currAmmo > 0 && !isAttacking)
         {
             StartCoroutine(Shoot());
         }
+
+        if (Input.GetKeyDown(KeyCode.R) && curWeapon != null)
+        {
+            StartCoroutine(Reload());
+        }
+
         if ((Input.GetKeyDown(KeyCode.V) || Input.GetKey(KeyCode.V)) && !isAttacking)
         {
             StartCoroutine(Melee());
@@ -95,19 +114,20 @@ public class PlayerWeapons : MonoBehaviour
         //curWeapon.SetActive(false);
         curWeapon = weapons[index];
         curWeaponIndex = index;
+        GunModel.GetComponent<MeshFilter>().sharedMesh = curWeapon.WeaponModel.GetComponent<MeshFilter>().sharedMesh;
+        GunModel.GetComponent<MeshRenderer>().sharedMaterial = curWeapon.WeaponModel.GetComponent<MeshRenderer>().sharedMaterial;
         //curWeapon.SetActive(true);
     }
 
     IEnumerator Shoot()
     {
+        
         isAttacking = true;
-
         Vector3 shootTarget = cameraPos.position + cameraPos.forward * 30.0f;
 
+        Instantiate(curWeapon.Bullet, curWeapon.BulletSpawnPos.position, Quaternion.LookRotation(shootTarget));
         //shoot
-        //Instantiate
-        //Set values
-
+        curWeapon.currAmmo--;
         yield return new WaitForSeconds(curWeapon.fireRate);
 
 
@@ -144,5 +164,60 @@ public class PlayerWeapons : MonoBehaviour
         yield return new WaitForSeconds(meleeRate);
 
         isAttacking = false;
+    }
+
+    IEnumerator Reload()
+    {
+        isAttacking = true;
+        yield return new WaitForSeconds(curWeapon.ReloadTimer);
+
+        int amountToReload = CalcAmmo();
+         
+        curWeapon.currAmmo = amountToReload;
+        isAttacking = false;
+    }
+
+    int CalcAmmo()
+    {
+        int amountToReload = curWeapon.clipSize - curWeapon.currAmmo;
+
+        switch (curWeapon.WeaponAmmoType)
+        {
+            case ammoType.rifle:
+                if (ammoAmountRifle >= amountToReload)
+                {
+                    ammoAmountRifle -= amountToReload;
+                }
+                else
+                {
+                    amountToReload = ammoAmountRifle;
+                    ammoAmountRifle = 0;
+                }
+                    break;
+            case ammoType.sniper:
+                if (ammoAmountSniper >= amountToReload)
+                {
+                    ammoAmountSniper -= amountToReload;
+                }
+                else
+                {
+                    amountToReload = ammoAmountSniper;
+                    ammoAmountSniper = 0;
+                }
+                break;
+            case ammoType.homing:
+                if (ammoAmountHoming >= amountToReload)
+                {
+                    ammoAmountHoming -= amountToReload;
+                }
+                else
+                {
+                    amountToReload = ammoAmountHoming;
+                    ammoAmountHoming = 0;
+                }
+                break;
+        }
+
+        return amountToReload;
     }
 }

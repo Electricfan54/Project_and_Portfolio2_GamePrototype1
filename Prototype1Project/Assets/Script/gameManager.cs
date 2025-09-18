@@ -26,6 +26,16 @@ public struct EnemyStruct
 
 }
 
+[System.Serializable]
+public struct EndlessCosts
+{
+    [Tooltip("The type of enemy to spawn.")]
+    [SerializeField] public GameObject enemyType;
+    [Tooltip("How many credits it costs to spawn this enemy.")]
+    [SerializeField] [Range(1, 1000)] public int creditCost;
+
+}
+
 public class gameManager : MonoBehaviour
 {
 
@@ -67,6 +77,26 @@ public class gameManager : MonoBehaviour
     bool waveActive;
 
     [HideInInspector] public int enemyCount;
+
+    [Header("Endless Mode Customization")]
+    [Tooltip("Enables the endless mode that is usually accessible after reaching the last preset wave.")]
+    [SerializeField] bool endlessActive;
+    [Tooltip("By how much to modify the endless difficulty based on this value and the wave number.")]
+    [SerializeField] float diffMod;
+    [Tooltip("Initial credit value each wave.")]
+    [SerializeField] int startCredits;
+    [Tooltip("Initial spawn delay at the start of endless mode (continues to decrease as waves go on).")]
+    [SerializeField] float endlessDelay;
+
+    float diffcoeff;
+    int currCredits;
+    public int waveStartCreds;
+
+    [Tooltip("The spawn locations for the enemies during endless mode.")]
+    [SerializeField] List<Transform> endlessSpawns = new List<Transform>();
+
+    [Tooltip("The enemy credit costs for endless mode. Enemies with more expensive costs spawn less frequently theoretically.")]
+    [SerializeField] List<EndlessCosts> enemyCosts = new List<EndlessCosts>();
 
     [Header("Player Specific")]
     public GameObject player;
@@ -197,7 +227,14 @@ public class gameManager : MonoBehaviour
         {
             waveNum = 0;
             spawnTimer = 0;
-            StartWave();
+
+            if (!endlessActive)
+                StartWave();
+            else
+            {
+                GenerateWave();
+            }
+
         }
     }
 
@@ -217,13 +254,26 @@ public class gameManager : MonoBehaviour
         }
         else
         {
-            // Show win screen here!
-            if (!disableWinCondition)
+            if (!endlessActive)
             {
-                PauseGame();
-                menuHierarchy.Add(menuWin);
-                menuActive = menuWin;
-                menuActive.SetActive(true);
+                // Show win screen here!
+                if (!disableWinCondition)
+                {
+                    PauseGame();
+                    menuHierarchy.Add(menuWin);
+                    menuActive = menuWin;
+                    menuActive.SetActive(true);
+                    endlessActive = true;
+                    GenerateWave();
+                }
+            }
+            else
+            {
+                if (enemyWaves.Count > 0)
+                {
+                    enemyWaves.Clear();
+                }    
+                GenerateWave();
             }
         }
 
@@ -244,6 +294,62 @@ public class gameManager : MonoBehaviour
 
         Instantiate<GameObject>(enemyType, spawnPos);
         waveSpawnedTotal++;
+
+    }
+
+    void GenerateWave()
+    {
+
+        List<EndlessCosts> tempCosts = new List<EndlessCosts>(enemyCosts);
+
+        // Apply the difficulty coefficient
+        diffcoeff = Mathf.Max(waveNum, 1) * diffMod;
+
+        // Create a wave variable
+        WaveStruct genWave = new();
+        genWave.enemies = new();
+
+        // Attach the selected spawnpoints for the endless mode (not random)
+        genWave.spawnPoints = endlessSpawns;
+
+        // Set the amount of credits to spend
+        currCredits = startCredits * Mathf.CeilToInt(diffcoeff);
+        waveStartCreds = currCredits;
+
+        endlessDelay -= (endlessDelay / (50 / diffcoeff));
+        endlessDelay = Mathf.Clamp(endlessDelay, 0.01f, 99999);
+
+        // Generate enemy clusters
+        while (tempCosts.Count > 0 && currCredits > 0 && currCredits > tempCosts[0].creditCost)
+        {
+            int currEnemIndex = Random.Range(0, tempCosts.Count);
+
+            if (currCredits >= tempCosts[currEnemIndex].creditCost)
+            {
+                EnemyStruct genEnemy = new();
+
+                GameObject genType = tempCosts[currEnemIndex].enemyType;
+                int maxGenAmount = (Mathf.FloorToInt(currCredits / tempCosts[currEnemIndex].creditCost));
+                int genAmount = Random.Range(1, maxGenAmount + 1);
+
+                currCredits = (currCredits - (tempCosts[currEnemIndex].creditCost * genAmount));
+
+                genEnemy.enemyType = genType;
+                genEnemy.spawnAmount = genAmount;
+                genEnemy.spawnDelay = endlessDelay;
+
+                genWave.enemies.Add(genEnemy);
+
+            }
+            else
+            {
+                tempCosts.Remove(tempCosts[currEnemIndex]);
+            }
+        }
+        
+
+        enemyWaves.Add(genWave);
+        StartWave();
 
     }
 

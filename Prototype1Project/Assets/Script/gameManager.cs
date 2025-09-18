@@ -357,7 +357,7 @@ public class gameManager : MonoBehaviour
 
     void poisonIcon()
     {
-        if (playerScript.isPoisend)
+        if (playerScript.hasStatusEffect)
         {
             isPoisionIcon.SetActive(true);
         }

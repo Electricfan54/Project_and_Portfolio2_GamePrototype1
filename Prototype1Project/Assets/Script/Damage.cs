@@ -29,12 +29,12 @@ public class Damage : MonoBehaviour
     GameObject homingTarget;
     [Tooltip("the speed the projectile will move after finding an enemy")]
     public float speedAfterStop;
-    float homingTimer;
+    float effectTimer;
 
     [Tooltip("Poison things")]
-    bool ispoison;
+   public bool ispoison;
     public int posionwaitbeforhit;
-    public int PoisonTimesHit;
+    public int PoisonDurration;
     bool isDamaging;
 
 
@@ -146,19 +146,30 @@ public class Damage : MonoBehaviour
             }
         }
         IDamage dmg = other.GetComponent<IDamage>();
-        if (type == DamageType.poision)
-        {
-            if (dmg != null)
-            {
-                StartCoroutine(PoisonLeave(dmg));
-            }
-        }
+        //if (type == DamageType.poision)
+        //{
+        //    if (dmg != null)
+        //    {
+        //        StartCoroutine(PoisonLeave(dmg));
+        //    }
+        //}
     }
     // Update is called once per frame
     void Update()
     {
 
-
+        if (ispoison)
+        {
+            effectTimer += Time.deltaTime;
+            gameManager.instance.player.GetComponent<PlayerMovement>().ApplyEffect(damageamount, PoisonDurration, posionwaitbeforhit);
+            if(effectTimer>=PoisonDurration)
+            {
+                ispoison = false;
+                effectTimer = 0;
+                gameManager.instance.player.GetComponent<PlayerMovement>().hasStatusEffect = false;
+            }
+            
+        }
 
 
     }
@@ -170,22 +181,32 @@ public class Damage : MonoBehaviour
             return;
         }
         IDamage dmg = other.GetComponent<IDamage>();
-        if (dmg != null && type == DamageType.DOT)
+        if (dmg != null && type == DamageType.DOT || dmg != null && type == DamageType.poision)
         {
             if (!isDamaging)
             {
                 StartCoroutine(damageother(dmg));
             }
-
-        }
-        if (dmg != null && type == DamageType.poision)
-        {
-            if (!isDamaging)
+            if (type == DamageType.poision)
             {
-                StartCoroutine(damageother(dmg));
+                if (other.CompareTag("Player"))
+                {
+                    gameManager.instance.player.GetComponent<PlayerMovement>().hasStatusEffect = true;
+                    gameManager.instance.player.GetComponent<PlayerMovement>().ApplyEffect(damageamount, PoisonDurration, posionwaitbeforhit);
+                    ispoison = true;
+                }
+
             }
 
         }
+        //if (dmg != null && type == DamageType.poision)
+        //{
+        //    if (!isDamaging)
+        //    {
+        //        StartCoroutine(damageother(dmg));
+        //    }
+
+        //}
 
 
 
@@ -232,22 +253,22 @@ public class Damage : MonoBehaviour
         rb.linearVelocity = transform.forward * speedAfterStop; //speed after stoping
 
         canDamage = true;
-        homingTimer = 0;
+        
 
     }
 
     IEnumerator PoisonLeave(IDamage d)
     {
         isDamaging = true;
-        gameManager.instance.player.GetComponent<PlayerMovement>().isPoisend = true;
-        for (int i = 0; i < PoisonTimesHit; i++)
+        gameManager.instance.player.GetComponent<PlayerMovement>().hasStatusEffect = true;
+        for (int i = 0; i < PoisonDurration; i++)
         {
             yield return new WaitForSeconds(posionwaitbeforhit);
             d.TakeDamage(damageamount);
 
         }
         isDamaging = false;
-        gameManager.instance.player.GetComponent<PlayerMovement>().isPoisend = false;
+        gameManager.instance.player.GetComponent<PlayerMovement>().hasStatusEffect = false;
     }
 
 }

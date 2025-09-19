@@ -36,7 +36,8 @@ public class PlayerWeapons : MonoBehaviour, IPickup
     int curWeaponIndex;
     int maxIndex = 3;
 
-    bool isAttacking;
+    bool isAttacking = false;
+    bool isReloading = false;
     bool canUseGrenade = true;
 
     void Start()
@@ -51,14 +52,17 @@ public class PlayerWeapons : MonoBehaviour, IPickup
 
     void Update()
     {
-        SwapWeapons();
+        if (!isAttacking && !isReloading)
+        {
+            SwapWeapons();
+        }
 
-        if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && curWeapon.currAmmo > 0 && !isAttacking)
+        if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && curWeapon.currAmmo > 0 && !isAttacking && !isReloading)
         {
             StartCoroutine(Shoot());
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && curWeapon != null)
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading && curWeapon != null)
         {
             StartCoroutine(Reload());
         }
@@ -178,14 +182,14 @@ public class PlayerWeapons : MonoBehaviour, IPickup
 
     IEnumerator Reload()
     {
-        isAttacking = true;
+        isReloading = true;
         yield return new WaitForSeconds(curWeapon.ReloadTimer);
 
         int amountToReload = CalcAmmo();
          
         curWeapon.currAmmo += amountToReload;
         UpdateUI();
-        isAttacking = false;
+        isReloading = false;
     }
 
     void UpdateUI()

@@ -36,39 +36,33 @@ public class PlayerWeapons : MonoBehaviour, IPickup
     int curWeaponIndex;
     int maxIndex = 3;
 
-    bool isAttacking;
+    bool isAttacking = false;
+    bool isReloading = false;
     bool canUseGrenade = true;
 
     void Start()
     {
-      
-
         maxIndex = weapons.Count - 1;
         if (weapons.Count > 0)
         {
             curWeapon = weapons[0];
             SetActiveWeapon(0);
         }
-
-        for (int weaponIndex = 0; weaponIndex < weapons.Count; weaponIndex++)
-        {
-            if(weapons[weaponIndex] == null) 
-                break;
-                
-            weapons[weaponIndex].currAmmo = weapons[weaponIndex].clipSize;
-        }
     }
 
     void Update()
     {
-        SwapWeapons();
+        if (!isAttacking && !isReloading)
+        {
+            SwapWeapons();
+        }
 
-        if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && curWeapon.currAmmo > 0 && !isAttacking)
+        if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && curWeapon.currAmmo > 0 && !isAttacking && !isReloading)
         {
             StartCoroutine(Shoot());
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && curWeapon != null && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading && curWeapon != null)
         {
             StartCoroutine(Reload());
         }
@@ -133,7 +127,6 @@ public class PlayerWeapons : MonoBehaviour, IPickup
         curWeaponIndex = index;
         GunModel.GetComponent<MeshFilter>().sharedMesh = curWeapon.WeaponModel.GetComponent<MeshFilter>().sharedMesh;
         GunModel.GetComponent<MeshRenderer>().sharedMaterial = curWeapon.WeaponModel.GetComponent<MeshRenderer>().sharedMaterial;
-        UpdateUI();
         //curWeapon.SetActive(true);
     }
 
@@ -189,14 +182,14 @@ public class PlayerWeapons : MonoBehaviour, IPickup
 
     IEnumerator Reload()
     {
-        isAttacking = true;
+        isReloading = true;
         yield return new WaitForSeconds(curWeapon.ReloadTimer);
 
         int amountToReload = CalcAmmo();
          
         curWeapon.currAmmo += amountToReload;
         UpdateUI();
-        isAttacking = false;
+        isReloading = false;
     }
 
     void UpdateUI()

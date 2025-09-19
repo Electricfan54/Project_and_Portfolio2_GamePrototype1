@@ -1,7 +1,18 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+
+[System.Serializable]
+public struct ammoDrop
+{
+    [HideInInspector] public ammoType type;
+    public int weight;
+    public int amountMin;
+    public int amountMax;
+    public GameObject prefab;
+}
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyAI : MonoBehaviour, IDamage
@@ -42,6 +53,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Header("Melee Variables")]
     [SerializeField] int meleeRange;
 
+    [Header("Drop Rate Variables")]
+    [Range(0, 100)]
+    [SerializeField] int dropChance;
+    [SerializeField] ammoDrop rifleAmmoWeight;
+    [SerializeField] ammoDrop sniperAmmoWeight;
+    [SerializeField] ammoDrop homingAmmoWeight;
+
+
     // Non Serialized variables
     int HP;
 
@@ -58,6 +77,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     // To help prevent fatal errors
     bool isDead = false;
+
+    void Awake()
+    {
+        rifleAmmoWeight.type = ammoType.rifle;
+        sniperAmmoWeight.type = ammoType.sniper;
+        homingAmmoWeight.type = ammoType.homing;
+    }
 
     void Start()
     {
@@ -208,6 +234,8 @@ public class EnemyAI : MonoBehaviour, IDamage
             //Tell the game manager this enemy is dead
             gameManager.instance.UpdateEnemyCount(-1);
             gameManager.instance.playerScript.HealPlayerOnKill();
+            if (UnityEngine.Random.Range(1, 100) <= dropChance)
+                DropAmmo();
             isDead = true;
             Destroy(gameObject);
         }
@@ -243,5 +271,52 @@ public class EnemyAI : MonoBehaviour, IDamage
                 break;
         }
 
+    }
+
+    void DropAmmo()
+    {
+        int rangeMax = rifleAmmoWeight.weight + sniperAmmoWeight.weight + homingAmmoWeight.weight;
+        int randType = UnityEngine.Random.Range(0, rangeMax);
+
+        ammoDrop[] weightArray = { rifleAmmoWeight, sniperAmmoWeight, homingAmmoWeight };
+        // the limit is 2 since the ammo type enum currently only goes up to 2.
+        for (int i = 0; i < 3; i++)
+        {
+            if (randType < weightArray[i].weight)
+            {
+                randType = i;
+                break;
+            }
+            randType -= weightArray[i].weight;
+        }
+
+        //if check to avoid bugs
+        if (randType > 2)
+            randType = 0;
+
+            switch (randType)
+            {
+                case (int)ammoType.rifle:
+                SpawnAmmo(rifleAmmoWeight);
+                    break;
+                case (int)ammoType.sniper:
+                SpawnAmmo(sniperAmmoWeight);
+                break;
+                case (int)ammoType.homing:
+                SpawnAmmo(homingAmmoWeight);
+                break;
+
+            }
+    }
+
+    void SpawnAmmo(ammoDrop drop)
+    {
+        GameObject dropObject = Instantiate(drop.prefab, transform.position, Quaternion.identity);
+        AmmoPickup pickup = dropObject.GetComponent<AmmoPickup>();
+        if (pickup != null)
+        {
+            pickup.type = drop.type;
+            pickup.amount = UnityEngine.Random.Range(drop.amountMin, drop.amountMax);
+        }
     }
 }

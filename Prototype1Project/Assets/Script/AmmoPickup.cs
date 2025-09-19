@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AmmoPickup : MonoBehaviour
 {
-    [SerializeField] ammoType type;
-    [SerializeField] int amount;
+    public ammoType type;
+    public int amount;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -11,6 +11,7 @@ public class AmmoPickup : MonoBehaviour
         if (pickup != null)
         {
             pickup.PickupAmmo(type, amount);
+            Destroy(gameObject);
         }
     }
 }

@@ -32,7 +32,8 @@ public class Damage : MonoBehaviour
     float effectTimer;
 
     [Tooltip("Poison things")]
-   public bool ispoison;
+    public bool ispoison;
+    public bool enemyispoison;
     public int posionwaitbeforhit;
     public int PoisonDurration;
     bool isDamaging;
@@ -162,17 +163,20 @@ public class Damage : MonoBehaviour
         {
             effectTimer += Time.deltaTime;
             gameManager.instance.player.GetComponent<PlayerMovement>().ApplyEffect(damageamount, PoisonDurration, posionwaitbeforhit);
-            if(effectTimer>=PoisonDurration)
+            if (effectTimer >= PoisonDurration)
             {
                 ispoison = false;
                 effectTimer = 0;
                 gameManager.instance.player.GetComponent<PlayerMovement>().hasStatusEffect = false;
             }
-            
+
         }
-
-
+        
+        
     }
+
+
+    
 
     private void OnTriggerStay(Collider other)
     {
@@ -194,6 +198,12 @@ public class Damage : MonoBehaviour
                     gameManager.instance.player.GetComponent<PlayerMovement>().hasStatusEffect = true;
                     gameManager.instance.player.GetComponent<PlayerMovement>().ApplyEffect(damageamount, PoisonDurration, posionwaitbeforhit);
                     ispoison = true;
+                }
+                if (other.CompareTag("Enemy"))
+                {
+                    other.GetComponent<EnemyAI>().hasStatusEffect = true;
+                    other.GetComponent<EnemyAI>().ApplyEffect(damageamount, PoisonDurration, posionwaitbeforhit);
+                    enemyispoison = true;
                 }
 
             }
@@ -253,7 +263,7 @@ public class Damage : MonoBehaviour
         rb.linearVelocity = transform.forward * speedAfterStop; //speed after stoping
 
         canDamage = true;
-        
+
 
     }
 

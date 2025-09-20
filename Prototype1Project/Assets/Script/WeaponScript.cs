@@ -12,7 +12,7 @@ public class WeaponScript : ScriptableObject
     [Range(1, 50)] public int gunDamage;
     [Range(0.1f, 5)] public float fireRate;
     [Range(1, 10)] public int DestroyTime;
-    [Range(1, 50)] public int currAmmo;
+    [Range(0, 50)] public int currAmmo;
     [Range(1, 50)] public int clipSize;
     [Range(1, 250)] public int maxAmmo;
     [Range(0.1f, 10)] public float ReloadTimer;
@@ -25,6 +25,5 @@ public class WeaponScript : ScriptableObject
     [Range(0.1f, 5)] public float HomingStartTime;
     [Range(0.1f, 5)] public float HomingStopTime;
 
-   
-    
+
 }

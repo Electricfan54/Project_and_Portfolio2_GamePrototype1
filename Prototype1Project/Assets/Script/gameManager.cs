@@ -58,6 +58,8 @@ public class gameManager : MonoBehaviour
     public Image playerHPBar;
     public GameObject playerDamageFlash;
 
+    public TMP_Text ammoCurrent, ammoMax;
+
     [Header("Wave Customization")] // Wave specific variables here
     [SerializeField] List<WaveStruct> enemyWaves;
 

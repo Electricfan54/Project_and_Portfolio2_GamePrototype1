@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.4222115
+      value: 8.40541
       objectReference: {fileID: 0}
     - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00000023841858
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5560453
+      value: -6.09485
       objectReference: {fileID: 0}
     - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -53,6 +53,14 @@ PrefabInstance:
       value: _MeleeEnemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: maxHP
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: enemyType
       value: 0
       objectReference: {fileID: 0}
@@ -67,6 +75,54 @@ PrefabInstance:
     - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: enemyStoppingDist
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: rifleAmmoWeight.prefab
+      value: 
+      objectReference: {fileID: 1013939853392931055, guid: 32454565e72fb104abefa120a70cd9fe, type: 3}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: rifleAmmoWeight.weight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: homingAmmoWeight.prefab
+      value: 
+      objectReference: {fileID: 1013939853392931055, guid: 32454565e72fb104abefa120a70cd9fe, type: 3}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: homingAmmoWeight.weight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: sniperAmmoWeight.prefab
+      value: 
+      objectReference: {fileID: 1013939853392931055, guid: 32454565e72fb104abefa120a70cd9fe, type: 3}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: sniperAmmoWeight.weight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: rifleAmmoWeight.amountMax
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: rifleAmmoWeight.amountMin
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: homingAmmoWeight.amountMax
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: homingAmmoWeight.amountMin
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: sniperAmmoWeight.amountMax
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: sniperAmmoWeight.amountMin
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

@@ -9,7 +9,7 @@ public enum ammoType
     homing,
 }
 
-public class PlayerWeapons : MonoBehaviour
+public class PlayerWeapons : MonoBehaviour, IPickup
 {
     [Header("Required Variables")]
     [Tooltip("List of weapons the player can use. The weapons need to be in the scene and inactive")]
@@ -36,7 +36,8 @@ public class PlayerWeapons : MonoBehaviour
     int curWeaponIndex;
     int maxIndex = 3;
 
-    bool isAttacking;
+    bool isAttacking = false;
+    bool isReloading = false;
     bool canUseGrenade = true;
 
     void Start()
@@ -51,14 +52,17 @@ public class PlayerWeapons : MonoBehaviour
 
     void Update()
     {
-        SwapWeapons();
+        if (!isAttacking && !isReloading)
+        {
+            SwapWeapons();
+        }
 
-        if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && curWeapon.currAmmo > 0 && !isAttacking)
+        if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && curWeapon.currAmmo > 0 && !isAttacking && !isReloading)
         {
             StartCoroutine(Shoot());
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && curWeapon != null)
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading && curWeapon != null)
         {
             StartCoroutine(Reload());
         }
@@ -91,20 +95,26 @@ public class PlayerWeapons : MonoBehaviour
             SetActiveWeapon(2);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             if (--curWeaponIndex >= 0)
                 SetActiveWeapon(curWeaponIndex);
             else
-                SetActiveWeapon(maxIndex);
+            {
+                curWeaponIndex = maxIndex;
+                SetActiveWeapon(curWeaponIndex);
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             if (++curWeaponIndex < weapons.Count)
                 SetActiveWeapon(curWeaponIndex);
             else
-                SetActiveWeapon(0);
+            {
+                curWeaponIndex = 0;
+                SetActiveWeapon(curWeaponIndex);
+            }
         }
     }
     void SetActiveWeapon(int index)
@@ -130,6 +140,8 @@ public class PlayerWeapons : MonoBehaviour
         Instantiate(curWeapon.Bullet, bulletSpawnPos.position, Quaternion.LookRotation(shootTarget - bulletSpawnPos.position));
         //shoot
         curWeapon.currAmmo--;
+        UpdateUI();
+
         yield return new WaitForSeconds(curWeapon.fireRate);
 
 
@@ -170,13 +182,33 @@ public class PlayerWeapons : MonoBehaviour
 
     IEnumerator Reload()
     {
-        isAttacking = true;
+        isReloading = true;
         yield return new WaitForSeconds(curWeapon.ReloadTimer);
 
         int amountToReload = CalcAmmo();
          
-        curWeapon.currAmmo = amountToReload;
-        isAttacking = false;
+        curWeapon.currAmmo += amountToReload;
+        UpdateUI();
+        isReloading = false;
+    }
+
+    void UpdateUI()
+    {
+        gameManager.instance.ammoCurrent.text = curWeapon.currAmmo.ToString("F0");
+
+        switch (curWeapon.WeaponAmmoType)
+        {
+            case ammoType.rifle:
+                gameManager.instance.ammoMax.text = ammoAmountRifle.ToString("F0");
+                break;
+            case ammoType.sniper:
+                gameManager.instance.ammoMax.text = ammoAmountSniper.ToString("F0");
+                break;
+            case ammoType.homing:
+                gameManager.instance.ammoMax.text = ammoAmountHoming.ToString("F0");
+                break;
+        }
+
     }
 
     int CalcAmmo()
@@ -222,4 +254,22 @@ public class PlayerWeapons : MonoBehaviour
 
         return amountToReload;
     }
+
+    public void PickupAmmo(ammoType type, int amount)
+    {
+        switch (type)
+        {
+            case ammoType.rifle:
+                ammoAmountRifle += amount;
+                break;
+            case ammoType.sniper:
+                ammoAmountSniper += amount;
+                break;
+            case ammoType.homing:
+                ammoAmountHoming += amount;
+                break;
+        }
+        UpdateUI();
+    }
+
 }

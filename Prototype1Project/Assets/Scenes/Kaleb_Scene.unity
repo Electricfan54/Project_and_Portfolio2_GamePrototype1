@@ -195,18 +195,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: _MeleeEnemy Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 1272366046848530059, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1672278977556145847, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
-      propertyPath: maxHP
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1672278977556145847, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
-      propertyPath: speed
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6659552444052597262, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.40541
@@ -376,6 +364,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: _StrongRangedEnemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1949733044470702410, guid: 977d1748414ef2944b4296ff5dfa313e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6254926332132474319, guid: 977d1748414ef2944b4296ff5dfa313e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.545299
@@ -536,7 +528,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
       propertyPath: ammoAmountRifle
-      value: 0
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+      propertyPath: weapons.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
       propertyPath: 'weapons.Array.data[0]'

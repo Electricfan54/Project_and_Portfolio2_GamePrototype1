@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
+public class PlayerMovement : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
 
@@ -15,15 +15,16 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
     [Tooltip("SidewaysDownTime is how much you want to subtract from the sideways vector (x,z) until it reaches 0")]
     [SerializeField] int SidewaysDownTime;
     [SerializeField] float LauchForceMult;
-
+    [SerializeField] float InvincTimer;
+    
     Vector3 playerDirection;
     Vector3 playerVel;
 
     int jumpCount;
     bool isLauched = false;
-    public bool hasStatusEffect = false;
-    float statusEffectTimer;
-    float statusEffectDuration;
+    public bool isPoisend;
+    bool isInvis = false;
+
     int origHP;
     void Start()
     {
@@ -36,17 +37,11 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
         Movement();
         Sprint();
         CheckLauch();
-        if (hasStatusEffect)
-        {
-            statusEffectTimer += Time.deltaTime;
-            statusEffectDuration += Time.deltaTime;
-        }
-
     }
 
     void Movement()
     {
-        if (controller.isGrounded)
+        if(controller.isGrounded)
         {
             isLauched = false;
             jumpCount = 0;
@@ -70,7 +65,7 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
+        if(Input.GetButtonDown("Jump") && jumpCount <  jumpMax)
         {
             jumpCount++;
             playerVel.y = jumpSpeed;
@@ -94,8 +89,8 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
     {
         playerVel = Lauchdirection * LauchForceMult;
         isLauched = true;
-
-
+       
+        
     }
 
     void CheckLauch()
@@ -115,32 +110,35 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
         }
     }
 
-
+ 
     public void UpdatePlayerHPUI()
     {
-        gameManager.instance.playerHPBar.fillAmount = (float)PlayerHP / origHP;
+        gameManager.instance.playerHPBar.fillAmount = (float)PlayerHP/origHP;
     }
 
     void TestLauch()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if(Input.GetKeyDown(KeyCode.G))
         {
-
-            LauchPlayer(new Vector3(0, 1, 1));
+            
+            LauchPlayer(new Vector3(0,1,1));
         }
     }
 
-    public void TakeDamage(int damageAmount)
+    void IDamage.TakeDamage(int damageAmount)
     {
-        PlayerHP -= damageAmount;
-        UpdatePlayerHPUI();
-        StartCoroutine(playerFlashDamage());
-
-        if (PlayerHP <= 0)
+        if (isInvis == false)
         {
-            gameManager.instance.GameOver();
-        }
+            PlayerHP -= damageAmount;
+            UpdatePlayerHPUI();
+            StartCoroutine(playerFlashDamage());
+            StartCoroutine(IFrames());
 
+            if (PlayerHP <= 0)
+            {
+                gameManager.instance.GameOver();
+            }
+        }
     }
 
     IEnumerator playerFlashDamage()
@@ -150,45 +148,21 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
         gameManager.instance.playerDamageFlash.SetActive(false);
     }
 
+    IEnumerator IFrames()
+    {
+        isInvis = true;
+        yield return new WaitForSeconds(InvincTimer);
+        isInvis = false;
+    }
 
     public void HealPlayerOnKill()
     {
         PlayerHP += 2;
         if (PlayerHP >= origHP)
-        {
+        { 
             PlayerHP = origHP;
         }
         UpdatePlayerHPUI();
 
     }
-
-    public void ApplyEffect(int damage, int durration, int tickspeed)
-    {
-        if (hasStatusEffect)
-        {
-            if (statusEffectDuration >= durration)
-            {
-               
-                statusEffectDuration = 0;
-                hasStatusEffect = false;
-            }
-
-            else if (statusEffectTimer >= tickspeed)
-            {
-                statusEffectTimer = 0;
-                TakeDamage(damage);
-
-
-
-
-            }
-
-
-        }
-
-
-
-
-    }
 }
-

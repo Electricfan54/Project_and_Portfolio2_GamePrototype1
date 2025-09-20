@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd71a1bb098a60c4f957336d36785796, type: 3}
-  m_Name: StandardRifle
+  m_Name: Sniper
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScript
-  Bullet: {fileID: 6344434922400891919, guid: 4e3159d4bd501e34983067f41c371de8, type: 3}
-  WeaponModel: {fileID: 65746755228665499, guid: dddfd404f4838544eaf86f17d42b1e51, type: 3}
-  WeaponAmmoType: 0
-  gunDamage: 1
-  fireRate: 0.25
-  DestroyTime: 2
-  currAmmo: 0
-  clipSize: 20
-  maxAmmo: 250
-  ReloadTimer: 1
+  Bullet: {fileID: 6344434922400891919, guid: aeaea4362255fd24aa3dcadd30cfbc22, type: 3}
+  WeaponModel: {fileID: 6813766585304680995, guid: 337b82a4d17bd0f42914b589972a2091, type: 3}
+  WeaponAmmoType: 1
+  gunDamage: 50
+  fireRate: 0.6
+  DestroyTime: 5
+  currAmmo: 4
+  clipSize: 5
+  maxAmmo: 50
+  ReloadTimer: 1.5
   explodeTime: 0.1
   CheckRadius: 1
   HomingStartTime: 0.1

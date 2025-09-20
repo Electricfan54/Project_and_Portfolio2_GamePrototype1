@@ -4,7 +4,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
+public class EnemyAI : MonoBehaviour, IDamage,IStatuseffect
 {
     NavMeshAgent agent;
 
@@ -133,7 +133,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
 #endif
 
 
-        if (hasStatusEffect)
+          if (hasStatusEffect)
         {
             statusEffectTimer += Time.deltaTime;
             statusEffectDuration += Time.deltaTime;
@@ -144,7 +144,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
     {
         rotDir = new Vector3(target.position.x, transform.position.y, target.position.z) - transform.position;
         /// if statement to prevent unity message
-        if (rotDir != Vector3.zero)
+        if (rotDir !=  Vector3.zero)
             rot = Quaternion.LookRotation(rotDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, enemyRotationSpeed * Time.deltaTime);
     }
@@ -192,7 +192,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
         // Should offset the position of the raycast
         // Temporary position for now
         Vector3 rayPos = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);
-
+        
         if (Physics.Raycast(rayPos, transform.forward, out hit, meleeRange, ~ignoreLayer))
         {
             if (hit.collider.CompareTag("Player"))
@@ -259,19 +259,24 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
     {
         if (hasStatusEffect)
         {
-            for (int i = 0; i < durration; i++)
+            if (statusEffectDuration >= durration)
             {
-                wait(tickspeed);
+
+                statusEffectDuration = 0;
+                hasStatusEffect = false;
+            }
+
+            else if (statusEffectTimer >= tickspeed)
+            {
                 statusEffectTimer = 0;
                 TakeDamage(damage);
+
+
+
+
             }
+
+
         }
     }
-
-   IEnumerator wait(int tick)
-    {
-        yield return new WaitForSeconds(tick);
-        
-    }
-
 }

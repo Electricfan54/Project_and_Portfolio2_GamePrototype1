@@ -171,7 +171,7 @@ public class Damage : MonoBehaviour
             }
 
         }
-        
+     
         
     }
 
@@ -202,7 +202,6 @@ public class Damage : MonoBehaviour
                 if (other.CompareTag("Enemy"))
                 {
                     other.GetComponent<EnemyAI>().hasStatusEffect = true;
-                    other.GetComponent<EnemyAI>().ApplyEffect(damageamount, PoisonDurration, posionwaitbeforhit);
                     enemyispoison = true;
                 }
 

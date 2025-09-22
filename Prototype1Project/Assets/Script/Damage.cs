@@ -159,13 +159,13 @@ public class Damage : MonoBehaviour
     void Update()
     {
 
-      
-     
-        
+
+
+
     }
 
 
-    
+
 
     private void OnTriggerStay(Collider other)
     {
@@ -183,16 +183,18 @@ public class Damage : MonoBehaviour
             if (type == DamageType.poision)
             {
                 if (other.CompareTag("Player"))
-                { 
+                {
                     other.GetComponent<PlayerMovement>().ApplyEffect(damageamount, PoisonDurration, posionwaitbeforhit);
                     gameManager.instance.player.GetComponent<PlayerMovement>().hasStatusEffect = true;
-                   
-                    
+
+
                 }
                 if (other.CompareTag("Enemy"))
                 {
+                    other.GetComponent<EnemyAI>().ApplyEffect(damageamount, PoisonDurration, posionwaitbeforhit);
                     other.GetComponent<EnemyAI>().hasStatusEffect = true;
-                 
+
+
                 }
 
             }

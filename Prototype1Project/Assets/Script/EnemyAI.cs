@@ -15,7 +15,7 @@ public struct ammoDrop
 }
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyAI : MonoBehaviour, IDamage
+public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
 {
     NavMeshAgent agent;
 
@@ -60,7 +60,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] ammoDrop sniperAmmoWeight;
     [SerializeField] ammoDrop homingAmmoWeight;
 
-   
+
 
 
     // Non Serialized variables
@@ -71,9 +71,14 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     bool canSeePlayer;
 
-    int durationtimer;
-    int ticktimer;
-public  bool hasStatusEffect;
+    //for effect damage
+    float durationtimer;
+    float ticktimer;
+    public bool hasStatusEffect;
+    int dur;
+    int tic;
+    int effdam;
+
     // for rotating the enemy towards the target
     Vector3 rotDir;
     Quaternion rot;
@@ -159,13 +164,21 @@ public  bool hasStatusEffect;
             TakeDamage(1);
         }
 #endif
+
+
+        if (hasStatusEffect)
+        {
+            ticktimer += Time.deltaTime;
+            durationtimer += Time.deltaTime;
+            ApplyEffect(effdam, dur, tic);
+        }
     }
 
     void FaceTarget()
     {
         rotDir = new Vector3(target.position.x, transform.position.y, target.position.z) - transform.position;
         /// if statement to prevent unity message
-        if (rotDir !=  Vector3.zero)
+        if (rotDir != Vector3.zero)
             rot = Quaternion.LookRotation(rotDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, enemyRotationSpeed * Time.deltaTime);
     }
@@ -213,7 +226,7 @@ public  bool hasStatusEffect;
         // Should offset the position of the raycast
         // Temporary position for now
         Vector3 rayPos = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);
-        
+
         if (Physics.Raycast(rayPos, transform.forward, out hit, meleeRange, ~ignoreLayer))
         {
             if (hit.collider.CompareTag("Player"))
@@ -299,19 +312,19 @@ public  bool hasStatusEffect;
         if (randType > 2)
             randType = 0;
 
-            switch (randType)
-            {
-                case (int)ammoType.rifle:
+        switch (randType)
+        {
+            case (int)ammoType.rifle:
                 SpawnAmmo(rifleAmmoWeight);
-                    break;
-                case (int)ammoType.sniper:
+                break;
+            case (int)ammoType.sniper:
                 SpawnAmmo(sniperAmmoWeight);
                 break;
-                case (int)ammoType.homing:
+            case (int)ammoType.homing:
                 SpawnAmmo(homingAmmoWeight);
                 break;
 
-            }
+        }
     }
 
     void SpawnAmmo(ammoDrop drop)
@@ -322,6 +335,28 @@ public  bool hasStatusEffect;
         {
             pickup.type = drop.type;
             pickup.amount = UnityEngine.Random.Range(drop.amountMin, drop.amountMax);
+        }
+    }
+
+    public void ApplyEffect(int damage, int durration, int tickspeed)
+    {
+        effdam = damage;
+        dur = durration;
+        tic = tickspeed;
+
+        if (hasStatusEffect)
+        {
+            if (ticktimer >= tic && durationtimer <= dur)
+            {
+                TakeDamage(effdam);
+                ticktimer = 0;
+            }
+            if (durationtimer >= dur)
+            {
+                hasStatusEffect = false;
+                durationtimer = 0;
+                ticktimer = 0;
+            }
         }
     }
 }

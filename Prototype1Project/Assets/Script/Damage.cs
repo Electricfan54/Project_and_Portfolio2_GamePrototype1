@@ -159,18 +159,7 @@ public class Damage : MonoBehaviour
     void Update()
     {
 
-        if (ispoison)
-        {
-            effectTimer += Time.deltaTime;
-            gameManager.instance.player.GetComponent<PlayerMovement>().ApplyEffect(damageamount, PoisonDurration, posionwaitbeforhit);
-            if (effectTimer >= PoisonDurration)
-            {
-                ispoison = false;
-                effectTimer = 0;
-                gameManager.instance.player.GetComponent<PlayerMovement>().hasStatusEffect = false;
-            }
-
-        }
+      
      
         
     }
@@ -194,15 +183,16 @@ public class Damage : MonoBehaviour
             if (type == DamageType.poision)
             {
                 if (other.CompareTag("Player"))
-                {
+                { 
+                    other.GetComponent<PlayerMovement>().ApplyEffect(damageamount, PoisonDurration, posionwaitbeforhit);
                     gameManager.instance.player.GetComponent<PlayerMovement>().hasStatusEffect = true;
-                    gameManager.instance.player.GetComponent<PlayerMovement>().ApplyEffect(damageamount, PoisonDurration, posionwaitbeforhit);
-                    ispoison = true;
+                   
+                    
                 }
                 if (other.CompareTag("Enemy"))
                 {
                     other.GetComponent<EnemyAI>().hasStatusEffect = true;
-                    enemyispoison = true;
+                 
                 }
 
             }

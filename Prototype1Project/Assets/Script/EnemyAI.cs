@@ -60,6 +60,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] ammoDrop sniperAmmoWeight;
     [SerializeField] ammoDrop homingAmmoWeight;
 
+   
+
 
     // Non Serialized variables
     int HP;
@@ -69,6 +71,9 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     bool canSeePlayer;
 
+    int durationtimer;
+    int ticktimer;
+public  bool hasStatusEffect;
     // for rotating the enemy towards the target
     Vector3 rotDir;
     Quaternion rot;

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour, IDamage
+public class PlayerMovement : MonoBehaviour, IDamage,IStatuseffect
 {
     [SerializeField] CharacterController controller;
 
@@ -22,10 +22,17 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
     int jumpCount;
     bool isLauched = false;
-    public bool isPoisend;
+   
     bool isInvis = false;
 
     int origHP;
+
+    float durationtimer;
+    float ticktimer;
+    public bool hasStatusEffect;
+    int dur;
+    int tic;
+    int effdam;
     void Start()
     {
         origHP = PlayerHP;
@@ -37,6 +44,12 @@ public class PlayerMovement : MonoBehaviour, IDamage
         Movement();
         Sprint();
         CheckLauch();
+        if (hasStatusEffect)
+        {
+            ticktimer += Time.deltaTime;
+            durationtimer += Time.deltaTime;
+            ApplyEffect(effdam, dur,tic);
+        }
     }
 
     void Movement()
@@ -125,7 +138,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
         }
     }
 
-    void IDamage.TakeDamage(int damageAmount)
+   public void TakeDamage(int damageAmount)
     {
         if (isInvis == false)
         {
@@ -164,5 +177,27 @@ public class PlayerMovement : MonoBehaviour, IDamage
         }
         UpdatePlayerHPUI();
 
+    }
+
+    public void ApplyEffect(int damage, int durration, int tickspeed)
+    {
+        effdam = damage;
+        dur=durration;
+        tic = tickspeed;
+
+       if(hasStatusEffect)
+        {
+            if(ticktimer>=tic&&durationtimer<=dur)
+            {
+                TakeDamage(effdam);
+                ticktimer = 0;
+            }
+            if(durationtimer>=dur)
+            {
+                hasStatusEffect = false;
+                durationtimer = 0;
+                ticktimer = 0;
+            }
+        }
     }
 }

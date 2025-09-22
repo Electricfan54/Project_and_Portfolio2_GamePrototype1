@@ -18,9 +18,10 @@ public class Barrel : MonoBehaviour, IDamage
         Health -= damageAmount;
         if (Health <= 0)
         {
-            
-           // gameObject.SetActive(false);
+
+            // gameObject.SetActive(false);
             affects.SetActive(true);
+            model.enabled = false;
             StartCoroutine(barrelrespwan());
         }
         else
@@ -44,10 +45,11 @@ public class Barrel : MonoBehaviour, IDamage
     IEnumerator barrelrespwan()
     {
         yield return new WaitForSeconds(respawnTime);
+        model.enabled = true;
         gameObject.SetActive(true);
         affects.SetActive(false);
-         Health = MaxHealth;
-       
+        Health = MaxHealth;
+
     }
     IEnumerator flashred()
     {

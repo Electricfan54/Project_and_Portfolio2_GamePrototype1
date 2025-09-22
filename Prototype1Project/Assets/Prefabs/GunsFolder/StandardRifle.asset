@@ -18,7 +18,7 @@ MonoBehaviour:
   gunDamage: 1
   fireRate: 0.25
   DestroyTime: 2
-  currAmmo: 0
+  currAmmo: 69
   clipSize: 20
   maxAmmo: 250
   ReloadTimer: 1

@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 [System.Serializable]
 public struct ammoDrop
@@ -59,6 +60,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
     [SerializeField] ammoDrop rifleAmmoWeight;
     [SerializeField] ammoDrop sniperAmmoWeight;
     [SerializeField] ammoDrop homingAmmoWeight;
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] hitnoise;
+    [Range(0,1)][SerializeField] float hitvolume;
 
 
 
@@ -245,13 +249,16 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
     public void TakeDamage(int damageAmount)
     {
         HP -= damageAmount;
+        aud.PlayOneShot(hitnoise[Random.Range(0, hitnoise.Length)], hitvolume);
         UpdateEnemyUI();
         StartCoroutine(DamageFlash());
         if (HP <= 0)
         {
             //Tell the game manager this enemy is dead
+       
             gameManager.instance.UpdateEnemyCount(-1);
             gameManager.instance.playerScript.HealPlayerOnKill();
+            
             if (UnityEngine.Random.Range(1, 100) <= dropChance)
                 DropAmmo();
             isDead = true;
@@ -359,4 +366,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
             }
         }
     }
+
+   
 }

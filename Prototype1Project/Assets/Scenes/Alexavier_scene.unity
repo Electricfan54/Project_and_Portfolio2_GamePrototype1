@@ -834,21 +834,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: _MeleeEnemy Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 1272366046848530059, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1672278977556145847, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
-      propertyPath: maxHP
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1672278977556145847, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
-      propertyPath: speed
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6659552444052597262, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.40541
+      value: 1.6554098
       objectReference: {fileID: 0}
     - target: {fileID: 6659552444052597262, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -856,7 +844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6659552444052597262, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.09485
+      value: -6.34485
       objectReference: {fileID: 0}
     - target: {fileID: 6659552444052597262, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
       propertyPath: m_LocalRotation.w

@@ -163,10 +163,10 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
 
 #if UNITY_EDITOR
         //Temp code for testing
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            TakeDamage(1);
-        }
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    TakeDamage(1);
+        //}
 #endif
 
 
@@ -312,11 +312,12 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
                 randType = i;
                 break;
             }
-            randType -= weightArray[i].weight;
+            else
+                randType -= weightArray[i].weight;
         }
 
         //if check to avoid bugs
-        if (randType > 2)
+        if (randType > 2 || randType < 0)
             randType = 0;
 
         switch (randType)

@@ -48,6 +48,9 @@ public class PlayerWeapons : MonoBehaviour, IPickup
             curWeapon = weapons[0];
             SetActiveWeapon(0);
         }
+
+        ReloadAll();
+        UpdateUI();
     }
 
     void Update()
@@ -128,6 +131,7 @@ public class PlayerWeapons : MonoBehaviour, IPickup
         curWeapon = weapons[index];
         curWeaponIndex = index;
         UpdateUI();
+        curWeapon.Bullet.GetComponent<Damage>().damageamount = curWeapon.gunDamage;
         GunModel.GetComponent<MeshFilter>().sharedMesh = curWeapon.WeaponModel.GetComponent<MeshFilter>().sharedMesh;
         GunModel.GetComponent<MeshRenderer>().sharedMaterial = curWeapon.WeaponModel.GetComponent<MeshRenderer>().sharedMaterial;
         //curWeapon.SetActive(true);
@@ -193,6 +197,14 @@ public class PlayerWeapons : MonoBehaviour, IPickup
         curWeapon.currAmmo += amountToReload;
         UpdateUI();
         isReloading = false;
+    }
+
+    public void ReloadAll()
+    {
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            weapons[i].currAmmo = weapons[i].clipSize;
+        }
     }
 
     void UpdateUI()

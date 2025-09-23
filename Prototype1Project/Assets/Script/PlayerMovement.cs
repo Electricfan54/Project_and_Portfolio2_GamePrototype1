@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
 
     public void LauchPlayer(Vector3 Lauchdirection)
     {
-        playerVel = Lauchdirection * LauchForceMult;
+        playerVel = Lauchdirection.normalized * LauchForceMult;
         isLauched = true;
 
 

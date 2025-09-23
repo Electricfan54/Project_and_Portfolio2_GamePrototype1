@@ -1,16 +1,19 @@
 using UnityEngine;
+using UnityEngine.UIElements;
+using TMPro;
 
 public class CooldownManager : MonoBehaviour
 {
-    [SerializeField] Vector2 CoolDownPos1;
+    [SerializeField] GameObject CoolDownPos1;
+    [SerializeField] GameObject CoolDownPos2;
+    [SerializeField] GameObject CoolDownPos3;
 
-    void Start()
+    public void AddCoolDown(string Text)
     {
-        
-    }
-
-    void Update()
-    {
-        
+        if (CoolDownPos1.activeSelf == false)
+        {
+            CoolDownPos1.SetActive(true);
+            
+        }
     }
 }

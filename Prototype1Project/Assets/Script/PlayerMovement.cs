@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
     [SerializeField] float InvincTimer;
 
     [Tooltip("audio things")]
-    [SerializeField] AudioSource aud;
+    public AudioSource aud;
     [SerializeField] AudioClip[] jumpsounds;
     [Range(0, 1)][SerializeField] float jumpvolume;
 

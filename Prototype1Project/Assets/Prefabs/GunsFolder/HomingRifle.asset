@@ -15,6 +15,8 @@ MonoBehaviour:
   Bullet: {fileID: 7828848772284936290, guid: 55602f6203292a946bd3f09cfb72b6d6, type: 3}
   WeaponModel: {fileID: 3090985915868869901, guid: 3d7856ef7279f8641a2b088d57a8b2d9, type: 3}
   WeaponAmmoType: 2
+  audioClips:
+  - {fileID: 8300000, guid: 90c2f4be42516494985510d62a6fd433, type: 3}
   gunDamage: 1
   fireRate: 0.1
   DestroyTime: 6
@@ -22,6 +24,7 @@ MonoBehaviour:
   clipSize: 25
   maxAmmo: 250
   ReloadTimer: 0.1
+  shootvolume: 0.576
   explodeTime: 0.1
   CheckRadius: 1
   HomingStartTime: 1.07

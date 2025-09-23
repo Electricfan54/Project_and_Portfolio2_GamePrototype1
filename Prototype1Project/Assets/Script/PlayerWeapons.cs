@@ -59,9 +59,11 @@ public class PlayerWeapons : MonoBehaviour, IPickup
 
         if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && curWeapon.currAmmo > 0 && !isAttacking && !isReloading)
         {
+            gameManager.instance.player.GetComponent<PlayerMovement>().aud.PlayOneShot(curWeapon.audioClips[Random.Range(0, curWeapon.audioClips.Length)], curWeapon.shootvolume); 
             StartCoroutine(Shoot());
-        }
 
+        }
+        
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && curWeapon != null)
         {
             StartCoroutine(Reload());

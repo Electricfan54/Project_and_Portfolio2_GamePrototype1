@@ -122,6 +122,8 @@ public class gameManager : MonoBehaviour
     [Header("Unorganized")]
     float timeScaleOrig;
 
+    public CooldownManager CDManager;
+
     void Awake()
     {
         instance = this;

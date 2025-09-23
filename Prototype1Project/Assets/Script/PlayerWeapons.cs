@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using Unity.VisualScripting;
 
 public enum ammoType
 {
@@ -39,6 +40,8 @@ public class PlayerWeapons : MonoBehaviour, IPickup
     bool isAttacking = false;
     bool isReloading = false;
     bool canUseGrenade = true;
+
+    
 
     void Start()
     {
@@ -190,6 +193,7 @@ public class PlayerWeapons : MonoBehaviour, IPickup
     IEnumerator Reload()
     {
         isReloading = true;
+        gameManager.instance.CDManager.AddCoolDown("Reloading");
         yield return new WaitForSeconds(curWeapon.ReloadTimer);
 
         int amountToReload = CalcAmmo();

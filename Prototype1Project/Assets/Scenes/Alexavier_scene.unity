@@ -836,11 +836,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1272366046848530059, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1672278977556145847, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
       propertyPath: maxHP
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1672278977556145847, guid: 39148c464aceb1f408156baf5681b9fc, type: 3}
       propertyPath: speed
@@ -1096,6 +1096,10 @@ PrefabInstance:
     - target: {fileID: 2129277688442842678, guid: 9d4ea07f32d3f184eb4101f5432925d2, type: 3}
       propertyPath: m_Name
       value: barrel things
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229549239879800691, guid: 9d4ea07f32d3f184eb4101f5432925d2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7699575585135522778, guid: 9d4ea07f32d3f184eb4101f5432925d2, type: 3}
       propertyPath: m_LocalPosition.x

@@ -481,6 +481,7 @@ MonoBehaviour:
   Gravity: 35
   SidewaysDownTime: 2
   LauchForceMult: 10
+  InvincTimer: 0.25
   isPoisend: 0
 --- !u!114 &698604112704923531
 MonoBehaviour:

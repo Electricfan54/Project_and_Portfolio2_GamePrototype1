@@ -71,6 +71,12 @@ public class gameManager : MonoBehaviour
     float spawnTimer;
     float waveSpawnDelay;
 
+    [Tooltip("How long the intermission between waves should be.")]
+    [SerializeField] float waveIntermission;
+    float graceTimer;
+
+    bool intermission;
+
     int spawnPosIndex;
 
     public int waveSpawnedTotal;
@@ -127,6 +133,11 @@ public class gameManager : MonoBehaviour
     void Update()
     {
         poisonIcon();
+
+        if (intermission)
+        {
+            GracePeriod();
+        }
 
         if (Input.GetButtonDown("Cancel"))
         {
@@ -212,7 +223,13 @@ public class gameManager : MonoBehaviour
         {
             waveActive = false;
             enemyWaves.RemoveAt(0);
-            StartWave();
+
+            if (enemyWaves.Count <= 0 && !endlessActive)
+            {
+                WinGame();
+            }
+
+            intermission = true;
         }
 
     }
@@ -231,6 +248,7 @@ public class gameManager : MonoBehaviour
         {
             waveNum = 0;
             spawnTimer = 0;
+            intermission = false;
 
             if (!endlessActive)
                 StartWave();
@@ -242,6 +260,19 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    public void GracePeriod()
+    {
+
+        graceTimer += Time.deltaTime;
+
+        if (graceTimer >= waveIntermission)
+        {
+            intermission = false;
+            StartWave();
+        }
+
+    }
+
     public void StartWave()
     {
 
@@ -250,6 +281,7 @@ public class gameManager : MonoBehaviour
             spawnPosIndex = 0;
             waveSpawnedTotal = 0;
             maxWaveEnemies = 0;
+            graceTimer = 0;
             waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
             maxWaveEnemies += enemyWaves[0].enemies[0].spawnAmount;
             waveNum++;
@@ -258,25 +290,12 @@ public class gameManager : MonoBehaviour
         }
         else
         {
-            if (!endlessActive)
-            {
-                // Show win screen here!
-                if (!disableWinCondition)
-                {
-                    PauseGame();
-                    menuHierarchy.Add(menuWin);
-                    menuActive = menuWin;
-                    menuActive.SetActive(true);
-                    endlessActive = true;
-                    GenerateWave();
-                }
-            }
-            else
+            if (endlessActive)
             {
                 if (enemyWaves.Count > 0)
                 {
                     enemyWaves.Clear();
-                }    
+                }
                 GenerateWave();
             }
         }
@@ -299,6 +318,19 @@ public class gameManager : MonoBehaviour
         Instantiate<GameObject>(enemyType, spawnPos);
         waveSpawnedTotal++;
 
+    }
+
+    public void WinGame()
+    {
+        // Show win screen here!
+        if (!disableWinCondition)
+        {
+            PauseGame();
+            menuHierarchy.Add(menuWin);
+            menuActive = menuWin;
+            menuActive.SetActive(true);
+            endlessActive = true;
+        }
     }
 
     void GenerateWave()

@@ -5572,6 +5572,7 @@ MonoBehaviour:
   enemyWaves: []
   disableWaveGame: 0
   disableWinCondition: 0
+  waveIntermission: 15
   waveSpawnedTotal: 0
   maxWaveEnemies: 0
   enemyCount: 0

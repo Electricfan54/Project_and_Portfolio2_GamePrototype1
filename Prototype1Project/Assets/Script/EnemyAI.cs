@@ -163,10 +163,10 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
 
 #if UNITY_EDITOR
         //Temp code for testing
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            TakeDamage(1);
-        }
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    TakeDamage(1);
+        //}
 #endif
 
 

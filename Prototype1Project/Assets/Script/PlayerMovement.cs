@@ -195,7 +195,7 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
         yield return new WaitForSeconds(InvincTimer);
         isInvis = false;
     }
-
+    
     public void HealPlayerOnKill()
     {
         PlayerHP += 2;

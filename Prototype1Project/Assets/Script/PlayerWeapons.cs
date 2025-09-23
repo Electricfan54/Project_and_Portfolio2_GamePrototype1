@@ -126,6 +126,7 @@ public class PlayerWeapons : MonoBehaviour, IPickup
         curWeapon = weapons[index];
         curWeaponIndex = index;
         UpdateUI();
+        curWeapon.Bullet.GetComponent<Damage>().damageamount = curWeapon.gunDamage;
         GunModel.GetComponent<MeshFilter>().sharedMesh = curWeapon.WeaponModel.GetComponent<MeshFilter>().sharedMesh;
         GunModel.GetComponent<MeshRenderer>().sharedMaterial = curWeapon.WeaponModel.GetComponent<MeshRenderer>().sharedMaterial;
         //curWeapon.SetActive(true);

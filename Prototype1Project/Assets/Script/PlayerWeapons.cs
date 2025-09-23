@@ -48,6 +48,9 @@ public class PlayerWeapons : MonoBehaviour, IPickup
             curWeapon = weapons[0];
             SetActiveWeapon(0);
         }
+
+        ReloadAll();
+        UpdateUI();
     }
 
     void Update()
@@ -59,9 +62,11 @@ public class PlayerWeapons : MonoBehaviour, IPickup
 
         if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) && curWeapon.currAmmo > 0 && !isAttacking && !isReloading)
         {
+            gameManager.instance.player.GetComponent<PlayerMovement>().aud.PlayOneShot(curWeapon.audioClips[Random.Range(0, curWeapon.audioClips.Length)], curWeapon.shootvolume); 
             StartCoroutine(Shoot());
-        }
 
+        }
+        
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && curWeapon != null)
         {
             StartCoroutine(Reload());
@@ -192,6 +197,14 @@ public class PlayerWeapons : MonoBehaviour, IPickup
         curWeapon.currAmmo += amountToReload;
         UpdateUI();
         isReloading = false;
+    }
+
+    public void ReloadAll()
+    {
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            weapons[i].currAmmo = weapons[i].clipSize;
+        }
     }
 
     void UpdateUI()

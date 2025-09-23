@@ -528,6 +528,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1226224987195595673, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
+      propertyPath: InvincTimer
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4999085626487746977, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.06787

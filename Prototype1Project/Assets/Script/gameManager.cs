@@ -273,7 +273,7 @@ public class gameManager : MonoBehaviour
     {
 
         graceTimer += Time.deltaTime;
-        interTimer.text = (waveIntermission - graceTimer).ToString("F0");
+        interTimer.text = Mathf.Floor(waveIntermission - graceTimer).ToString("F0");
 
         if (graceTimer >= waveIntermission)
         {
@@ -292,7 +292,7 @@ public class gameManager : MonoBehaviour
             spawnPosIndex = 0;
             waveSpawnedTotal = 0;
             maxWaveEnemies = 0;
-            graceTimer = 0;
+            graceTimer = -1;
 
             if (enemyWaves[0].enemies.Count > 0)
             {

@@ -293,8 +293,13 @@ public class gameManager : MonoBehaviour
             waveSpawnedTotal = 0;
             maxWaveEnemies = 0;
             graceTimer = 0;
-            waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
-            maxWaveEnemies += enemyWaves[0].enemies[0].spawnAmount;
+
+            if (enemyWaves[0].enemies.Count > 0)
+            {
+                waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
+                maxWaveEnemies += enemyWaves[0].enemies[0].spawnAmount;
+            }
+
             waveNum++;
             waveNumText.text = waveNum.ToString("F0");
             waveActive = true;

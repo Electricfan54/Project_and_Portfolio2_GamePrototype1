@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
+using System.Collections;
 
 // Wave Structs
 [System.Serializable]
@@ -53,12 +54,19 @@ public class gameManager : MonoBehaviour
     List<GameObject> menuHierarchy = new List<GameObject>();
 
     [SerializeField] TMP_Text enemyCountText;
+
+    [SerializeField] public GameObject waveNumLabel;
     [SerializeField] TMP_Text waveNumText;
 
     public Image playerHPBar;
     public GameObject playerDamageFlash;
 
     public TMP_Text ammoCurrent, ammoMax;
+
+    [SerializeField] public GameObject waveStartPopUp;
+    [SerializeField] public TMP_Text waveStartNum;
+    [SerializeField] public GameObject intermissionPopUp;
+    [SerializeField] public TMP_Text interTimer;
 
     [Header("Wave Customization")] // Wave specific variables here
     [SerializeField] List<WaveStruct> enemyWaves;
@@ -70,6 +78,12 @@ public class gameManager : MonoBehaviour
 
     float spawnTimer;
     float waveSpawnDelay;
+
+    [Tooltip("How long the intermission between waves should be.")]
+    [SerializeField] float waveIntermission;
+    float graceTimer;
+
+    bool intermission;
 
     int spawnPosIndex;
 
@@ -127,6 +141,11 @@ public class gameManager : MonoBehaviour
     void Update()
     {
         poisonIcon();
+
+        if (intermission)
+        {
+            GracePeriod();
+        }
 
         if (Input.GetButtonDown("Cancel"))
         {
@@ -212,7 +231,14 @@ public class gameManager : MonoBehaviour
         {
             waveActive = false;
             enemyWaves.RemoveAt(0);
-            StartWave();
+
+            if (enemyWaves.Count <= 0 && !endlessActive)
+            {
+                WinGame();
+            }
+
+            intermission = true;
+            intermissionPopUp.SetActive(true);
         }
 
     }
@@ -231,6 +257,7 @@ public class gameManager : MonoBehaviour
         {
             waveNum = 0;
             spawnTimer = 0;
+            intermission = false;
 
             if (!endlessActive)
                 StartWave();
@@ -242,6 +269,21 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    public void GracePeriod()
+    {
+
+        graceTimer += Time.deltaTime;
+        interTimer.text = (waveIntermission - graceTimer).ToString("F0");
+
+        if (graceTimer >= waveIntermission)
+        {
+            intermission = false;
+            intermissionPopUp.SetActive(false);
+            StartWave();
+        }
+
+    }
+
     public void StartWave()
     {
 
@@ -250,33 +292,23 @@ public class gameManager : MonoBehaviour
             spawnPosIndex = 0;
             waveSpawnedTotal = 0;
             maxWaveEnemies = 0;
+            graceTimer = 0;
             waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
             maxWaveEnemies += enemyWaves[0].enemies[0].spawnAmount;
             waveNum++;
             waveNumText.text = waveNum.ToString("F0");
             waveActive = true;
+
+            StartCoroutine(AnnounceWave());
         }
         else
         {
-            if (!endlessActive)
-            {
-                // Show win screen here!
-                if (!disableWinCondition)
-                {
-                    PauseGame();
-                    menuHierarchy.Add(menuWin);
-                    menuActive = menuWin;
-                    menuActive.SetActive(true);
-                    endlessActive = true;
-                    GenerateWave();
-                }
-            }
-            else
+            if (endlessActive)
             {
                 if (enemyWaves.Count > 0)
                 {
                     enemyWaves.Clear();
-                }    
+                }
                 GenerateWave();
             }
         }
@@ -299,6 +331,19 @@ public class gameManager : MonoBehaviour
         Instantiate<GameObject>(enemyType, spawnPos);
         waveSpawnedTotal++;
 
+    }
+
+    public void WinGame()
+    {
+        // Show win screen here!
+        if (!disableWinCondition)
+        {
+            PauseGame();
+            menuHierarchy.Add(menuWin);
+            menuActive = menuWin;
+            menuActive.SetActive(true);
+            endlessActive = true;
+        }
     }
 
     void GenerateWave()
@@ -367,6 +412,18 @@ public class gameManager : MonoBehaviour
         {
             isPoisionIcon.SetActive(false);
         }
+    }
+
+    IEnumerator AnnounceWave()
+    {
+        waveStartPopUp.SetActive(true);
+        waveNumLabel.SetActive(false);
+        waveStartNum.text = waveNum.ToString("F0");
+
+        yield return new WaitForSeconds(3);
+
+        waveStartPopUp.SetActive(false);
+        waveNumLabel.SetActive(true);
     }
 
 }

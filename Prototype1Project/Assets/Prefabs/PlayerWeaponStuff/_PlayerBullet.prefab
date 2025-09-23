@@ -48,15 +48,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Damage
   rb: {fileID: 3668409596855548537}
-  damageamount: 1
+  damageamount: 10
   damageRate: 0.5
   speed: 20
   destroyTime: 3
-  explodetime: 0
   type: 0
+  explodetime: 0
   radius: 0
   explosioncollider: {fileID: 0}
+  explosionEffect: {fileID: 0}
   homingPauseTime: 0
+  hominggotime: 0
+  speedAfterStop: 0
+  ispoison: 0
+  enemyispoison: 0
+  posionwaitbeforhit: 0
+  PoisonDurration: 0
 --- !u!96 &3160115576276051667
 TrailRenderer:
   serializedVersion: 3

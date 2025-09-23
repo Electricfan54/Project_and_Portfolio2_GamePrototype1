@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
+using System.Collections;
 
 // Wave Structs
 [System.Serializable]
@@ -53,12 +54,19 @@ public class gameManager : MonoBehaviour
     List<GameObject> menuHierarchy = new List<GameObject>();
 
     [SerializeField] TMP_Text enemyCountText;
+
+    [SerializeField] public GameObject waveNumLabel;
     [SerializeField] TMP_Text waveNumText;
 
     public Image playerHPBar;
     public GameObject playerDamageFlash;
 
     public TMP_Text ammoCurrent, ammoMax;
+
+    [SerializeField] public GameObject waveStartPopUp;
+    [SerializeField] public TMP_Text waveStartNum;
+    [SerializeField] public GameObject intermissionPopUp;
+    [SerializeField] public TMP_Text interTimer;
 
     [Header("Wave Customization")] // Wave specific variables here
     [SerializeField] List<WaveStruct> enemyWaves;
@@ -230,6 +238,7 @@ public class gameManager : MonoBehaviour
             }
 
             intermission = true;
+            intermissionPopUp.SetActive(true);
         }
 
     }
@@ -264,10 +273,12 @@ public class gameManager : MonoBehaviour
     {
 
         graceTimer += Time.deltaTime;
+        interTimer.text = (waveIntermission - graceTimer).ToString("F0");
 
         if (graceTimer >= waveIntermission)
         {
             intermission = false;
+            intermissionPopUp.SetActive(false);
             StartWave();
         }
 
@@ -287,6 +298,8 @@ public class gameManager : MonoBehaviour
             waveNum++;
             waveNumText.text = waveNum.ToString("F0");
             waveActive = true;
+
+            StartCoroutine(AnnounceWave());
         }
         else
         {
@@ -399,6 +412,18 @@ public class gameManager : MonoBehaviour
         {
             isPoisionIcon.SetActive(false);
         }
+    }
+
+    IEnumerator AnnounceWave()
+    {
+        waveStartPopUp.SetActive(true);
+        waveNumLabel.SetActive(false);
+        waveStartNum.text = waveNum.ToString("F0");
+
+        yield return new WaitForSeconds(3);
+
+        waveStartPopUp.SetActive(false);
+        waveNumLabel.SetActive(true);
     }
 
 }

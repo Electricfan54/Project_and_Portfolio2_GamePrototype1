@@ -15,10 +15,10 @@ MonoBehaviour:
   Bullet: {fileID: 7828848772284936290, guid: 55602f6203292a946bd3f09cfb72b6d6, type: 3}
   WeaponModel: {fileID: 3090985915868869901, guid: 3d7856ef7279f8641a2b088d57a8b2d9, type: 3}
   WeaponAmmoType: 2
-  gunDamage: 1
-  fireRate: 0.1
+  gunDamage: 5
+  fireRate: 0.24
   DestroyTime: 6
-  currAmmo: 25
+  currAmmo: 24
   clipSize: 25
   maxAmmo: 250
   ReloadTimer: 0.1

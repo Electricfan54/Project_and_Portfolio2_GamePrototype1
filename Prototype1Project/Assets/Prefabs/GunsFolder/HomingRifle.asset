@@ -17,10 +17,11 @@ MonoBehaviour:
   WeaponAmmoType: 2
   audioClips:
   - {fileID: 8300000, guid: 90c2f4be42516494985510d62a6fd433, type: 3}
+  hiteffect: {fileID: 8884371268655795233, guid: 20fda529c996a334da7fd65b48ea40df, type: 3}
   gunDamage: 1
   fireRate: 0.1
   DestroyTime: 6
-  currAmmo: 25
+  currAmmo: 0
   clipSize: 25
   maxAmmo: 250
   ReloadTimer: 0.1

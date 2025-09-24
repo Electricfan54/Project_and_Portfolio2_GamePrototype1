@@ -75,7 +75,7 @@ public class PlayerWeapons : MonoBehaviour, IPickup
 
         }
         
-        if (Input.GetKeyDown(KeyCode.R) && !isReloading && curWeapon != null)
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading && curWeapon != null && curWeapon.currAmmo < curWeapon.clipSize)
         {
             StartCoroutine(Reload());
         }

@@ -120,18 +120,21 @@ public class Powerups : MonoBehaviour
     public void GivePowerup1()
     {
         powerup1.function(powerup1);
+        gameManager.instance.UnpauseGame();
     }
 
     //Call this to give the player the second powerup
     public void GivePowerup2()
     {
         powerup2.function(powerup2);
+        gameManager.instance.UnpauseGame();
     }
 
     //Call this to give the player the third powerup
     public void GivePowerup3()
     {
         powerup3.function(powerup3);
+        gameManager.instance.UnpauseGame();
     }
 
 }

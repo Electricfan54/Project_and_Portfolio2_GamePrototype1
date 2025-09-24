@@ -75,6 +75,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
 
     bool canSeePlayer;
 
+    //To sync anims
+    bool isAiming;
+
     //for effect damage
     float durationtimer;
     float ticktimer;
@@ -157,6 +160,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
         {
             isWalking = true;
             canSeePlayer = false;
+            isAiming = false;
         }
 
         UpdateAnimations();
@@ -204,7 +208,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
                     StartCoroutine(MeleeAttack());
                 break;
             case EnemyType.Ranged:
-                if (!isAttacking)
+                if (!isAttacking && isAiming)
                     StartCoroutine(Shoot());
                 break;
         }
@@ -368,5 +372,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IStatuseffect
         }
     }
 
+    public void AimStarted()
+    {
+        isAiming = true;
+    }
    
 }

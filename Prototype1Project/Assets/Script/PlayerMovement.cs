@@ -5,8 +5,8 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
 {
     [SerializeField] CharacterController controller;
 
-    [SerializeField] int PlayerHP;
-    [SerializeField] int playerSpeed;
+    [SerializeField] float PlayerHP;
+    [SerializeField] float playerSpeed;
     [SerializeField] int SprintMod;
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
@@ -43,8 +43,13 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
 
     bool isInvis = false;
     bool isrunning;
-    int origHP;
+    float origHP;
     [Tooltip("Effect variables")]
+
+    public float MovementSpeedBuff = 1;
+    public float HealingBuff = 1;
+    public float MaxHealthBuff = 1;
+
 
     float durationtimer;
     float ticktimer;
@@ -54,7 +59,7 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
     int effdam;
     void Start()
     {
-        origHP = PlayerHP;
+        origHP = PlayerHP * MaxHealthBuff;
         UpdatePlayerHPUI();
     }
 
@@ -91,7 +96,7 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
 
         playerDirection = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
 
-        controller.Move(playerDirection * playerSpeed * Time.deltaTime);
+        controller.Move(playerDirection * (playerSpeed * MovementSpeedBuff) * Time.deltaTime);
 
         Jump();
         TestLauch();
@@ -127,7 +132,7 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
 
     public void LauchPlayer(Vector3 Lauchdirection)
     {
-        playerVel = Lauchdirection * LauchForceMult;
+        playerVel = Lauchdirection.normalized * LauchForceMult;
         isLauched = true;
 
 
@@ -198,13 +203,30 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
     
     public void HealPlayerOnKill()
     {
-        PlayerHP += 2;
+        PlayerHP += 2 * HealingBuff;
         if (PlayerHP >= origHP)
         {
             PlayerHP = origHP;
         }
         UpdatePlayerHPUI();
 
+    }
+
+    public void AddMaxHealthMult(float NumAdd)
+    {
+        MaxHealthBuff += NumAdd;
+        origHP = origHP * MaxHealthBuff;
+    }
+
+    public void AddSpeedBuff(float NumAdd)
+    {
+        MovementSpeedBuff += NumAdd;
+
+    }
+
+    public void AddHealingBuff(float NumAdd)
+    {
+        HealingBuff += NumAdd;
     }
 
     public void ApplyEffect(int damage, int durration, int tickspeed)

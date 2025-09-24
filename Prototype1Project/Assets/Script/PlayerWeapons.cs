@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using Unity.VisualScripting;
 
 public enum ammoType
 {
@@ -40,6 +41,8 @@ public class PlayerWeapons : MonoBehaviour, IPickup
     bool isReloading = false;
     bool canUseGrenade = true;
 
+    
+
     void Start()
     {
         maxIndex = weapons.Count - 1;
@@ -48,13 +51,18 @@ public class PlayerWeapons : MonoBehaviour, IPickup
             curWeapon = weapons[0];
             SetActiveWeapon(0);
         }
-
+        ammoAmountRifle = 250;
+        ammoAmountHoming = 250;
+        ammoAmountSniper = 50;
         ReloadAll();
         UpdateUI();
     }
 
     void Update()
     {
+        if (gameManager.instance.isPaused)
+            return;
+
         if (!isAttacking && !isReloading)
         {
             SwapWeapons();
@@ -75,11 +83,14 @@ public class PlayerWeapons : MonoBehaviour, IPickup
         if ((Input.GetKeyDown(KeyCode.V) || Input.GetKey(KeyCode.V)) && !isAttacking)
         {
             StartCoroutine(Melee());
+            gameManager.instance.CDManager.AddCoolDown("Melee CD", meleeRate);
         }
 
         if (Input.GetKeyDown(KeyCode.F) && canUseGrenade)
         {
             StartCoroutine(ShootGrenade());
+            gameManager.instance.CDManager.AddCoolDown("Gernade CD", grenadeThrowRate);
+
         }
     }
 
@@ -192,6 +203,7 @@ public class PlayerWeapons : MonoBehaviour, IPickup
     IEnumerator Reload()
     {
         isReloading = true;
+        gameManager.instance.CDManager.AddCoolDown("Reloading", curWeapon.ReloadTimer);
         yield return new WaitForSeconds(curWeapon.ReloadTimer);
 
         int amountToReload = CalcAmmo();

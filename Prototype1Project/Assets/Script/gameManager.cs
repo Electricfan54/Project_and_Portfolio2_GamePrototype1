@@ -68,6 +68,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] public GameObject intermissionPopUp;
     [SerializeField] public TMP_Text interTimer;
 
+    [SerializeField] public GameObject menuPowUp;
+
     [Header("Wave Customization")] // Wave specific variables here
     [SerializeField] List<WaveStruct> enemyWaves;
 
@@ -121,6 +123,8 @@ public class gameManager : MonoBehaviour
 
     [Header("Unorganized")]
     float timeScaleOrig;
+
+    public CooldownManager CDManager;
 
     void Awake()
     {
@@ -193,6 +197,9 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        RunStatsManager.instance.UpdateUI();
+
     }
 
     public void UnpauseGame()
@@ -239,6 +246,14 @@ public class gameManager : MonoBehaviour
 
             intermission = true;
             intermissionPopUp.SetActive(true);
+
+            PauseGame();
+            menuHierarchy.Add(menuPowUp);
+            menuActive = menuPowUp;
+            menuActive.SetActive(true);
+
+            menuPowUp.GetComponent<Powerups>().SetRandomPowerups();
+
         }
 
     }
@@ -273,7 +288,7 @@ public class gameManager : MonoBehaviour
     {
 
         graceTimer += Time.deltaTime;
-        interTimer.text = (waveIntermission - graceTimer).ToString("F0");
+        interTimer.text = Mathf.Floor(waveIntermission - graceTimer).ToString("F0");
 
         if (graceTimer >= waveIntermission)
         {
@@ -292,9 +307,14 @@ public class gameManager : MonoBehaviour
             spawnPosIndex = 0;
             waveSpawnedTotal = 0;
             maxWaveEnemies = 0;
-            graceTimer = 0;
-            waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
-            maxWaveEnemies += enemyWaves[0].enemies[0].spawnAmount;
+            graceTimer = -1;
+
+            if (enemyWaves[0].enemies.Count > 0)
+            {
+                waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
+                maxWaveEnemies += enemyWaves[0].enemies[0].spawnAmount;
+            }
+
             waveNum++;
             waveNumText.text = waveNum.ToString("F0");
             waveActive = true;

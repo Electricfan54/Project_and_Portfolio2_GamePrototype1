@@ -36,7 +36,7 @@ public class Powerups : MonoBehaviour
     Powerup powerup2;
     Powerup powerup3;
 
-    void Start()
+    void Awake()
     {
 
         healthPowerup.function = HealthPowerup;
@@ -92,7 +92,7 @@ public class Powerups : MonoBehaviour
 
     void HealthPowerup(Powerup powerup)
     {
-        Debug.Log(powerup.description);
+        //Debug.Log(powerup.description);
         gameManager.instance.playerScript.AddMaxHealthMult(powerup.value);
     }
 

@@ -40,7 +40,7 @@ public class Powerups : MonoBehaviour
     {
 
         healthPowerup.function = HealthPowerup;
-        damagePowerup.function = HealthPowerup;
+        damagePowerup.function = DamagePowerup;
         speedPowerup.function = SpeedPowerup;
         lifestealPowerup.function = LifestealPowerup;
 
@@ -98,7 +98,8 @@ public class Powerups : MonoBehaviour
 
     void DamagePowerup(Powerup powerup)
     {
-        //gameManager.instance.playerScript
+        PlayerWeapons playerWeapons = gameManager.instance.player.GetComponent<PlayerWeapons>();
+        playerWeapons.IncreaseDamageMod(powerup.value);
     }
 
     void SpeedPowerup(Powerup powerup)

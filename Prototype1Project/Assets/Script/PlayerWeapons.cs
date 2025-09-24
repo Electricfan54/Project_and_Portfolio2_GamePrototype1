@@ -41,7 +41,7 @@ public class PlayerWeapons : MonoBehaviour, IPickup
     bool isReloading = false;
     bool canUseGrenade = true;
 
-    
+    [HideInInspector] public float damageMod = 1.0f;
 
     void Start()
     {
@@ -142,7 +142,8 @@ public class PlayerWeapons : MonoBehaviour, IPickup
         curWeapon = weapons[index];
         curWeaponIndex = index;
         UpdateUI();
-        curWeapon.Bullet.GetComponent<Damage>().damageamount = curWeapon.gunDamage;
+        float damage = curWeapon.gunDamage * damageMod;
+        curWeapon.Bullet.GetComponent<Damage>().damageamount = (int)damage;
         GunModel.GetComponent<MeshFilter>().sharedMesh = curWeapon.WeaponModel.GetComponent<MeshFilter>().sharedMesh;
         GunModel.GetComponent<MeshRenderer>().sharedMaterial = curWeapon.WeaponModel.GetComponent<MeshRenderer>().sharedMaterial;
         //curWeapon.SetActive(true);
@@ -299,6 +300,11 @@ public class PlayerWeapons : MonoBehaviour, IPickup
                 break;
         }
         UpdateUI();
+    }
+
+    public void IncreaseDamageMod(float amount)
+    {
+        damageMod += amount;
     }
 
 }

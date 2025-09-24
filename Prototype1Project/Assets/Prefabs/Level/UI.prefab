@@ -8083,7 +8083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2781006889573047604
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9053,6 +9053,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8376110825765441877}
   - component: {fileID: 2451218969054428944}
+  - component: {fileID: 1204276923839242964}
   m_Layer: 5
   m_Name: GameManager
   m_TagString: Untagged
@@ -9132,6 +9133,31 @@ MonoBehaviour:
   player: {fileID: 0}
   playerScript: {fileID: 0}
   CDManager: {fileID: 8533762484280157288}
+--- !u!114 &1204276923839242964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702604394835745504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54f8432402cdfb4faab7f7211ba1f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RunStatsManager
+  elimLabel: {fileID: 4273324304930017948}
+  hitLabel: {fileID: 4042660078518286841}
+  timeLabel: {fileID: 7076944194098010312}
+  healthLabel: {fileID: 166434969373102307}
+  damageLabel: {fileID: 8748896383932725939}
+  speedLabel: {fileID: 6834026240833622334}
+  siphonLabel: {fileID: 454927155482674995}
+  currElims: 0
+  currHit: 0
+  currHealth: 0
+  currDamage: 0
+  currSpeed: 0
+  currSiphon: 0
 --- !u!1 &7946735705590485284
 GameObject:
   m_ObjectHideFlags: 0

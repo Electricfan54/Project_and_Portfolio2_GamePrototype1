@@ -195,6 +195,9 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        RunStatsManager.instance.UpdateUI();
+
     }
 
     public void UnpauseGame()

@@ -60,6 +60,9 @@ public class PlayerWeapons : MonoBehaviour, IPickup
 
     void Update()
     {
+        if (gameManager.instance.isPaused)
+            return;
+
         if (!isAttacking && !isReloading)
         {
             SwapWeapons();

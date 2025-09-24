@@ -78,11 +78,14 @@ public class PlayerWeapons : MonoBehaviour, IPickup
         if ((Input.GetKeyDown(KeyCode.V) || Input.GetKey(KeyCode.V)) && !isAttacking)
         {
             StartCoroutine(Melee());
+            gameManager.instance.CDManager.AddCoolDown("Melee CD", meleeRate);
         }
 
         if (Input.GetKeyDown(KeyCode.F) && canUseGrenade)
         {
             StartCoroutine(ShootGrenade());
+            gameManager.instance.CDManager.AddCoolDown("Gernade CD", grenadeThrowRate);
+
         }
     }
 
@@ -193,7 +196,7 @@ public class PlayerWeapons : MonoBehaviour, IPickup
     IEnumerator Reload()
     {
         isReloading = true;
-        gameManager.instance.CDManager.AddCoolDown("Reloading");
+        gameManager.instance.CDManager.AddCoolDown("Reloading", curWeapon.ReloadTimer);
         yield return new WaitForSeconds(curWeapon.ReloadTimer);
 
         int amountToReload = CalcAmmo();

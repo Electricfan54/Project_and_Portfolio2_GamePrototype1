@@ -9108,7 +9108,7 @@ MonoBehaviour:
   waveStartNum: {fileID: 5195357560711419545}
   intermissionPopUp: {fileID: 2812235289685078429}
   interTimer: {fileID: 7905538629437714550}
-  menuPowUp: {fileID: 0}
+  menuPowUp: {fileID: 8082832986903829963}
   enemyWaves: []
   disableWaveGame: 0
   disableWinCondition: 0

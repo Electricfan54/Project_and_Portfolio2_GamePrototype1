@@ -1937,11 +1937,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 748053049673776440, guid: 2509eed45c9e7c94ca3d2353c35f3f0d, type: 3}
   m_PrefabInstance: {fileID: 313000623}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &826063736 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8082832986903829963, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
-  m_PrefabInstance: {fileID: 1376753445951434637}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &839478556 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 748053049673776440, guid: 2509eed45c9e7c94ca3d2353c35f3f0d, type: 3}
@@ -5306,10 +5301,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
-      propertyPath: menuPowUp
-      value: 
-      objectReference: {fileID: 826063736}
     - target: {fileID: 2451218969054428944, guid: 99898927dd0b1a042a958a0887003b4b, type: 3}
       propertyPath: endlessActive
       value: 1

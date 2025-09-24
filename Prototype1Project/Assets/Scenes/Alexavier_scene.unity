@@ -1085,10 +1085,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: barrel things
       objectReference: {fileID: 0}
-    - target: {fileID: 3229549239879800691, guid: 9d4ea07f32d3f184eb4101f5432925d2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7699575585135522778, guid: 9d4ea07f32d3f184eb4101f5432925d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.31341
@@ -1129,10 +1125,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8642772310934816747, guid: 9d4ea07f32d3f184eb4101f5432925d2, type: 3}
-      propertyPath: hiteffect
-      value: 
-      objectReference: {fileID: 1301697207402410478, guid: 39f852c28f9c3fd45a427c24f3564ba7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -164,6 +164,7 @@ MonoBehaviour:
   affects: {fileID: 3229549239879800691}
   respawnTime: 14
   model: {fileID: 5593983266788906272}
+  hiteffect: {fileID: 1301697207402410478, guid: 39f852c28f9c3fd45a427c24f3564ba7, type: 3}
 --- !u!1001 &9009792862280548451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,7 +219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5897638755241432848, guid: b6c1169f4d6556c479bcb50e30ebbd63, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

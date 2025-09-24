@@ -1711,6 +1711,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: _RangedEnemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6434233784640240972, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: m_Acceleration
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

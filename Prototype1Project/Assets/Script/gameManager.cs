@@ -68,6 +68,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] public GameObject intermissionPopUp;
     [SerializeField] public TMP_Text interTimer;
 
+    [SerializeField] public GameObject menuPowUp;
+
     [Header("Wave Customization")] // Wave specific variables here
     [SerializeField] List<WaveStruct> enemyWaves;
 
@@ -195,6 +197,9 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        RunStatsManager.instance.UpdateUI();
+
     }
 
     public void UnpauseGame()
@@ -241,6 +246,14 @@ public class gameManager : MonoBehaviour
 
             intermission = true;
             intermissionPopUp.SetActive(true);
+
+            PauseGame();
+            menuHierarchy.Add(menuPowUp);
+            menuActive = menuPowUp;
+            menuActive.SetActive(true);
+
+            menuPowUp.GetComponent<Powerups>().SetRandomPowerups();
+
         }
 
     }

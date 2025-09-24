@@ -111,7 +111,7 @@ public class PlayerWeapons : MonoBehaviour, IPickup
             SetActiveWeapon(2);
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             if (--curWeaponIndex >= 0)
                 SetActiveWeapon(curWeaponIndex);
@@ -122,7 +122,7 @@ public class PlayerWeapons : MonoBehaviour, IPickup
             }
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             if (++curWeaponIndex < weapons.Count)
                 SetActiveWeapon(curWeaponIndex);

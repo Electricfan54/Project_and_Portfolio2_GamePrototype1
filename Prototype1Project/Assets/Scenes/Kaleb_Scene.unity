@@ -1277,26 +1277,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
-      propertyPath: ammoAmountRifle
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
-      propertyPath: weapons.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
-      propertyPath: 'weapons.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: ca060275c814bc342aa9072aa8a2b6d9, type: 2}
-    - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
-      propertyPath: 'weapons.Array.data[1]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 698604112704923531, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
-      propertyPath: 'weapons.Array.data[2]'
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4999085626487746977, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.38662

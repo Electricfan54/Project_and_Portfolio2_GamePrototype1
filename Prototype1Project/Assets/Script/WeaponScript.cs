@@ -8,6 +8,7 @@ public class WeaponScript : ScriptableObject
     public GameObject WeaponModel;
     public ammoType WeaponAmmoType;
     public AudioClip[] audioClips;
+    public ParticleSystem hiteffect;
     // Gun stuff
     [Range(1, 50)] public int gunDamage;
     [Range(0.1f, 5)] public float fireRate;

@@ -143,7 +143,9 @@ public class PlayerWeapons : MonoBehaviour, IPickup
         isAttacking = true;
         Vector3 shootTarget = cameraPos.position + cameraPos.forward * 30.0f;
 
-
+       
+            Instantiate(curWeapon.hiteffect, bulletSpawnPos.position, Quaternion.identity);
+       
         Instantiate(curWeapon.Bullet, bulletSpawnPos.position, Quaternion.LookRotation(shootTarget - bulletSpawnPos.position));
         //shoot
         curWeapon.currAmmo--;

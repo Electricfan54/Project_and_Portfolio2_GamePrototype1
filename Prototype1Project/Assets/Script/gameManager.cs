@@ -122,6 +122,8 @@ public class gameManager : MonoBehaviour
     [Header("Unorganized")]
     float timeScaleOrig;
 
+    public CooldownManager CDManager;
+
     void Awake()
     {
         instance = this;
@@ -273,7 +275,7 @@ public class gameManager : MonoBehaviour
     {
 
         graceTimer += Time.deltaTime;
-        interTimer.text = (waveIntermission - graceTimer).ToString("F0");
+        interTimer.text = Mathf.Floor(waveIntermission - graceTimer).ToString("F0");
 
         if (graceTimer >= waveIntermission)
         {
@@ -292,9 +294,14 @@ public class gameManager : MonoBehaviour
             spawnPosIndex = 0;
             waveSpawnedTotal = 0;
             maxWaveEnemies = 0;
-            graceTimer = 0;
-            waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
-            maxWaveEnemies += enemyWaves[0].enemies[0].spawnAmount;
+            graceTimer = -1;
+
+            if (enemyWaves[0].enemies.Count > 0)
+            {
+                waveSpawnDelay = enemyWaves[0].enemies[0].spawnDelay;
+                maxWaveEnemies += enemyWaves[0].enemies[0].spawnAmount;
+            }
+
             waveNum++;
             waveNumText.text = waveNum.ToString("F0");
             waveActive = true;

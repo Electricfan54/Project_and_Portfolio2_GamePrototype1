@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   controller: {fileID: 5526867041763226884}
-  PlayerHP: 30
+  PlayerHP: 50
   playerSpeed: 6
   SprintMod: 2
   jumpSpeed: 15
@@ -483,7 +483,7 @@ MonoBehaviour:
   Gravity: 35
   SidewaysDownTime: 2
   LauchForceMult: 10
-  InvincTimer: 0
+  InvincTimer: 0.2
   aud: {fileID: 8708455056728070542}
   jumpsounds:
   - {fileID: 8300000, guid: 99af0328e3620be4f916217e96ff1568, type: 3}
@@ -512,6 +512,9 @@ MonoBehaviour:
   walkingvolume: 0.493
   timetostep: 0.3
   timetorun: 0.2
+  MovementSpeedBuff: 1
+  HealingBuff: 1
+  MaxHealthBuff: 1
   hasStatusEffect: 0
 --- !u!114 &698604112704923531
 MonoBehaviour:
@@ -537,10 +540,10 @@ MonoBehaviour:
     m_Bits: 447
   GunModel: {fileID: 3385614797769686659}
   bulletSpawnPos: {fileID: 3571679127414246299}
-  meleeDamage: 0
-  meleeDist: 0
-  meleeRate: 0
-  ammoAmountRifle: 999999
+  meleeDamage: 5
+  meleeDist: 2
+  meleeRate: 0.5
+  ammoAmountRifle: 0
   ammoAmountSniper: 0
   ammoAmountHoming: 0
 --- !u!23 &772482524985079454

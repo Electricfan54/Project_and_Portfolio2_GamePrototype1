@@ -51,7 +51,9 @@ public class PlayerWeapons : MonoBehaviour, IPickup
             curWeapon = weapons[0];
             SetActiveWeapon(0);
         }
-
+        ammoAmountRifle = 250;
+        ammoAmountHoming = 250;
+        ammoAmountSniper = 50;
         ReloadAll();
         UpdateUI();
     }

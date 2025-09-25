@@ -243,16 +243,13 @@ public class gameManager : MonoBehaviour
             {
                 WinGame();
             }
+            else
+            {
+                ShowPowerUps();
+            }
 
             intermission = true;
             intermissionPopUp.SetActive(true);
-
-            PauseGame();
-            menuHierarchy.Add(menuPowUp);
-            menuActive = menuPowUp;
-            menuActive.SetActive(true);
-
-            menuPowUp.GetComponent<Powerups>().SetRandomPowerups();
 
         }
 
@@ -444,6 +441,16 @@ public class gameManager : MonoBehaviour
 
         waveStartPopUp.SetActive(false);
         waveNumLabel.SetActive(true);
+    }
+
+    void ShowPowerUps()
+    {
+        PauseGame();
+        menuHierarchy.Add(menuPowUp);
+        menuActive = menuPowUp;
+        menuActive.SetActive(true);
+
+        menuPowUp.GetComponent<Powerups>().SetRandomPowerups();
     }
 
 }

@@ -171,7 +171,7 @@ MonoBehaviour:
   target: {fileID: 0}
   bulletPrefab: {fileID: 6344434922400891919, guid: 42cec67cc61d7fd4e83ab53a996d3f7c, type: 3}
   meleeRange: 8
-  dropChance: 100
+  dropChance: 50
   rifleAmmoWeight:
     type: 0
     weight: 4
@@ -183,13 +183,13 @@ MonoBehaviour:
     weight: 2
     amountMin: 20
     amountMax: 30
-    prefab: {fileID: 3160516744295412424, guid: f4671c1010d15744a8f63fc24d5b1fc2, type: 3}
+    prefab: {fileID: 226402928929264627, guid: 50cf6d3c8d5c7994aa41633949eaf1b5, type: 3}
   homingAmmoWeight:
     type: 0
     weight: 2
     amountMin: 20
     amountMax: 30
-    prefab: {fileID: 226402928929264627, guid: 50cf6d3c8d5c7994aa41633949eaf1b5, type: 3}
+    prefab: {fileID: 3160516744295412424, guid: f4671c1010d15744a8f63fc24d5b1fc2, type: 3}
   aud: {fileID: -619011550481265157}
   hitnoise:
   - {fileID: 8300000, guid: 367f77df84e65b5408c28ab3330d319e, type: 3}

@@ -81,13 +81,13 @@ MonoBehaviour:
     weight: 2
     amountMin: 30
     amountMax: 40
-    prefab: {fileID: 3160516744295412424, guid: f4671c1010d15744a8f63fc24d5b1fc2, type: 3}
+    prefab: {fileID: 226402928929264627, guid: 50cf6d3c8d5c7994aa41633949eaf1b5, type: 3}
   homingAmmoWeight:
     type: 0
     weight: 2
     amountMin: 30
     amountMax: 50
-    prefab: {fileID: 226402928929264627, guid: 50cf6d3c8d5c7994aa41633949eaf1b5, type: 3}
+    prefab: {fileID: 3160516744295412424, guid: f4671c1010d15744a8f63fc24d5b1fc2, type: 3}
   aud: {fileID: 2748656061957169587}
   hitnoise:
   - {fileID: 8300000, guid: 367f77df84e65b5408c28ab3330d319e, type: 3}

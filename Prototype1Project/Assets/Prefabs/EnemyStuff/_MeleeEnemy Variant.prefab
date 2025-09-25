@@ -101,9 +101,17 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: homingAmmoWeight.prefab
+      value: 
+      objectReference: {fileID: 3160516744295412424, guid: f4671c1010d15744a8f63fc24d5b1fc2, type: 3}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: homingAmmoWeight.weight
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
+      propertyPath: sniperAmmoWeight.prefab
+      value: 
+      objectReference: {fileID: 226402928929264627, guid: 50cf6d3c8d5c7994aa41633949eaf1b5, type: 3}
     - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: sniperAmmoWeight.weight
       value: 2

@@ -553,7 +553,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a110a9040c6da0c43bf173a1d5f4ce4c, type: 3}
---- !u!1001 &1835516798
+--- !u!1001 &1937138520
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -563,7 +563,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7973
+      value: -2.52635
       objectReference: {fileID: 0}
     - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -571,7 +571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.68064
+      value: 9.16566
       objectReference: {fileID: 0}
     - target: {fileID: 315934105129827616, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -604,10 +604,6 @@ PrefabInstance:
     - target: {fileID: 5305607466204783013, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
       propertyPath: m_Name
       value: _RangedEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709498979204542873, guid: c8cafa34b85f3f045b39eb42cca99edd, type: 3}
-      propertyPath: maxHP
-      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -733,6 +729,6 @@ SceneRoots:
   - {fileID: 779100008}
   - {fileID: 642601636}
   - {fileID: 1449082167}
-  - {fileID: 1835516798}
   - {fileID: 1537918351}
   - {fileID: 349009291}
+  - {fileID: 1937138520}

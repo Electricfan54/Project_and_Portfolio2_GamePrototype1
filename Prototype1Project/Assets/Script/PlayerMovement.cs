@@ -216,6 +216,8 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
     {
         MaxHealthBuff += NumAdd;
         origHP = origHP * MaxHealthBuff;
+        UpdatePlayerHPUI();
+        gameManager.instance.CDManager.AddCoolDown("Added Player HP", 1);
     }
 
     public void AddSpeedBuff(float NumAdd)

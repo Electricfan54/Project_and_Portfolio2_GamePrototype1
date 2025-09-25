@@ -23,6 +23,7 @@ public class Barrel : MonoBehaviour, IDamage
             // gameObject.SetActive(false);
             affects.SetActive(true);
             model.enabled = false;
+            gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
             StartCoroutine(barrelrespwan());
         }
         else
@@ -55,6 +56,7 @@ public class Barrel : MonoBehaviour, IDamage
         gameObject.SetActive(true);
         affects.SetActive(false);
         Health = MaxHealth;
+        gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
         didplay = false;
     }
     IEnumerator flashred()

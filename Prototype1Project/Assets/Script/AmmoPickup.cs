@@ -7,6 +7,11 @@ public class AmmoPickup : MonoBehaviour
     [SerializeField] GameObject model;
     [SerializeField] float modelRotateSpeed;
 
+    private void Start()
+    {
+        Destroy(gameObject, 20);
+    }
+
     private void Update()
     {
         model.transform.Rotate(0, modelRotateSpeed * Time.deltaTime, 0);

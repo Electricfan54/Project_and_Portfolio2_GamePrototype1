@@ -10,7 +10,7 @@ public class Barrel : MonoBehaviour, IDamage
     [SerializeField] int respawnTime;
     [SerializeField] Renderer model;
     public ParticleSystem hiteffect;
-
+    bool didplay;
     Color colororiginal;
 
 
@@ -23,7 +23,6 @@ public class Barrel : MonoBehaviour, IDamage
             // gameObject.SetActive(false);
             affects.SetActive(true);
             model.enabled = false;
-            
             StartCoroutine(barrelrespwan());
         }
         else
@@ -45,14 +44,18 @@ public class Barrel : MonoBehaviour, IDamage
 
     }
     IEnumerator barrelrespwan()
-    {
-        Instantiate(hiteffect, gameObject.transform.position, Quaternion.identity);
+    {if (!didplay)
+        {
+ Instantiate(hiteffect, gameObject.transform.position, Quaternion.identity);
+            didplay = true;
+        }
+       
         yield return new WaitForSeconds(respawnTime);
         model.enabled = true;
         gameObject.SetActive(true);
         affects.SetActive(false);
         Health = MaxHealth;
-
+        didplay = false;
     }
     IEnumerator flashred()
     {

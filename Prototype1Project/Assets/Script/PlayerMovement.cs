@@ -217,18 +217,20 @@ public class PlayerMovement : MonoBehaviour, IDamage, IStatuseffect
         MaxHealthBuff += NumAdd;
         origHP = origHP * MaxHealthBuff;
         UpdatePlayerHPUI();
-        gameManager.instance.CDManager.AddCoolDown("Added Player HP", 1);
+        gameManager.instance.CDManager.AddCoolDown("Added Player HP", 3);
     }
 
     public void AddSpeedBuff(float NumAdd)
     {
         MovementSpeedBuff += NumAdd;
+        gameManager.instance.CDManager.AddCoolDown("Added Movement Buff", 3);
 
     }
 
     public void AddHealingBuff(float NumAdd)
     {
         HealingBuff += NumAdd;
+        gameManager.instance.CDManager.AddCoolDown("Added Healing Buff", 3);
     }
 
     public void ApplyEffect(int damage, int durration, int tickspeed)

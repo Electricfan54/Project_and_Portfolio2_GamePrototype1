@@ -489,7 +489,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 99af0328e3620be4f916217e96ff1568, type: 3}
   - {fileID: 8300000, guid: 47d7167fb5932ae45903fcda8eb395e8, type: 3}
   - {fileID: 8300000, guid: d0f1c96db6f39444f83b5b86ffe8908c, type: 3}
-  jumpvolume: 0.528
+  jumpvolume: 0.3
   damagesounds:
   - {fileID: 8300000, guid: aae1ab3b2a96ddd48b6113e5deab53ab, type: 3}
   - {fileID: 8300000, guid: 6e25361336e20ef4ba48f74e1e0809f0, type: 3}
@@ -497,7 +497,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 20ec9635f63aedf4cb4f0b28738a8041, type: 3}
   - {fileID: 8300000, guid: 23479f0c9e4d77c4f8d4b7bfe699c63b, type: 3}
   - {fileID: 8300000, guid: 99bc336fb825e8449b443169181e2a1d, type: 3}
-  damagevolume: 0.544
+  damagevolume: 0.3
   walkingsounds:
   - {fileID: 8300000, guid: a1d43a958604df94ca98cc1718a1b4ee, type: 3}
   - {fileID: 8300000, guid: 3ff802918fdec7445b57a30cf9ed86dd, type: 3}
@@ -509,7 +509,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 350b6dacd15bb2c45a356afcc7986fed, type: 3}
   - {fileID: 8300000, guid: d833678b0e6aa394fb88f80948c10ed0, type: 3}
   - {fileID: 8300000, guid: bf4fb8fa6fe714e41bc1cb23fd82669b, type: 3}
-  walkingvolume: 0.493
+  walkingvolume: 0.23
   timetostep: 0.3
   timetorun: 0.2
   MovementSpeedBuff: 1
@@ -546,6 +546,7 @@ MonoBehaviour:
   ammoAmountRifle: 0
   ammoAmountSniper: 0
   ammoAmountHoming: 0
+  damageMod: 1
 --- !u!23 &772482524985079454
 MeshRenderer:
   m_ObjectHideFlags: 0

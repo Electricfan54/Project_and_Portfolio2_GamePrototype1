@@ -21,11 +21,11 @@ MonoBehaviour:
   gunDamage: 20
   fireRate: 1.01
   DestroyTime: 5
-  currAmmo: 1
+  currAmmo: 5
   clipSize: 5
   maxAmmo: 50
   ReloadTimer: 1.5
-  shootvolume: 0.528
+  shootvolume: 0.404
   explodeTime: 0.1
   CheckRadius: 1
   HomingStartTime: 0.1

@@ -19,13 +19,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 90c2f4be42516494985510d62a6fd433, type: 3}
   hiteffect: {fileID: 8884371268655795233, guid: 20fda529c996a334da7fd65b48ea40df, type: 3}
   gunDamage: 2
-  fireRate: 0.1
+  fireRate: 0.4
   DestroyTime: 6
   currAmmo: 25
   clipSize: 25
   maxAmmo: 250
   ReloadTimer: 0.1
-  shootvolume: 0.576
+  shootvolume: 0.29
   explodeTime: 0.1
   CheckRadius: 1
   HomingStartTime: 1.07

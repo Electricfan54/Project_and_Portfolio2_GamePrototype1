@@ -19,6 +19,9 @@ public class Damage : MonoBehaviour
     public int radius;
     [SerializeField] SphereCollider explosioncollider;
     [SerializeField] GameObject explosionEffect;
+    [SerializeField]AudioSource explosionAudio;
+    [SerializeField] AudioClip[] audioClips;
+   [Range(0,1)] [SerializeField]float explosionvolume;
     float explodetimer;
 
     [Tooltip("how long the homing bullet stops for")]
@@ -225,7 +228,7 @@ public class Damage : MonoBehaviour
         yield return new WaitForSeconds(explodetime);
         explosioncollider.radius = radius;
         isDamaging = false;
-
+        explosionAudio.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)], explosionvolume);
         GameObject temp;
         temp = Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(temp, 2f);
@@ -248,7 +251,7 @@ public class Damage : MonoBehaviour
         else
         {
             rot = Quaternion.LookRotation(homingTarget.transform.position - transform.position);
-        }
+         }
 
         transform.rotation = rot;
         rb.linearVelocity = transform.forward * speedAfterStop; //speed after stoping
